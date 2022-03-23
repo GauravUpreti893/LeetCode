@@ -1,25 +1,33 @@
 class Solution {
 public:
     int countPrimes(int n) {
-        if (n<=2)
+        if (n <= 2)
             return 0;
-        vector<int> iscomposite(n,0);
-        int ans = 0;
-        iscomposite[0] = -1;
-        iscomposite[1] = -1;
+        int *arr = new int[n];
         for (int i = 2; i < n; i++)
         {
-            if (iscomposite[i] == 0)
+            arr[i] = 1;
+        }
+        arr[0] = 0;
+        arr[1] = 0;
+        int ans = 0;
+        for (int i = 2; i < sqrt(n);i++)
+        {
+            if (arr[i])
             {
                 ans++;
-                int j = 2;
-                while (i*j < n)
+                for (int j = i*i; j < n; j+=i)
                 {
-                    iscomposite[i*j] = 1;
-                    j++;
+                    arr[j] = 0;
                 }
             }
         }
+        for (int i = ceil(sqrt(n)); i< n; i++)
+        {
+            if (arr[i])
+                ans++;
+        }
         return ans;
+        
     }
 };
