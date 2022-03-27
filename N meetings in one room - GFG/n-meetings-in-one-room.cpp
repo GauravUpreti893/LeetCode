@@ -8,10 +8,10 @@ using namespace std;
     {
         if (a.second < b.second)
         return true;
-        else if (a.second == b.second && a.first < b.first)
-        {
-            return true;
-        }
+        // else if (a.second == b.second && a.first < b.first)
+        // {
+        //     return true;
+        // }
         else
         return false;
     }
