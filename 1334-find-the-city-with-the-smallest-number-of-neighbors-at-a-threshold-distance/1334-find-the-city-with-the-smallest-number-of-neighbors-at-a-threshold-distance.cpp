@@ -15,8 +15,12 @@ public:
         {
             for (int i = 0; i < n; i++)
             {
+                if (i == k)
+                    continue;
                 for (int j = 0; j < n; j++)
                 {
+                    if (j == k)
+                        continue;
                     adj[i][j] = min(adj[i][j],adj[i][k] + adj[k][j]);
                 }
             }
