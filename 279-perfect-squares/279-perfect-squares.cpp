@@ -1,26 +1,22 @@
 class Solution {
 public:
-    int nos(int n, int* &table)
-    {
-        if (table[n] == 10001)
-        {
-            int i = 1;
-            while (i*i <= n)
-            {
-                table[n] = min(table[n],nos(n - i*i,table) + 1);
-                i++;
-            }
-        }
-        return table[n];
-    }
     int numSquares(int n) {
-        int *table = new int[n + 1];
-        for (int i = 0; i <= n; i++)
+        int table[n + 1];
+        for (int i = 0; i <=n; i++)
         {
-            table[i] = 10001;
+            table[i] = 1e4 + 1;
         }
         table[0] = 0;
         table[1] = 1;
-        return nos(n,table);
+        for (int i = 2; i <= n; i++)
+        {
+            int j = 1;
+            while (j*j <= i)
+            {
+                table[i] = min(table[i], table[i - j*j] + 1);
+                j++;
+            }
+        }
+        return table[n];
     }
 };
