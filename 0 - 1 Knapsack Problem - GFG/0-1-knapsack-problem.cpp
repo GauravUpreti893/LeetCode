@@ -8,29 +8,32 @@ class Solution
 {
     public:
     //Function to return max value that can be put in knapsack of capacity W.
-    int knap(int w,int* &wt, int* &val, int n, vector<vector<int>> &profit)
-    {
-        if (w < 0)
-        return INT_MIN/2;
-        if (profit[n][w] == -1)
-        {
-            profit[n][w] = max(knap(w - wt[n - 1],wt,val,n - 1,profit) + val[n - 1],knap(w,wt,val,n -1,profit));
-        }
-        return profit[n][w];
-    }
     int knapSack(int W, int wt[], int val[], int n) 
     { 
        // Your code here
-       vector<vector<int>> profit(n + 1,vector<int> (W + 1,-1));
+       vector<vector<int>> profit(n + 1, vector<int> (W + 1));
        for (int i = 0; i <= W; i++)
-       {
-           profit[0][i] = 0;
-       }
+       profit[0][i] = 0;
        for (int i = 0; i <= n; i++)
        {
            profit[i][0] = 0;
        }
-       return knap(W,wt,val,n,profit);
+       int diff,p1;
+       for (int i = 1; i <= n; i++)
+       {
+           for (int j = 1; j <= W; j++)
+           {
+               diff = j - wt[i - 1];
+               if (diff < 0)
+               {
+                   p1 = 0;
+               }
+               else
+                p1 = profit[i - 1][diff] + val[i - 1];
+               profit[i][j] = max(p1, profit[i - 1][j]);
+           }
+       }
+       return profit[n][W];
     }
 };
 
