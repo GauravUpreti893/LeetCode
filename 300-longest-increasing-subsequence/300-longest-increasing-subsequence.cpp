@@ -33,7 +33,6 @@ public:
         for (int i = 1; i <= n; i++)
         {
             ans = max(table[i],ans);
-            // cout<<table[i]<<" ";
         }
         return ans;
     }
