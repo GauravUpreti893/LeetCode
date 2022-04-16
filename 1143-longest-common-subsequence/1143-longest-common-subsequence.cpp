@@ -13,8 +13,13 @@ public:
                 if (text1[i - 1] == text2[j - 1])
                 {
                     x = table[i - 1][j - 1] + 1;
+                    table[i][j] = x;
                 }
-                table[i][j] = max(x,max(table[i - 1][j],table[i][j - 1]));
+                else
+                {
+                    table[i][j] = max(table[i - 1][j],table[i][j - 1]);
+                }
+                // table[i][j] = max(x,max(table[i - 1][j],table[i][j - 1]));
             }
         }
         return table[n][m];
