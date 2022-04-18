@@ -9,6 +9,16 @@ using namespace std;
 
 class Solution{
 public:
+    int matrixmul(int n, int *arr, vector<vector<int>> &table, int i, int j)
+    {
+        if (table[i][j] != INT_MAX/3)
+        return table[i][j];
+        for (int k = i; k < j; k++)
+        {
+            table[i][j] = min(table[i][j],matrixmul(n,arr,table,i,k) +  matrixmul(n,arr,table,k + 1,j) + arr[i - 1]*arr[k]*arr[j]);
+        }
+        return table[i][j];
+    }
     int matrixMultiplication(int N, int arr[])
     {
         // code here
@@ -17,35 +27,7 @@ public:
         {
             table[i][i] = 0;
         }
-        // for (int i = 0; i <= N; i++)
-        // {
-        //     for (int j = 0; j <= N;j++)
-        //     {
-        //         cout<<table[i][j]<<" ";
-        //     }
-        //     cout<<endl;
-        // }
-        for (int i = 1; i < N; i++)
-        {
-            for (int j = 1; j < N - i; j++)
-            {
-                for (int k = j; k < j + i; k++)
-                {
-                    table[j][j + i] = min(table[j][j + i],table[j][k] + table[k + 1][j + i] + arr[j - 1]*arr[k]*arr[j + i]);
-                }
-            }
-            
-        }
-        
-        // for (int i = 0; i <= N; i++)
-        // {
-        //     for (int j = 0; j <= N;j++)
-        //     {
-        //         cout<<table[i][j]<<" ";
-        //     }
-        //     cout<<endl;
-        // }
-        return table[1][N - 1];
+        return matrixmul(N,arr, table,1, N - 1);
         
     }
 };
