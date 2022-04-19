@@ -10,21 +10,23 @@ using namespace std;
 
 class Solution{
   public:
+  int cut(int *price, int n, vector<int> &table)
+  {
+      if (table[n] != -1)
+      return table[n];
+      table[n] = price[n - 1];
+      for (int i = 1; i < n; i++)
+      {
+          table[n] = max(table[n],price[i - 1] + cut(price, n - i, table));
+      }
+      return table[n];
+  }
     int cutRod(int price[], int n) {
         //code here
-        vector<int> table(n + 1);
+        vector<int> table(n + 1, -1);
         table[0] = 0;
-        for (int i = 1; i <= n; i++)
-        {
-            table[i] = price[i - 1];
-            for (int j = 1; j <= i/2; j++)
-            {
-                table[i] = max(table[i], price[j - 1] + table[i - j]);
-            }
-        }
-        // for (int  i = 0; i <= n; i++)
-        // cout<<table[i]<<" ";
-        return table[n];
+        table[1] = price[0];
+        return cut(price, n,table);
     }
 };
 
