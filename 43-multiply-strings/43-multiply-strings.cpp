@@ -31,10 +31,10 @@ public:
                     res[i] += '0';
                 }
             }
-            for (int i = 0; i < m; i++)
-            {
-                cout<<res[i]<<endl;
-            }
+            // for (int i = 0; i < m; i++)
+            // {
+            //     cout<<res[i]<<endl;
+            // }
             carry = 0;
             vector<int> size(m);
             int mx = 0;
@@ -44,7 +44,7 @@ public:
                 mx = max(mx, size[i]);
             }
             string ans = "";
-            cout<<mx<<endl;
+            // cout<<mx<<endl;
             for (int i = 1; i <= mx; i++)
             {
                 rs = 0;
