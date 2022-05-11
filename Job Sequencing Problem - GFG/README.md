@@ -12,7 +12,7 @@
 <p style="user-select: auto;"><br style="user-select: auto;">
 <strong style="user-select: auto;"><span style="font-size: 18px; user-select: auto;">Example 1:</span></strong></p>
 
-<pre style="user-select: auto;"><strong style="user-select: auto;"><span style="font-size: 18px; user-select: auto;">Input:
+<pre style="position: relative; user-select: auto;"><strong style="user-select: auto;"><span style="font-size: 18px; user-select: auto;">Input:
 </span></strong><span style="font-size: 18px; user-select: auto;">N = 4
 Jobs = {(1,4,20),(2,1,10),(3,1,40),(4,1,30)}
 <strong style="user-select: auto;">Output:
@@ -20,11 +20,11 @@ Jobs = {(1,4,20),(2,1,10),(3,1,40),(4,1,30)}
 Explanation:
 </strong>Job<sub style="user-select: auto;">1</sub>&nbsp;and Job<sub style="user-select: auto;">3 </sub>can be done with
 maximum profit of 60 (20+40).</span>
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper" style="user-select: auto;"></div></pre>
 
 <p style="user-select: auto;"><strong style="user-select: auto;"><span style="font-size: 18px; user-select: auto;">Example 2:</span></strong></p>
 
-<pre style="user-select: auto;"><strong style="user-select: auto;"><span style="font-size: 18px; user-select: auto;">Input:
+<pre style="position: relative; user-select: auto;"><strong style="user-select: auto;"><span style="font-size: 18px; user-select: auto;">Input:
 </span></strong><span style="font-size: 18px; user-select: auto;">N = 5
 Jobs = {(1,2,100),(2,1,19),(3,2,27),
 &nbsp;       (4,1,25),(5,1,15)}
@@ -32,7 +32,7 @@ Jobs = {(1,2,100),(2,1,19),(3,2,27),
 </strong>2 127<strong style="user-select: auto;">
 Explanation:
 </strong>2 jobs can be done with
-maximum profit of 127 (100+27).</span></pre>
+maximum profit of 127 (100+27).</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper" style="user-select: auto;"></div></pre>
 
 <p style="user-select: auto;"><br style="user-select: auto;">
 <span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Your Task</strong> :<br style="user-select: auto;">
