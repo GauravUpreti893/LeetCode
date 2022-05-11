@@ -22,9 +22,10 @@ struct Job
     int profit; // Profit if job is over before or on deadline 
 };
 */
-bool compare(Job a, Job b)
+bool compare(Job j1, Job j2)
 {
-  return a.profit > b.profit;
+    
+    return j1.profit > j2.profit;
 }
 class Solution 
 {
@@ -33,14 +34,14 @@ class Solution
     vector<int> JobScheduling(Job arr[], int n) 
     { 
         // your code here
-        vector<int> ans(2,0),isfree(n,0);
+        sort(arr, arr + n, compare);
         int count = 0, profit = 0;
-        sort(arr,arr + n,compare);
+        vector<int> isfree(n, 0);
         int d;
         for (int i = 0; i < n;i++)
         {
             d = arr[i].dead;
-            for (int j = min(n - 1,d - 1); j >= 0; j--)
+            for (int j = min(n - 1, d - 1); j >= 0; j--)
             {
                 if (!isfree[j])
                 {
@@ -51,8 +52,9 @@ class Solution
                 }
             }
         }
-        ans[0] = count;
-        ans[1] = profit;
+        vector<int> ans;
+        ans.push_back(count);
+        ans.push_back(profit);
         return ans;
     } 
 };
