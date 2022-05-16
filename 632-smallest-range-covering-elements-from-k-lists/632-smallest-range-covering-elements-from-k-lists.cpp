@@ -19,9 +19,9 @@ public:
         int count = 0;
         int fi = 1e5 + 1;
         int j = 0;
-        for (int i = 0; i < m; i++)
-            cout<<arr[i].first<<" "<<arr[i].second<<endl;
-        cout<<endl;
+        // for (int i = 0; i < m; i++)
+        //     cout<<arr[i].first<<" "<<arr[i].second<<endl;
+        // cout<<endl;
         for (int i = 0; i < m;i++)
         {
             if (table[arr[i].second] == 0)
