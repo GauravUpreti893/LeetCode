@@ -17,7 +17,7 @@ public:
         vector<int> table(n,0);
         m = arr.size();
         int count = 0;
-        int fi = INT_MAX;
+        int fi = 1e5 + 1;
         int j = 0;
         for (int i = 0; i < m; i++)
             cout<<arr[i].first<<" "<<arr[i].second<<endl;
