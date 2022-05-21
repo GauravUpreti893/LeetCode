@@ -1,5 +1,5 @@
 # Kth smallest element
-## Medium 
+##  Medium 
 <div class="problem-statement" style="user-select: auto;">
                 <p style="user-select: auto;"></p><p style="user-select: auto;"><span style="font-size: 18px; user-select: auto;">Given an array <strong style="user-select: auto;">arr[]</strong> and an integer&nbsp;<strong style="user-select: auto;">K</strong> where K is smaller than size of array, the task is to find the <strong style="user-select: auto;">K<sup style="user-select: auto;">th</sup> smallest</strong> element in the given array. It is given that all array elements are distinct.</span></p>
 
