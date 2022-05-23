@@ -2,7 +2,7 @@ class Solution {
 public:
     int sumSubseqWidths(vector<int>& nums) {
         long long int ans = 0;
-        long long mod = 1e9 + 7;
+        long long mod = 1000000007;
         sort(nums.begin(),nums.end());
         int n = nums.size();
         long long p = 1;
