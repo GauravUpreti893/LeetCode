@@ -2,12 +2,12 @@ class Solution {
 public:
     int numTimesAllBlue(vector<int>& flips) {
         int count = 0;
-        set<int> s;
+        priority_queue<int> q;
         int n = flips.size();
         for(int i = 0; i < n; i++)
         {
-            s.insert(flips[i]);
-            int mx = *s.rbegin();
+            q.push(flips[i]);
+            int mx = q.top();
             if (mx == i + 1)
             {
                 count++;
