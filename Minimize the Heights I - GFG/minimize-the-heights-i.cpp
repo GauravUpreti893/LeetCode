@@ -9,24 +9,18 @@ using namespace std;
 
 class Solution{   
 public:
-    
-       int getMinDiff(int arr[], int n, int k) {
+    int getMinDiff(int arr[], int n, int k) {
         // code here
-        if(n==1){
-            return 0;
-        }
-        sort(arr,arr+n);
-        int diff = arr[n-1] - arr[0];
-        int mini,maxi;
-        for(int i=1;i<n;i++){
-        
-            maxi = max(arr[i-1]+k, arr[n-1]-k);
-            mini = min(arr[0]+k, arr[i]-k);
-            diff = min(diff,maxi-mini);
+        sort(arr, arr + n);
+        int mn,mx,diff = arr[n - 1] - arr[0];
+        for (int i = 1; i < n; i++)
+        {
+            mn = min(arr[0] + k, arr[i] - k);
+            mx = max(arr[n - 1] - k, arr[i - 1] + k);
+            diff = min(diff,abs(mx - mn));
         }
         return diff;
     }
-    
 };
 
 // { Driver Code Starts.
