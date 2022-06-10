@@ -2,7 +2,7 @@ class Solution {
 public:
     int leastBricks(vector<vector<int>>& wall) {
         unordered_map<int,int> mp;
-        int sum = 0, n = wall.size(), m;
+        int sum, n = wall.size(), m;
         for (int i = 0; i < n; i++)
         {
             sum = 0;
