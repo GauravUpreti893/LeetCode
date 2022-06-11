@@ -72,7 +72,7 @@ public:
             }
             int ans2 = lo;
             ans = (ans1 + ans2)/2.0;
-            cout<<ans1<<" "<<ans2<<endl;
+            // cout<<ans1<<" "<<ans2<<endl;
             
         }
         return ans;
