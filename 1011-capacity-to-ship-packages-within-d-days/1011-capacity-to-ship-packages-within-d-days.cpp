@@ -5,7 +5,7 @@ public:
         int count = 0;
         int n = weights.size();
         int i = 0;
-        long long int w;
+        int w;
         while (i < n)
         {
             w = 0;
