@@ -25,8 +25,8 @@ public:
             hi--;
         }
         n = hi + 1;
-        cout<<n<<endl;
-        cout<<lo<<" "<<hi<<endl;
+        // cout<<n<<endl;
+        // cout<<lo<<" "<<hi<<endl;
         int sp = lo;
         
         while (lo < hi)
@@ -52,7 +52,7 @@ public:
             lo = sp;
             hi = n - 1;
         }
-        cout<<sp<<" "<<lo<<" "<<hi<<endl;
+        // cout<<sp<<" "<<lo<<" "<<hi<<endl;
         while (lo <= hi)
         {
             mid = (lo + hi)/2;
