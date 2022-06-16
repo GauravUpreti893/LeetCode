@@ -22,7 +22,6 @@ public:
             lo = sp;
             hi = n - 1;   
         }
-        cout<<sp<<" "<<lo<<" "<<hi<<endl;
         while (lo <= hi)
             {
                 mid = (lo + hi)/2;
