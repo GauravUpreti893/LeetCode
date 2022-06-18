@@ -41,7 +41,6 @@ class Solution
         {
             curr->arb = (prev->arb != NULL)?prev->arb->next:NULL;
             prev = curr->next;
-            // curr->next = (curr->next != NULL)?curr->next->next:NULL;
             curr = curr->next;
             if (curr == NULL)
             break;
@@ -59,17 +58,6 @@ class Solution
             temp = temp->next;
             curr = curr->next;
         }
-        // temp = newhead;
-        // newhead = head;
-        // while (newhead != NULL)
-        // {
-        //     cout<<newhead->data<<" ";
-        //     if (newhead->arb != NULL)
-        //     cout<<newhead->arb->data;
-        //     cout<<endl;
-        //     newhead = newhead->next;
-        // }
-        // newhead = temp;
         return newhead;
     }
 
