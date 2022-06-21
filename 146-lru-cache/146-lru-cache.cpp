@@ -21,22 +21,6 @@ public:
     }
     
     int get(int key) {
-        // if (key == 1)
-        // {
-        //     unordered_map<int,LRUCache *>::iterator it;
-        //     cout<<"hi ";
-        //     for (it = mp.begin(); it != mp.end(); it++)
-        //     {
-        //         cout<<it->first<<" "<<it->second->data.second<<"     ";
-        //     }
-        //     cout<<endl;
-        // }
-        // LRUCache *temp1 = start;
-        //     while (temp1 != NULL)
-        //     {
-        //         cout<<temp1->data.first<<" "<<temp1->data.second<<"   ";
-        //         temp1 = temp1->next;
-        //     }
         if (mp.find(key) == mp.end())
         {
             return -1;
@@ -54,22 +38,12 @@ public:
                 {
                     start = lr;
                     skey = lr->data.first;
-                    // cout<<"SK"<<skey<<endl;
                 }
                 temp->next = NULL;
                 temp->prev = top;
                 top->next = temp;
                 top = top->next;
             }
-            // if (key == 1)
-            // {temp = start;
-            // while (temp != NULL)
-            // {
-            //     cout<<temp->data.first<<" "<<temp->data.second<<"   ";
-            //     temp = temp->next;
-            // }
-            // cout<<endl;
-            // }
             return mp.find(key)->second->data.second;
         }
     }
@@ -99,15 +73,8 @@ public:
                     top = lr;
                 }
                 LRUCache *temp = start;
-                // while (temp != NULL)
-                // {
-                //     cout<<temp->data.second<<" ";
-                //     temp = temp->next;
-                // }
-                // cout<<endl;
             }
             else{
-                // cout<<endl<<skey<<endl;
                 mp.erase(skey);
                 mp[key] = start; // Updating the first pointer which is least used to become our new pointer.
                 LRUCache *lr = start->next;
@@ -121,19 +88,11 @@ public:
                     top = top->next;
                     start = lr;
                     skey = lr->data.first;
-                    // cout<<"SK"<<skey<<endl;
                 }
                 else
                 {
                     skey = key;
                 }
-                // LRUCache *temp = start;
-                // while (temp != NULL)
-                // {
-                //     cout<<temp->data<<" ";
-                //     temp = temp->next;
-                // }
-                // cout<<endl;
             }
         }
         else
@@ -150,7 +109,6 @@ public:
                 {
                     start = lr;
                     skey = lr->data.first;
-                    // cout<<"SK"<<skey<<endl;
                 }
                 temp->next = NULL;
                 temp->prev = top;
