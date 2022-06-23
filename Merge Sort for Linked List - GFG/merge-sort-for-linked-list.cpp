@@ -29,120 +29,75 @@ struct Node
 class Solution{
   public:
     //Function to sort the given linked list using Merge Sort.
-    Node *merge (int lo, int hi,int mid, Node *start, Node *midptr)
+    Node *merge(Node *head, Node *temp)
     {
-        Node *a, *b;
-        a = new Node(start->data);
-        b = new Node(midptr->data);
-        Node *head = start;
-        start = start->next;
-        midptr = midptr->next;
-        Node *ta = a, *tb = b;
-        for (int i = lo + 1; i <= mid; i++)
+        Node *start, *newhead;
+        if (head->data <= temp->data)
         {
-            a->next = new Node(start->data);
-            start = start->next;
-            a = a->next;
-        }
-        for (int i = mid + 2; i <= hi; i++)
-        {
-            b->next = new Node(midptr->data);
-            midptr = midptr->next;
-            b = b->next;
-        }
-        int x = mid - lo + 1;
-        int y = hi - mid;
-        if (ta->data <= tb->data)
-        {
-            head->data = ta->data;
-            ta = ta->next;
-            x--;
+            start = head;
+            head = head->next;
         }
         else
         {
-            head->data = tb->data;
-            tb = tb->next;
-            y--;
+            start = temp;
+            temp = temp->next;
         }
-        while (x > 0 && y > 0)
+        newhead = start;
+        while (head != NULL && temp != NULL)
         {
-            if (ta->data <= tb->data)
+            if (head->data <= temp->data)
             {
-                head->next->data = ta->data;
-                ta = ta->next;
-                x--;
+                start->next = head;
+                head = head->next;
             }
             else
             {
-                head->next->data = tb->data;
-                tb = tb->next;
-                y--;
-            }
-            // cout<<head->next->data<<" ";
-            head = head->next;
-        }
-        
-        while (x > 0)
-        {
-            head->next->data = ta->data;
-            ta = ta->next;
-            head = head->next;
-            x--;
-            //  cout<<head->next->data<<" ";
-        }
-        while (y > 0)
-        {
-            head->next->data = tb->data;
-            tb = tb->next;
-            head = head->next;
-            y--;
-            //  cout<<head->next->data<<" ";
-        }
-        // cout<<endl;
-        return head;
-    }
-    void msort(int lo, int hi, Node *head)
-    {
-        
-        if (lo < hi)
-        {
-            int mid = (lo + hi)/2;
-            Node *temp = head;
-            for (int i = lo; i < mid; i++)
-            {
-                // cout<<temp->data<<" ";
+                start->next = temp;
                 temp = temp->next;
             }
-            // cout<<temp->data<<"         ";
-            
-            Node *prev = temp;
-            // for (int i = mid; i < hi ; i++)
-            // {
-            //     // cout<<temp->data<<" ";
-            //     temp = temp->next;
-            // }
-            
-            // cout<<prev->next->data<<endl;
-            msort(lo,mid,head);
-            msort(mid + 1, hi,prev->next);
-            merge(lo, hi, mid,head,prev->next);
+            start = start->next;
         }
-        // return head;
+        while (head != NULL)
+        {
+            start->next = head;
+            head = head->next;
+            start = start->next;
+        }
+        while (temp != NULL)
+        {
+            start->next = temp;
+            temp = temp->next;
+            start = start->next;
+        }
+        return newhead;
+        // temp = newhead;
+        // while (temp != NULL)
+        // {
+        //     cout<<temp->data<<" ";
+        //     temp = temp->next;
+        // }
+        // cout<<endl;
+        
+    }
+    Node *msort(Node *&head)
+    {
+        if (head == NULL || head->next == NULL)
+        return head;
+        Node *slow = head, *fast = head;
+        while (fast->next != NULL && fast->next->next != NULL)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        Node *temp = slow->next;
+        slow->next = NULL;
+        head = msort(head);
+        temp = msort(temp);
+        return merge(head, temp);
     }
     Node* mergeSort(Node* head) {
         // your code here
-        int n = 0;
-        Node *temp = head, *prev;
-        while (temp != NULL)
-        {
-            n++;
-            prev = temp;
-            temp = temp->next;
-        }
-        int lo = 0, hi = n - 1;
-        // cout<<n<<endl;
-        msort(lo,hi,head);
-        return head;
+        return msort(head);
     }
 };
 
