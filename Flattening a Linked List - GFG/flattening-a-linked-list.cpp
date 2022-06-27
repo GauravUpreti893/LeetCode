@@ -110,36 +110,54 @@ struct Node{
 
 /*  Function which returns the  root of 
     the flattened linked list. */
+
+Node* merge(Node *root, Node *temp)
+{
+    Node* head = NULL, *curr;
+    if (root->data <= temp->data)
+    {
+        head = root;
+        root = root->bottom;
+    }
+    else
+    {
+        head = temp;
+        temp = temp->bottom;
+    }
+    curr = head;
+    while (root != NULL && temp != NULL)
+    {
+        if (root->data <= temp->data)
+    {
+        curr->bottom = root;
+        curr = curr->bottom;
+        root = root->bottom;
+    }
+    else
+    {
+        curr->bottom = temp;
+        curr = curr->bottom;
+        temp = temp->bottom;
+    }
+    }
+    if (root != NULL)
+    {
+        curr->bottom = root;
+    }
+    if (temp != NULL)
+    {
+        curr->bottom = temp;
+    }
+    return head;
+}
 Node *flatten(Node *root)
 {
    // Your code here
-   priority_queue<pair<int,Node*>, vector<pair<int,Node*>>, greater<pair<int,Node*>>> pq;
-   Node* curr = root;
-   while (curr != NULL)
+   if (root == NULL || root->next == NULL)
    {
-       pq.push({curr->data,curr});
-       curr = curr->next;
+       return root;
    }
-   pair<int, Node*> p;
-   Node* head;
-   p = pq.top();
-   pq.pop();
-   head = p.second;
-   curr = head;
-   if (p.second->bottom != NULL)
-   pq.push({p.second->bottom->data,p.second->bottom});
-   while (!pq.empty())
-   {
-       p = pq.top();
-    //   cout<<p.first<<" ";
-       pq.pop();
-       curr->bottom = p.second;
-       curr = curr->bottom;
-       if (p.second->bottom != NULL)
-       pq.push({p.second->bottom->data,p.second->bottom});
-   }
-//   cout<<endl;
-   curr->bottom = NULL;
-   return head;
+   Node* temp = flatten(root->next);
+   return merge(root, temp);
 }
 
