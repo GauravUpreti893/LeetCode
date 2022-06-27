@@ -99,20 +99,6 @@ node* partition(node* start, node* last)
         curr = curr->next;
     }
     swap(prev->data, start->data);
-    // temp = prev;
-    // if (prev == NULL)
-    // {
-    //     swap(start->data, last->data);
-    // }
-    // else
-    // swap(prev->next->data, last->data);
-    // curr = start;
-    // while (curr != last->next)
-    // {
-    //     cout<<curr->data<<" ";
-    //     curr = curr->next;
-    // }
-    // cout<<endl;
     return prev;
 }
 void qsort(node *start, node* last)
