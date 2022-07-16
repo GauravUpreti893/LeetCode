@@ -8,19 +8,21 @@ public:
             v[i] = {position[i], speed[i]};
         }
         sort(v.begin(), v.end());
-        stack<double> st;
-        double x;
-        x = ((target - v[n - 1].first)/(v[n - 1].second/1.0));
-        st.push(x);
+        // stack<double> st;
+        double time, x;
+        int count = 1;
+        time = ((target - v[n - 1].first)/(v[n - 1].second/1.0));
+        // st.push(x);
         for (int i = n - 2; i >= 0; i--)
         {
             x = ((target - v[i].first)/(v[i].second/1.0));
-                if (x > st.top())
+                if (x > time)
                 {
-                    st.push(x);
+                    time = x;
+                    count++;
                 }
             
         }
-        return st.size();
+        return count;
     }
 };
