@@ -28,16 +28,13 @@ public:
             if (first == NULL)
             {
                 first = prev;
-                // cout<<first->val<<endl;
             }
             if (first != NULL)
             {
                 last = root;
-                // cout<<last->val<<endl;
             }
         }
         prev = root;
-        cout<<prev->val<<endl;
         inorder(root->right);
         return;
     }
