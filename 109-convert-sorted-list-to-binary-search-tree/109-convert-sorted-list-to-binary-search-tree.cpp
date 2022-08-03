@@ -32,20 +32,20 @@ public:
         }
         return count;
     }
-    TreeNode* bst(ListNode* head, int n)
+    TreeNode* bst (int n)
     {
-        if (head == NULL || n == 0)
+        if (n == 0)
             return NULL;
         TreeNode* tp = new TreeNode();
-        tp->left = bst(head, n/2);
-        tp->val = list->val;
+        tp->left = bst(n/2);
+        tp->val = list->val; // We are doing inorder traversal in tree, so every list item will be placed at correct position as list is also an inorder traversal.
         list = list->next;
-        tp->right = bst(head, n - n/2 - 1);
+        tp->right = bst(n - n/2 - 1);
         return tp;
     }
     TreeNode* sortedListToBST(ListNode* head) {
         list = head;
-        int n = count(head);
-        return bst(head, n);
+        int n = count(head); // Count no of nodes in list
+        return bst(n);
     }
 };
