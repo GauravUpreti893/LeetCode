@@ -21,30 +21,31 @@
  */
 class Solution {
 public:
-    TreeNode* tobst(ListNode* head, ListNode* tail)
+    ListNode* list;
+    int count(ListNode* head)
     {
-        if (head == tail)
+        int count = 0;
+        while (head != NULL)
+        {
+            count++;
+            head = head->next;
+        }
+        return count;
+    }
+    TreeNode* bst(ListNode* head, int n)
+    {
+        if (head == NULL || n == 0)
             return NULL;
-        if (head->next == tail)
-        {
-            TreeNode* t = new TreeNode(head->val);
-            return t;
-        }
-        ListNode* slow = head, *fast = head;
-        while (fast != tail)
-        {
-            fast = fast->next;
-            if (fast == tail)
-                break;
-            fast = fast->next;
-            slow = slow->next;
-        }
-        TreeNode* t = new TreeNode(slow->val);
-        t->left = tobst(head, slow);
-        t->right = tobst(slow->next, tail);
-        return t;
+        TreeNode* tp = new TreeNode();
+        tp->left = bst(head, n/2);
+        tp->val = list->val;
+        list = list->next;
+        tp->right = bst(head, n - n/2 - 1);
+        return tp;
     }
     TreeNode* sortedListToBST(ListNode* head) {
-        return tobst(head, NULL);  
+        list = head;
+        int n = count(head);
+        return bst(head, n);
     }
 };
