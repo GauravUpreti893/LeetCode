@@ -21,13 +21,6 @@ public:
             }
         } 
         ancestor = v;
-        // for (int i = 0; i < n; i++)
-        // {
-        //     for (auto j : ancestor[i])
-        //         cout<<j<<" ";
-        //     cout<<endl;
-        // }
-        // cout<<endl;
     }
     int getKthAncestor(int node, int k) {
         int log = logb(k);
