@@ -14,13 +14,13 @@ public:
             if (mp[arr[i]])
             {
                 mp[arr[i]]--;
-                if (mp[2*arr[i]])
-                {
-                    mp[2*arr[i]]--;
-                }
-                else if (arr[i]%2 == 0 && mp[arr[i]/2])
+                if (arr[i]%2 == 0 && mp[arr[i]/2])
                 {
                     mp[arr[i]/2]--;
+                }
+                else if (mp[2*arr[i]])
+                {
+                    mp[2*arr[i]]--;
                 }
                 else
                     return false;
