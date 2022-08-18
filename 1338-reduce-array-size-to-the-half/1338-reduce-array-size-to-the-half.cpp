@@ -16,12 +16,12 @@ public:
         int ans = 0;
         for (int i = n; i > 0; i--)
         {
-            int noOfFrequenciesRequired = ceil (val/ (i / 1.0));
+            int noOfFrequenciesRequired = ceil (val/ (i / 1.0));// Finding how many frequencies of value i, needed to make value either negative or 0.
             if (noOfFrequenciesRequired > freqcount[i])
             {
-                noOfFrequenciesRequired = freqcount[i];
+                noOfFrequenciesRequired = freqcount[i]; // Maximum no of frequencies to used is freqcount[i], so if greater than this, we can't make negative with this frequency, but since this frequency will be greater than the other frequencies that we are iterating next, so we will take all the possible freq as we can from it
             }
-            int usedfreq = noOfFrequenciesRequired*i;
+            int usedfreq = noOfFrequenciesRequired*i; // Total no of integers who belong to that particular frquency.
             val -= usedfreq;
             ans += noOfFrequenciesRequired;
             if (val <= 0)
