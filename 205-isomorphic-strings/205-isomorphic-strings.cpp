@@ -17,12 +17,9 @@ public:
             }
             else
             {
-                // if (s[i] != t[i])
-                // {
-                    if (isused[s[i]])
-                        return false;
-                    isused[s[i]] = 1;
-                // }
+                if (isused[s[i]])
+                    return false;
+                isused[s[i]] = 1;
                 replace[t[i]] = s[i];
             }
         }
