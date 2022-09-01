@@ -1,20 +1,17 @@
 class Solution {
 public:
-    int fibo(int n, int* &table)
+    int fibonacci(int n, vector<int>&fibo)
     {
-        if (table[n] == -1)
-        {
-            table[n] = fibo(n - 1,table) + fibo(n - 2, table);
-        }
-        return table[n];
+        if (fibo[n] != -1)
+            return fibo[n];
+        return fibo[n] = fibonacci(n - 1, fibo) + fibonacci(n - 2, fibo);
     }
     int fib(int n) {
-        int *table = new int[n + 1];
-        for (int i = 0; i <= n; i++)
-            table[i] = -1;
-        table[0] = 0;
-        if (n != 0)
-        table[1] = 1;
-        return fibo(n,table);
+        if (n <= 1)
+            return n;
+        vector<int> fibo(n + 1, -1);
+        fibo[0] = 0;
+        fibo[1] = 1;
+        return fibonacci(n, fibo);
     }
 };
