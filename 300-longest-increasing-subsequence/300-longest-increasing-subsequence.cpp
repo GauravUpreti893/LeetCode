@@ -1,27 +1,29 @@
 class Solution {
 public:
-    int lengthOfLIS(vector<int>& nums) {
-        int n = nums.size();
-        int table[n + 1];
-        for (int i = 1; i <= n; i++)
+    int func(vector<int> &nums, vector<int>&lis, int idx)
+    {
+        if (lis[idx] != -1)
+            return lis[idx];
+        for (int i = 0; i < idx; i++)
         {
-            table[i] = 1;
-        }
-        table[0] = 0;
-        for (int i = 2; i <= n; i++)
-        {
-            for (int j = 1; j < i; j++)
+            if (nums[i] < nums[idx])
             {
-                if (nums[j - 1] < nums[i - 1])
-                {
-                    table[i] = max(table[i],table[j] + 1);
-                }
+                lis[idx] = max(lis[idx], func(nums, lis, i) + 1);
             }
         }
-        int ans = 1;
-        for (int i = 2; i <= n; i++)
+        lis[idx] = max(lis[idx], 1);
+        return lis[idx];
+    }
+    int lengthOfLIS(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> lis(n , -1);
+        lis[0] = 1;
+        int ans = 0;
+        for (int i = 0; i < n; i++)
+        func(nums, lis, i);
+        for (int i = 0; i < n; i++)
         {
-            ans = max(ans,table[i]);
+            ans = max(ans, lis[i]);
         }
         return ans;
     }
