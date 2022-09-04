@@ -11,40 +11,29 @@
  */
 class Solution {
 public:
-    // We will be doing level order traversal to find and group all the nodes with same distance from root horizontally.
-    vector<vector<int>> verticalTraversal(TreeNode* root) {
-        vector<vector<int>> ans;
-        map<int, vector<int> > mp;
-        queue<pair<TreeNode*, int>> q;
+    void func(TreeNode* root, map<int, vector<pair<int, int>>> &mp, int l, int c)
+    {
         if (root == NULL)
-            return ans;
-        q.push({root, 0});
-        pair<TreeNode*, int> p;
-        int n;
-        while (!q.empty())
-        {
-            n = q.size();
-            unordered_map<int, vector<int> > temp;
-            for (int i = 0; i < n; i++)
-            {
-                p = q.front();
-                q.pop();
-                temp[p.second].push_back(p.first->val);
-                if (p.first->left != NULL)
-                    q.push({p.first->left, p.second - 1});
-                if (p.first->right != NULL)
-                    q.push({p.first->right, p.second + 1});
-            }
-            for (auto it = temp.begin(); it != temp.end(); it++)
-            {
-                sort(it->second.begin(), it->second.end());
-                for (auto itr : it->second)
-                    mp[it->first].push_back(itr);
-            }              
-        }
+            return;
+        mp[c].push_back({l, root->val});
+        func(root->left, mp, l + 1, c - 1);
+        func(root->right, mp, l + 1, c + 1);
+        return;
+    }
+    vector<vector<int>> verticalTraversal(TreeNode* root) {
+        map<int, vector<pair<int,int>>> mp;
+        vector<vector<int>> ans;
+        func(root, mp, 0, 0);
         for (auto it = mp.begin(); it != mp.end(); it++)
         {
-            ans.push_back(it->second);
+            vector<int> v;
+            sort(it->second.begin(), it->second.end());
+            int n = it->second.size();
+            for (int i = 0; i < n; i++)
+            {
+                v.push_back(it->second[i].second);
+            }
+            ans.push_back(v);
         }
         return ans;
     }
