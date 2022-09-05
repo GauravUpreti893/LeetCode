@@ -20,20 +20,26 @@ public:
 
 class Solution {
 public:
-    void traversal(Node* root, vector<int> &ans)
-    {
-        if (root == NULL)
-            return;
-        ans.push_back(root->val);
-        for (auto i : root->children)
-        {
-            traversal(i, ans);
-        }
-        return;
-    }
     vector<int> preorder(Node* root) {
         vector<int> ans;
-        traversal(root, ans);
+        if (root == NULL)
+            return ans;
+        stack<Node*> st;
+        st.push(root);
+        Node* t;
+        int n;
+        while (!st.empty())
+        {
+            t = st.top();
+            st.pop();
+            ans.push_back(t->val);
+            n = t->children.size();
+            for (int i = n - 1; i >= 0; i--)
+            {
+                if (t->children[i] != NULL)
+                st.push(t->children[i]);
+            }
+        }
         return ans;
     }
 };
