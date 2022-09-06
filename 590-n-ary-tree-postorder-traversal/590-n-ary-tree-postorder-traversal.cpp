@@ -20,21 +20,32 @@ public:
 
 class Solution {
 public:
-    void traversal(Node* root, vector<int> &ans)
-    {
-        if (root == NULL)
-            return;
-        int n = root->children.size();
-        for (int i = 0; i < n; i++)
-        {
-            traversal(root->children[i], ans);
-        }
-        ans.push_back(root->val);
-        return;
-    }
     vector<int> postorder(Node* root) {
         vector<int> ans;
-        traversal(root, ans);
+        if (root == NULL)
+            return ans;
+        stack<Node*> st;
+        st.push(root);
+        Node* t;
+        int n;
+        while (!st.empty())
+        {
+            t = st.top();
+            st.pop();
+            if (t->val < 0)
+            {
+                ans.push_back(-(t->val) - 1);
+                continue;
+            }
+            t->val = -(t->val) - 1;
+            st.push(t);
+            n = t->children.size();
+            for (int i  = n - 1; i >= 0; i--)
+            {
+                st.push(t->children[i]);
+            }
+
+        }
         return ans;
     }
 };
