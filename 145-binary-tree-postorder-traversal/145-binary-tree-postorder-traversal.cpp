@@ -11,18 +11,37 @@
  */
 class Solution {
 public:
-    void postorder(TreeNode* root, vector<int> &ans)
-    {
-        if (root == NULL)
-            return;
-        postorder(root->left, ans);
-        postorder(root->right, ans);
-        ans.push_back(root->val);
-        return;
-    }
     vector<int> postorderTraversal(TreeNode* root) {
         vector<int> ans;
-        postorder(root, ans);
+        if (root == NULL)
+            return ans;
+        stack<TreeNode*> st;
+        st.push(root);
+        TreeNode* t;
+        while (!st.empty())
+        {
+            t = st.top();
+            if (t->val > 100)
+            {
+                st.pop();
+                ans.push_back(t->val - 101);
+                continue;
+            }
+            else if (t->val < -100)
+            {
+                st.pop();
+                ans.push_back(t->val + 100);
+                continue;
+            }
+            if (t->val >= 0)
+                t->val += 101;
+            else
+                t->val -= 100;
+            if (t->right != NULL)
+                st.push(t->right);
+            if (t->left != NULL)
+                st.push(t->left);
+        }
         return ans;
     }
 };
