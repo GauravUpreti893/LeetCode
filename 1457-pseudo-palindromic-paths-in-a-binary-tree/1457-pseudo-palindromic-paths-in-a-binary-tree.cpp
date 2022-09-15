@@ -11,8 +11,12 @@
  */
 class Solution {
 public:
-    int fun(TreeNode* root, vector<int> &v)
-    {
+    vector<int> v;
+    Solution(){
+        v = vector<int>(10,0);
+    }
+    int pseudoPalindromicPaths (TreeNode* root) {
+        
         if (root == NULL)
             return 0;
         v[root->val]++;
@@ -28,12 +32,8 @@ public:
             if (count < 2)
                 ans++;
         }
-        ans += fun(root->left, v) + fun(root->right, v);
+        ans += pseudoPalindromicPaths(root->left) + pseudoPalindromicPaths(root->right);
         v[root->val]--;
         return ans;
-    }
-    int pseudoPalindromicPaths (TreeNode* root) {
-        vector<int> v(10, 0);
-        return fun(root, v);
     }
 };
