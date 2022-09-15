@@ -2,49 +2,49 @@ class Solution {
 public:
     bool validUtf8(vector<int>& data) {
         int n = data.size();
-        for (int t = 0; t < n; t++)
+        int x;
+        for (int i = 0; i < n; i++)
         {
-            string s;
-            char c;
-            int r, m = data[t];
-            while (m != 0)
+            x = data[i];
+            if (!(x>>7))
             {
-                r = m % 2;
-                c = r + '0';
-                s = c + s;
-                m /= 2;
+                continue;
             }
-            while (s.size() < 8)
-                s = '0' + s;
-            int count = 0;
-            while (s[count] == '1')
+            else if (x>>5 == 0b110)
             {
-                count++;
-            }
-            if (count > 4 || count == 1)
-                return false;
-            for (int j = 0; j < count - 1; j++)
-            {
-                // cout<<count<<" "<<t<<endl;
-                string s;
-                char c;
-                t++;
-                if (t == n)
+                i++;
+                if (i == n)
                     return false;
-                int r, m = data[t];
-                while (m != 0)
+                x = data[i];
+                if (x>>6 != 0b10)
+                    return false;
+            }
+            else if (x>>4 == 0b1110)
+            {
+                for (int j = 0; j < 2; j++)
                 {
-                    r = m % 2;
-                    c = r + '0';
-                    s = c + s;
-                    m /= 2;
-                }
-                while (s.size() < 8)
-                s = '0' + s;
-                if (s[0] != '1' || s[1] != '0')
+                    i++;
+                    if (i == n)
                     return false;
-                // cout<<s<<endl;
+                    x = data[i];
+                    if (x>>6 != 0b10)
+                        return false;
+                }
             }
+            else if (x>>3 == 0b11110)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    i++;
+                    if (i == n)
+                    return false;
+                    x = data[i];
+                    if (x>>6 != 0b10)
+                        return false;
+                }
+            }
+            else
+                return false;
         }
         return true;
     }
