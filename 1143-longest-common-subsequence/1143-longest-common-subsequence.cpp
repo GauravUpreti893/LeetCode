@@ -1,60 +1,26 @@
 class Solution {
 public:
-    int **table;
-    int longest(string &text1, string&text2, int n, int m)
+    int longest(int n, int m, vector<vector<int>> &table, string &text1, string &text2, int idx, int idx1)
     {
-        if (table[n][m] >= 0)
-            return table[n][m];
-            if (text1[n - 1] == text2[m - 1])
-            {
-                table[n][m] = longest(text1,text2,n - 1, m - 1) + 1;
-            }
-            else
-                table[n][m] = max(longest(text1,text2, n - 1, m ), longest(text1,text2, n, m - 1));
-        return table[n][m];
+        if (idx == n || idx1 == m)
+            return 0;
+        if (table[idx][idx1] != -1)
+            return table[idx][idx1];
+        int count = 0;
+        if (text1[idx] == text2[idx1])
+        {
+            count++;
+            count += longest(n, m, table, text1, text2, idx + 1, idx1 + 1);
+        }
+        else
+        {
+            count = max(longest(n, m ,table, text1, text2, idx + 1, idx1), longest(n, m, table, text1, text2, idx, idx1 + 1));
+        }
+        return table[idx][idx1] = count;
     }
-    int longestCommonSubsequence(string &text1, string& text2) {
-        int n = text1.size();
-        int m = text2.size();
-        // vector<vector<int>> table(n + 1,vector<int> (m + 1, -1));
-        table = new int*[n + 1];
-        for (int i = 0; i <= n; i++)
-        {
-            table[i] = new int[ m + 1];
-        }
-        // for (int i = 1; i <= n; i++)
-        // {
-        //     for (int j = 1; j <= m; j++)
-        //     {
-        //         table[i][j] = -1;
-        //     }
-        // }
-        for (int i = 0; i <= n; i++)
-        {
-            table[i][0] = 0;
-        }
-        for (int i = 0; i <= m; i++)
-        {
-            table[0][i] = 0;
-        }
-        // for (int i = 0; i <= n; i++)
-        // {
-        //     for (int j = 0; j <= m; j++)
-        //     {
-        //         cout<<table[i][j]<<" ";
-        //     }
-        //     cout<<endl;
-        // }
-        int ans =  longest(text1,text2,n,m);
-        // for (int i = 0; i <= n; i++)
-        // {
-        //     for (int j = 0; j <= m; j++)
-        //     {
-        //         cout<<table[i][j]<<" ";
-        //     }
-        //     cout<<endl;
-        // }
-        return ans;
-        // return 1;
+    int longestCommonSubsequence(string text1, string text2) {
+        int n = text1.size(), m = text2.size();
+        vector<vector<int>> table(n, vector<int> (m, -1));
+        return longest(n, m, table, text1, text2, 0, 0);
     }
 };
