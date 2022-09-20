@@ -2,11 +2,11 @@ class Solution {
 public:
     int findLength(vector<int>& nums1, vector<int>& nums2) {
         int n = nums1.size(), m = nums2.size();
-        if (m > n)
-        {
-            swap(m, n);
-            swap(nums1, nums2);
-        }
+        // if (m > n)
+        // {
+        //     swap(m, n);
+        //     swap(nums1, nums2);
+        // }
         vector<vector<int>> table(2, vector<int> (m + 1, 0));
         int mx = 0;
         for (int i = 1; i <= n; i++)
