@@ -1,16 +1,12 @@
 class Solution {
 public:
     vector<int> sumEvenAfterQueries(vector<int>& nums, vector<vector<int>>& queries) {
-        int even = 0, odd = 0;
+        int even = 0;
         int n = nums.size();
         int q = queries.size();
         for (int i = 0; i < n; i++)
         {
-            if (nums[i]%2)
-            {
-                odd += nums[i];
-            }
-            else
+            if (!(nums[i]%2))
             {
                 even += nums[i];
             }
@@ -21,20 +17,12 @@ public:
         {
             v = queries[i][0];
             idx = queries[i][1];
-            if (nums[idx] % 2)
-            {
-                odd -= nums[idx];
-            }
-            else
+            if (!(nums[idx] % 2))
             {
                 even -= nums[idx];
             }
             nums[idx] += v;
-            if (nums[idx]%2)
-            {
-                odd += nums[idx];
-            }
-            else
+            if (!(nums[idx]%2))
             {
                 even += nums[idx];
             }
