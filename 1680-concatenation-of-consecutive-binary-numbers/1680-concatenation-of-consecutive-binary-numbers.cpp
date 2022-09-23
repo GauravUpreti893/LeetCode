@@ -8,20 +8,15 @@ public:
         ans = n;
         for (int i = n - 1; i >= 1; i--)
         {
-            // cout<<x<<endl;
             for (int j = 0; j < x; j++)
             {
                 pow *= 2;
                 pow = pow % mod;
             }
             ans += (pow *i) % mod;
-            // cout<<x<<endl;
             ans = ans % mod;
-            // cout<<(i&(i - 1))<<endl;
-            
             if ((i&(i + 1)) == 0)
             {
-                // cout<<"jfd";
                 x--;
             }
             count += x;
