@@ -1,35 +1,31 @@
 class Solution {
 public:
     int concatenatedBinary(int n) {
-        long long int ans = 0, mod = 1e9 + 7;
-        string s;
-        int x, r;
-        char c;
-        for (int i = 1; i <= n; i++)
-        {
-            x = i;
-            string st;
-            while (x != 0)
-            {
-                r = x % 2;
-                c = r + '0';
-                st += c;
-                x /= 2;
-            }
-            reverse(st.begin(), st.end());
-            // cout<<st<<endl;
-            s += st;
-        }
-        // cout<<s<<endl;
-        int sz = s.size();
+        long long ans = 0, mod = 1e9 + 7, count = 0,x;
         long long int pow = 1;
-        for (int i = sz - 1; i >= 0; i--)
+        x = logb(n) + 1;
+        
+        ans = n;
+        for (int i = n - 1; i >= 1; i--)
         {
-            ans += ((s[i] - 48)*pow) % mod;
-            pow = pow * 2;
-            pow %= mod;
-            // cout<<ans<<endl;
+            // cout<<x<<endl;
+            for (int j = 0; j < x; j++)
+            {
+                pow *= 2;
+                pow = pow % mod;
+            }
+            ans += (pow *i) % mod;
+            // cout<<x<<endl;
+            ans = ans % mod;
+            // cout<<(i&(i - 1))<<endl;
+            
+            if ((i&(i + 1)) == 0)
+            {
+                // cout<<"jfd";
+                x--;
+            }
+            count += x;
         }
-        return ans % mod;
+        return ans;
     }
 };
