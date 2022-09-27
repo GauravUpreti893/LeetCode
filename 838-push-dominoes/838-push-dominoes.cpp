@@ -1,76 +1,66 @@
 class Solution {
 public:
     string pushDominoes(string dominoes) {
+        stack<char> left, right;
         int n = dominoes.size();
-        vector<int> left(n), right(n);
-        right[0] = 0;
-        string ans;
-        bool flag = 0;
-        if (dominoes[0] == 'R')
-            flag = 1;
-        for (int i = 1; i < n; i++)
+        for (int i = n - 1; i >= 0; i--)
         {
-            if (dominoes[i] == '.' && flag)
+            if (dominoes[i] != '.')
             {
-                right[i] = right[i - 1] + 1;
-            }
-            else if (dominoes[i] == 'R')
-            {
-                flag = 1;
-                right[i] = 0;
-            }
-            else
-            {
-                flag = 0;
-                right[i] = 0;
-            }
-                
-        }
-        left[n - 1] = 0;
-        flag = 0;
-        if (dominoes[n - 1] == 'L')
-            flag = 1;
-        for (int i = n - 2; i >= 0; i--)
-        {
-            if (dominoes[i] == '.' && flag)
-            {
-                left[i] = left[i + 1] + 1;
-            }
-            else if (dominoes[i] == 'L')
-            {
-                flag = 1;
-                left[i] = 0;
-            }
-            else
-            {
-                flag = 0;
-                left[i] = 0;
+                right.push(dominoes[i]);
             }
         }
         for (int i = 0; i < n; i++)
         {
-            if (left[i] == 0 && right[i] == 0)
-                ans += dominoes[i];
-            else if (left[i] == 0 && right[i] != 0)
+            if (dominoes[i] == '.')
             {
-                ans += 'R';
-            }
-            else if (left[i] != 0 && right[i] == 0)
-            {
-                ans += 'L';
-            }
-            else if (left[i] == right[i])
-            {
-                ans += '.';
+                if (!left.empty() && !right.empty())
+                {
+                    if (left.top() == right.top())
+                        dominoes[i] = left.top();
+                }
+                else if (!left.empty() || !right.empty())
+                {
+                    if ((!left.empty() && left.top() == 'R') || (!right.empty() && right.top() == 'L'))
+                        dominoes[i] = !left.empty()?left.top():right.top();
+                }
             }
             else
             {
-                if (left[i] < right[i])
-                    ans += 'L';
-                else
-                    ans += 'R';
+                left.push(dominoes[i]);
+                right.pop();
+                int count = 0;
+                int j = i + 1;
+                while (j < n && dominoes[j] == '.')
+                {
+                    count++;
+                    j++;
+                }
+                if ((j == n && dominoes[i] == 'R') ||  (j != n && (dominoes[j] == dominoes[i])))
+                {
+                    for (int k = i + 1; k < j; k++)
+                        dominoes[k] = dominoes[i];
+                }
+                else if (dominoes[i] == 'R' && dominoes[j] == 'L')
+                {
+                    int k = i + 1, c = 0;
+                    while (c != count/2)
+                    {
+                        dominoes[k++] = 'R';
+                        c++;
+                    }
+                    c = 0;
+                    if (count % 2)
+                        k++;
+                    while (c != count/2)
+                    {
+                        dominoes[k++] = 'L';
+                        c++;
+                    }
+                }
+                i = j - 1;
             }
         }
-        return ans;
+        return dominoes;
     }
 };
