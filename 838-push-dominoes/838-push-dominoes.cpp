@@ -1,7 +1,8 @@
 class Solution {
 public:
     string pushDominoes(string dominoes) {
-        stack<char> left, right;
+        stack<char> right;
+        char left = ' ';
         int n = dominoes.size();
         for (int i = n - 1; i >= 0; i--)
         {
@@ -14,20 +15,20 @@ public:
         {
             if (dominoes[i] == '.')
             {
-                if (!left.empty() && !right.empty())
+                if (left != ' ' && !right.empty())
                 {
-                    if (left.top() == right.top())
-                        dominoes[i] = left.top();
+                    if (left == right.top())
+                        dominoes[i] = left;
                 }
-                else if (!left.empty() || !right.empty())
+                else if (left != ' ' || !right.empty())
                 {
-                    if ((!left.empty() && left.top() == 'R') || (!right.empty() && right.top() == 'L'))
-                        dominoes[i] = !left.empty()?left.top():right.top();
+                    if ((left == 'R') || (!right.empty() && right.top() == 'L'))
+                        dominoes[i] = left != ' '?left:right.top();
                 }
             }
             else
             {
-                left.push(dominoes[i]);
+                left = dominoes[i];
                 right.pop();
                 int count = 0;
                 int j = i + 1;
