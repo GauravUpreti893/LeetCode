@@ -12,8 +12,7 @@ public:
             }
             ans[i] = i - idx;
         }
-        idx = 2*n;
-        for (int j = n - 1; j >= 0; j--)
+        for (int j = idx - 1; j >= 0; j--)
         {
             if (s[j] == c)
             {
