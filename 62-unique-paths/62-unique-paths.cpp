@@ -1,21 +1,15 @@
 class Solution {
 public:
-    int npaths(int a, int b, int i, int j, vector<vector<int>> &table)
-    {
-        if (i == a || j == b)
-        return 0;
-        int ans = 0;
-        if (table[i][j] != -1)
-        {
-            return table[i][j];
-        }
-        ans += npaths(a, b, i, j + 1, table);
-        ans += npaths(a, b, i + 1, j, table);
-        return table[i][j] = ans;
-    }
     int uniquePaths(int m, int n) {
-        vector<vector<int>> table(m, vector<int> (n, - 1));
-        table[m - 1][n - 1] = 1;
-        return npaths(m, n, 0, 0, table);
+        vector<vector<int>> table(m + 1, vector<int> (n + 1, 0));
+        table[0][1] = 1;
+        for (int i = 1; i <= m; i++)
+        {
+            for (int j = 1; j <= n; j++)
+            {
+                table[i][j] = table[i - 1][j] + table[i][j - 1];
+            }
+        }
+        return table[m][n];
     }
 };
