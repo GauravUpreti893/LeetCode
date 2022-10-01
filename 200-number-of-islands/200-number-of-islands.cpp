@@ -5,11 +5,6 @@ public:
         if (i < 0 || j < 0 || i ==n || j == m || grid[i][j] == '0')
         return;
         grid[i][j] = '0';
-        vector<pair<int,int>> v;
-        v.push_back({0, 1});
-        v.push_back({0,-1});
-        v.push_back({1, 0});
-        v.push_back({-1, 0});
         dfs(grid, i , j + 1, n, m);
         dfs(grid, i , j - 1, n, m);
         dfs(grid, i + 1 , j , n, m);
