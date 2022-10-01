@@ -10,10 +10,10 @@ public:
         v.push_back({0,-1});
         v.push_back({1, 0});
         v.push_back({-1, 0});
-        for (int k = 0; k < 4; k++)
-        {
-            dfs(grid, i + v[k].first, j + v[k].second, n, m);
-        }
+        dfs(grid, i , j + 1, n, m);
+        dfs(grid, i , j - 1, n, m);
+        dfs(grid, i + 1 , j , n, m);
+        dfs(grid, i - 1, j, n, m);
         return;
     }
     int numIslands(vector<vector<char>>& grid) {
