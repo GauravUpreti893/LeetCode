@@ -5,26 +5,26 @@
 <p style="user-select: auto;">&nbsp;</p>
 <p style="user-select: auto;"><strong style="user-select: auto;">Example 1:</strong></p>
 
-<pre style="position: relative; user-select: auto;"><strong style="user-select: auto;">Input:</strong> n = 1, k = 6, target = 3
+<pre style="user-select: auto;"><strong style="user-select: auto;">Input:</strong> n = 1, k = 6, target = 3
 <strong style="user-select: auto;">Output:</strong> 1
 <strong style="user-select: auto;">Explanation:</strong> You throw one die with 6 faces.
 There is only one way to get a sum of 3.
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper" style="user-select: auto;"></div></pre>
+</pre>
 
 <p style="user-select: auto;"><strong style="user-select: auto;">Example 2:</strong></p>
 
-<pre style="position: relative; user-select: auto;"><strong style="user-select: auto;">Input:</strong> n = 2, k = 6, target = 7
+<pre style="user-select: auto;"><strong style="user-select: auto;">Input:</strong> n = 2, k = 6, target = 7
 <strong style="user-select: auto;">Output:</strong> 6
 <strong style="user-select: auto;">Explanation:</strong> You throw two dice, each with 6 faces.
 There are 6 ways to get a sum of 7: 1+6, 2+5, 3+4, 4+3, 5+2, 6+1.
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper" style="user-select: auto;"></div></pre>
+</pre>
 
 <p style="user-select: auto;"><strong style="user-select: auto;">Example 3:</strong></p>
 
-<pre style="position: relative; user-select: auto;"><strong style="user-select: auto;">Input:</strong> n = 30, k = 30, target = 500
+<pre style="user-select: auto;"><strong style="user-select: auto;">Input:</strong> n = 30, k = 30, target = 500
 <strong style="user-select: auto;">Output:</strong> 222616187
 <strong style="user-select: auto;">Explanation:</strong> The answer must be returned modulo 10<sup style="user-select: auto;">9</sup> + 7.
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper" style="user-select: auto;"></div></pre>
+</pre>
 
 <p style="user-select: auto;">&nbsp;</p>
 <p style="user-select: auto;"><strong style="user-select: auto;">Constraints:</strong></p>
