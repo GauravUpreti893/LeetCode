@@ -13,16 +13,27 @@ public:
     string get(string key, int timestamp) {
         if (!mp[key].size())
             return "";
-        int i = mp[key].size() - 1;
-        while (i >= 0)
+        int lo = 0, hi = mp[key].size(), mid;
+        while (lo < hi)
         {
-            if (mp[key][i].first <= timestamp)
+            mid = (lo + hi)/2;
+            if (mp[key][mid].first == timestamp)
             {
-                return mp[key][i].second;
+                return mp[key][mid].second;
             }
-            i--;
+            else if (mp[key][mid].first < timestamp)
+            {
+                lo = mid + 1;
+            }
+            else
+            {
+                hi = mid;
+            }
         }
-        return "";
+        // cout<<lo<<endl;
+        if (lo <= 0 || lo > mp[key].size() || mp[key][lo - 1].first > timestamp)
+            return "";
+        return mp[key][lo - 1].second;
     }
 };
 
