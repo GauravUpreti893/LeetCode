@@ -13,8 +13,8 @@ public:
     string get(string key, int timestamp) {
         if (!mp[key].size())
             return "";
-        int lo = 0, hi = mp[key].size(), mid;
-        while (lo < hi)
+        int lo = 0, hi = mp[key].size() - 1, mid;
+        while (lo <= hi)
         {
             mid = (lo + hi)/2;
             if (mp[key][mid].first == timestamp)
@@ -27,11 +27,11 @@ public:
             }
             else
             {
-                hi = mid;
+                hi = mid - 1;
             }
         }
         // cout<<lo<<endl;
-        if (lo <= 0 || lo > mp[key].size() || mp[key][lo - 1].first > timestamp)
+        if (lo <= 0 || lo > mp[key].size())
             return "";
         return mp[key][lo - 1].second;
     }
