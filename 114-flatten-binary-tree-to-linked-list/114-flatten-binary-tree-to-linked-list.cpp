@@ -11,27 +11,33 @@
  */
 class Solution {
 public:
-    TreeNode* toflat(TreeNode* root)
+    TreeNode* flat(TreeNode* root)
     {
         if (root == NULL)
-            return NULL;
+        return NULL;
         if (root->left == NULL && root->right == NULL)
-            return root;
-        TreeNode* lastleft = toflat(root->left);
-        TreeNode* lastright = toflat(root->right);
-        if (root->left != NULL || lastleft != NULL)
+        return root;
+        TreeNode* right = root->right;
+        TreeNode* left = root->left, *last;
+        if (root->left != NULL)
         {
-            TreeNode* temp = root->right;
             root->right = root->left;
             root->left = NULL;
-            lastleft->right = temp;
+            last = flat(left);
+            if (last != NULL)
+            last->right = right;
         }
-        if (lastright == NULL)
-            return lastleft;
-        return lastright;
+        TreeNode* t = flat(right);
+        if (t != NULL)
+            return t;
+        if (t == NULL && last != NULL)
+            return last;
+        else if (t == NULL && last == NULL)
+            return root;
+        return t;
     }
     void flatten(TreeNode* root) {
-        toflat(root);
+        flat(root);
         return;
     }
 };
