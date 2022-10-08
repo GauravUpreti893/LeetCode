@@ -5,6 +5,10 @@ public:
         sort(nums.begin(), nums.end());
         for (int i = 0; i < n - 2; i++)
         {
+            while (i < n - 3 && nums[i] == nums[i + 1])
+            {
+                i++;
+            }
             sum = target - nums[i];
             lo = i + 1;
             hi = n - 1;
