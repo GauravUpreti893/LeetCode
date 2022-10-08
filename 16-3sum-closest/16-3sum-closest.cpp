@@ -8,10 +8,8 @@ public:
             sum = target - nums[i];
             lo = i + 1;
             hi = n - 1;
-            // cout<<sum<<endl;
             while (lo < hi)
             {
-                // cout<<lo<<" "<<hi<<endl;
                 if (sum == (nums[lo] + nums[hi]))
                 {
                     return target;
@@ -21,7 +19,6 @@ public:
                     if (diff >  (nums[lo] + nums[hi] - sum))
                     {
                         ans = nums[lo] + nums[hi] + nums[i];
-                        // cout<<ans<<endl;
                         diff = nums[lo] + nums[hi] - sum;
                     }
                     hi--;
@@ -31,7 +28,6 @@ public:
                     if (diff > sum - (nums[lo] + nums[hi]))
                     {
                         ans = nums[lo] + nums[hi] + nums[i];
-                        // cout<<ans<<endl;
                         diff = sum - (nums[lo] + nums[hi]);
                     }
                     lo++;
