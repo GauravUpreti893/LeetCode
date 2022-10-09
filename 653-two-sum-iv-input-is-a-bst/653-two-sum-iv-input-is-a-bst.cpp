@@ -18,10 +18,20 @@ public:
         if (mp[k - root->val])
             return true;
         mp[root->val] = 1;
-        bool a = find(root->left, k, mp);
-        if (a)
-            return true;
-        return find(root->right, k, mp);
+        if (k - root->val < root->val)
+        {
+            bool a = find(root->left, k, mp);
+            if (a)
+                return true;
+            return find(root->right, k, mp);
+        }
+        else
+        {
+            bool a = find(root->right, k, mp);
+            if (a)
+                return true;
+            return find(root->left, k, mp);
+        }
     }
     bool findTarget(TreeNode* root, int k) {
         unordered_map<int, int> mp;
