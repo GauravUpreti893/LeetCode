@@ -20,17 +20,11 @@ public:
         mp[root->val] = 1;
         if (k - root->val < root->val)
         {
-            bool a = find(root->left, k, mp);
-            if (a)
-                return true;
-            return find(root->right, k, mp);
+            return find(root->left, k, mp) || find(root->right, k, mp);
         }
         else
         {
-            bool a = find(root->right, k, mp);
-            if (a)
-                return true;
-            return find(root->left, k, mp);
+            return find(root->right, k, mp) || find(root->left, k, mp);
         }
     }
     bool findTarget(TreeNode* root, int k) {
