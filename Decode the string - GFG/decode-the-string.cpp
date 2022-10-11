@@ -12,14 +12,20 @@ public:
     string decodedString(string s){
         // code here
         int n = s.size();
+        string str, ans, str1;
         int c = 0, i = 0;
+        while (i < n && s[i] >= 'a' && s[i] <= 'z')
+        {
+            str1 += s[i];
+            i++;
+        }
         while (i < n && s[i] >= '0' && s[i] <= '9')
         {
             c = c*10 + (s[i] - '0');
             i++;
         }
         int flag  = 1;
-        string str, ans;
+        
         i++;
         while (i < n)
         {
@@ -77,6 +83,7 @@ public:
         }
         else
         ans += str;
+        ans = str1 + ans;
         return ans;
     }
 };
