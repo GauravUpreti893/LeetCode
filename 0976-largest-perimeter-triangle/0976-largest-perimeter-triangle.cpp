@@ -4,7 +4,7 @@ public:
         int n = nums.size();
         sort(nums.begin(), nums.end());
         int sum;
-        for (int i = n - 1; i >= 2; i--)
+        for (int i = n - 1; i > 1; i--)
         {
             sum = nums[i - 1] + nums[i - 2]; 
             if (nums[i] < sum)
