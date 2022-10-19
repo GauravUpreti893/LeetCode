@@ -1,14 +1,4 @@
-// bool compare(pair<int, string> &p1, pair<int, string> &p2)
-//     {
-//         if (p1.first < p2.first)
-//         return true;
-//         else if (p1.first > p2.first)
-//             return false;
-//         else
-//         {
-//             return p1.second.compare(p2.second) > 0;
-//         }
-//     }
+
 class Solution {
 public:
     vector<string> topKFrequent(vector<string>& words, int k) {
@@ -42,7 +32,6 @@ public:
             }
             else if( (pq.top().first < it->second) || (pq.top().first == it->second && (pq.top().second).compare(it->first) > 0))
             {
-                // cout<<pq.top().second<<pq.top().first<<" "<<it->second<<" "<<it->first<<endl;
                  pq.pop();
                  pq.push({it->second, it->first});   
             }   
@@ -50,17 +39,10 @@ public:
         int i = k - 1;
         while (!pq.empty())
         {
-            cout<<pq.top().second<<endl;
             ans[i] = pq.top().second;
             pq.pop();
             i--;
         }
-        // sort(ans.begin(), ans.end(), compare);
-        // vector<string> v(k);
-        // for (i = 0; i < k; i++)
-        // {
-        //     v[i] = ans[i].second;
-        // }
         return ans;
     }
 };
