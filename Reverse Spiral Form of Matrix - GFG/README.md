@@ -4,7 +4,7 @@
 <br style="user-select: auto;">
 <strong style="user-select: auto;">Example 1:</strong></span></p>
 
-<pre style="user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Input</strong>: R = 3, C = 3
+<pre style="position: relative; user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Input</strong>: R = 3, C = 3
   a = {{9, 8, 7},
        {6, 5, 4},
 &nbsp;      {3, 2, 1}}
@@ -14,11 +14,11 @@ in reverse order starts from the centre
 and goes outward.
 <img alt="" src="https://media.geeksforgeeks.org/img-practice/ScreenShot2022-10-17at10-1665981362.png" style="height: 181px; width: 200px; user-select: auto;"></span>
 
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper" style="user-select: auto;"></div></pre>
 
 <p style="user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Example 2:</strong></span></p>
 
-<pre style="user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Input: </strong>R = 4, C = 4<strong style="user-select: auto;"> 
+<pre style="position: relative; user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Input: </strong>R = 4, C = 4<strong style="user-select: auto;"> 
 </strong>  a = {{1, 2, 3, 4},
        {5, 6, 7, 8},
 &nbsp;      {9, 10, 11, 12}, 
@@ -26,7 +26,7 @@ and goes outward.
 <strong style="user-select: auto;">Output: </strong>10 11 7 6 5 9 13 14 15 16 12 8 4 3 2 1
 <strong style="user-select: auto;">Explanation</strong>: 
 <img alt="" src="https://media.geeksforgeeks.org/img-practice/ScreenShot2022-10-17at10-1665981582.png" style="user-select: auto;">
-</span></pre>
+</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper" style="user-select: auto;"></div></pre>
 
 <p style="user-select: auto;"><br style="user-select: auto;">
 <span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Your Task:&nbsp;&nbsp;</strong><br style="user-select: auto;">
