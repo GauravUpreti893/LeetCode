@@ -1,22 +1,17 @@
 class Solution {
 public:
     int minimumOperations(vector<int>& nums) {
-        vector<int> table(101, 0);
+        unordered_map<int, int> mp;
         int n = nums.size();
+        int diff = 0;
         for (int i = 0; i < n; i++)
         {
-            table[nums[i]] = 1;
-        }
-        int sub = 0, ans = 0, diff;
-        for (int i = 1; i <= 100; i++)
-        {
-            if (table[i])
+            mp[nums[i]] = 1;
+            if (!nums[i])
             {
-                ans++;
-                diff = i - sub;
-                sub += diff;
+                diff = 1;
             }
         }
-        return ans;
+        return mp.size() - diff;
     }
 };
