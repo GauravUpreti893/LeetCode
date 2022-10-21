@@ -10,48 +10,36 @@ class Solution {
     vector<int> reverseSpiral(int R, int C, vector<vector<int>>&a)  {
         // code here
         vector<int> ans;
-        int i = 0, j = 0;
+        int is = 0, ie = R - 1, js = 0, je = C - 1;
         while (true)
         {
-            while (j < C && a[i][j] > 0)
+            for (int j = js; j <= je; j++)
             {
-                ans.push_back(a[i][j]);
-                a[i][j] = -a[i][j];
-                j++;
+                ans.push_back(a[is][j]);
             }
-            i++;
-            j--;
-            if (i >= R || j >= C || i < 0 || j < 0 || a[i][j] < 0)
+            is++;
+            if (is > ie || js > je || is < 0 || js < 0)
             break;
-            while (i < R && a[i][j] > 0)
+            for (int i = is; i <= ie; i++)
             {
-                ans.push_back(a[i][j]);
-                a[i][j] = -a[i][j];
-                i++;
+                ans.push_back(a[i][je]);
             }
-            i--;
-            j--;
-            if (i >= R || j >= C || i < 0 || j < 0 || a[i][j] < 0)
+            je--;
+            if (is > ie || js > je || is < 0 || js < 0)
             break;
-            while (j >= 0 && a[i][j] > 0)
+            for (int j = je; j >= js; j--)
             {
-                ans.push_back(a[i][j]);
-                a[i][j] = -a[i][j];
-                j--;
+                ans.push_back(a[ie][j]);
             }
-            j++;
-            i--;
-            if (i >= R || j >= C || i < 0 || j < 0 || a[i][j] < 0)
+            ie--;
+            if (is > ie || js > je || is < 0 || js < 0)
             break;
-            while (i >= 0 && a[i][j] > 0)
+            for (int i = ie; i>= is; i--)
             {
-                ans.push_back(a[i][j]);
-                a[i][j] = -a[i][j];
-                i--;
+                ans.push_back(a[i][js]);
             }
-            i++;
-            j++;
-            if (i >= R || j >= C || i < 0 || j < 0 || a[i][j] < 0)
+            js++;
+            if (is > ie || js > je || is < 0 || js < 0)
             break;
         }
         reverse(ans.begin(), ans.end());
