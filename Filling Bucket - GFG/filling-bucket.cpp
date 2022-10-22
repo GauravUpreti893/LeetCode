@@ -7,17 +7,19 @@ class Solution {
   public:
     int fillingBucket(int N) {
         // code here
-        vector<int> dp(N + 1);
         if (N == 1)
         return 1;
-        dp[1] = 1;
-        dp[2] = 2;
+        int prev = 2;
+        int prevprev = 1;
         int mod = 1e8;
+        int sum;
         for (int i = 3; i <= N; i++)
         {
-            dp[i] = (dp[i - 1] + dp[i - 2])%mod;
+            sum = (prev + prevprev) % mod;
+            prevprev = prev;
+            prev = sum;
         }
-        return dp[N];
+        return prev;
     }
 };
 
