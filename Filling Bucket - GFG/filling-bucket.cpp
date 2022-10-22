@@ -5,19 +5,19 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-  int nofways(int n, vector<int> &dp)
-  {
-      if (dp[n] != -1)
-      return dp[n];
-      int mod = 1e8;
-      return dp[n] = (nofways(n - 1, dp) + nofways(n - 2, dp)) % mod;
-  }
     int fillingBucket(int N) {
         // code here
-        vector<int> dp(N + 1, -1);
+        vector<int> dp(N + 1);
+        if (N == 1)
+        return 1;
         dp[1] = 1;
         dp[2] = 2;
-        return nofways(N, dp);
+        int mod = 1e8;
+        for (int i = 3; i <= N; i++)
+        {
+            dp[i] = (dp[i - 1] + dp[i - 2])%mod;
+        }
+        return dp[N];
     }
 };
 
