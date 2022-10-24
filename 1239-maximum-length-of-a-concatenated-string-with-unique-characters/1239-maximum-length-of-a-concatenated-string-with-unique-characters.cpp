@@ -6,16 +6,16 @@ public:
         for (int i = 0; i < n; i++)
         {
             bool flag = true;
-            vector<int> freq(26, 0);
+            vector<bool> freq(26, 0);
             int m = arr[i].size();
             for (int j = 0; j < m; j++)
             {
-                freq[arr[i][j] - 'a']++;
-                if (freq[arr[i][j] - 'a'] == 2)
+                if (freq[arr[i][j] - 'a'] )
                 {
                     flag = false;
                     break;
                 }
+                freq[arr[i][j] - 'a'] = 1;
             }
             if (flag)
             {
@@ -38,16 +38,16 @@ public:
                 v = v>>1;
             }
             bool flag = true;
-            vector<int> freq(26, 0);
+            vector<bool> freq(26, 0);
             int m = s.size();
             for (int j = 0; j < m; j++)
             {
-                freq[s[j] - 'a']++;
-                if (freq[s[j] - 'a'] == 2)
+                if (freq[s[j] - 'a'])
                 {
                     flag = false;
                     break;
                 }
+                freq[s[j] - 'a'] = 1;
             }
             if (flag)
             {
