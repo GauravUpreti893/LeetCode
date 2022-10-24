@@ -1,59 +1,29 @@
 class Solution {
 public:
     int maxLength(vector<string>& arr) {
-        int n = arr.size();
-        vector<string> vec;
+        int n = arr.size(), m;
+        vector<bitset<26>> length = {bitset<26>()};
+        int mx = 0;
         for (int i = 0; i < n; i++)
         {
-            bool flag = true;
-            vector<bool> freq(26, 0);
-            int m = arr[i].size();
+            bitset<26> bset;
+            m = arr[i].size();
             for (int j = 0; j < m; j++)
+                bset.set(arr[i][j] - 'a');
+            if (bset.count() < m)
+                continue;
+            int m1 = length.size();
+            for (int j = 0; j < m1; j++)
             {
-                if (freq[arr[i][j] - 'a'] )
+                if ((length[j] & bset).any())
                 {
-                    flag = false;
-                    break;
+                    continue;
                 }
-                freq[arr[i][j] - 'a'] = 1;
-            }
-            if (flag)
-            {
-                vec.push_back(arr[i]);
+                length.push_back((length[j]|bset));
+                int x = length[j].count() + m;
+                mx = max(mx, x);
             }
         }
-        n = vec.size();
-        int ans = 0;
-        int range = ceil(pow(2, n));
-        for (int i = 0; i < range; i++)
-        {
-            int v = i;
-            string s;
-            for (int j = 0; j < n; j++)
-            {
-                if (v&1)
-                {
-                    s += vec[j];
-                }
-                v = v>>1;
-            }
-            bool flag = true;
-            vector<bool> freq(26, 0);
-            int m = s.size();
-            for (int j = 0; j < m; j++)
-            {
-                if (freq[s[j] - 'a'])
-                {
-                    flag = false;
-                    break;
-                }
-                freq[s[j] - 'a'] = 1;
-            }
-            if (flag)
-            {
-                ans = max(ans, m);
-            }
-        }
-        return ans;
+        return mx;
     }
 };
