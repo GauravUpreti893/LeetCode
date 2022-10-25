@@ -27,9 +27,8 @@ public:
        int n = stones.size();
         if (stones[1] - stones[0] != 1)
             return false;
-        int mx = 2000;
-        vector<vector<int>> dp(n, vector<int> (mx, -1));
-        for (int i = 0; i < mx; i++)
+        vector<vector<int>> dp(n, vector<int> (n, -1));
+        for (int i = 0; i < n; i++)
         dp[n - 1][i] = 1;
         unordered_map<int, int> isvalid;
         for (int i = 0; i < n; i++)
