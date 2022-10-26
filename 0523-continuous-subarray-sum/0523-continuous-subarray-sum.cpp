@@ -2,14 +2,14 @@ class Solution {
 public:
     bool checkSubarraySum(vector<int>& nums, int k) {
         int n = nums.size();
-        if (n > 1 && k == 1)
-            return true;
         unordered_map<long long, int> mp;
         mp[0] = 1;
         long long sum = 0;
         for (int i = 0; i < n; i++)
         {
             sum += nums[i];
+            if (sum % k == 0 && i)
+                return true;
             int j = 0;
             while (sum - k*j >= 0)
             {
