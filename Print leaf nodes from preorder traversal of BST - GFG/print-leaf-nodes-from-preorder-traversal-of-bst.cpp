@@ -16,7 +16,7 @@ class Solution {
           mid = (lo + hi)/2;
           if (arr[mid] == v)
           {
-            //   cout<<mid<<endl;
+            
               return mid;
           }
           else if (arr[mid] > v)
@@ -34,8 +34,8 @@ class Solution {
   {
       if (lo > hi || idx == n)
       return;
-      int mid = find(inorder, lo, hi, arr[idx]);
-    //   cout<<mid<<" "<<lo<<" "<<hi<<endl;
+    //   int mid = find(inorder, lo, hi, arr[idx]);
+    int mid = lower_bound(inorder.begin() + lo, inorder.begin() + hi, arr[idx]) - inorder.begin();
       if (mid == -1)
       return;
       if (lo == hi)
