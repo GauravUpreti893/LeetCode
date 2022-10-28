@@ -5,21 +5,21 @@
 <p style="user-select: auto;"><br style="user-select: auto;">
 <span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Example 1:</strong></span></p>
 
-<pre style="position: relative; user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Input:</strong>
+<pre style="user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Input:</strong>
 N = 2
 arr = {2,1}
 <strong style="user-select: auto;">Output:</strong> {1}
 <strong style="user-select: auto;">Explaination:</strong> 1 is the only leaf node.
-</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper" style="user-select: auto;"></div></pre>
+</span></pre>
 
 <p style="user-select: auto;"><br style="user-select: auto;">
 <span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Example 2:</strong></span></p>
 
-<pre style="position: relative; user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Input:</strong>
+<pre style="user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Input:</strong>
 N = 3
 Arr = {3, 2, 4}
 <strong style="user-select: auto;">Output:</strong> {2, 4}
-<strong style="user-select: auto;">Explaination:</strong> 2, 4 are the leaf nodes.</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper" style="user-select: auto;"></div></pre>
+<strong style="user-select: auto;">Explaination:</strong> 2, 4 are the leaf nodes.</span></pre>
 
 <p style="user-select: auto;"><br style="user-select: auto;">
 <span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Your Task:</strong><br style="user-select: auto;">
