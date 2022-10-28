@@ -15,7 +15,7 @@ public:
             string s;
             for (int i = 0; i < 26; i++)
             {
-                s += to_string(freq[i]);
+                s += freq[i];
                 s += '.';
             }
             mp[s].push_back(strs[i]);
