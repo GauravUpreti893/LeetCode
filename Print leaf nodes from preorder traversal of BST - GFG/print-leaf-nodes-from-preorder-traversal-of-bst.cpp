@@ -36,7 +36,7 @@ class Solution {
       return;
     //   int mid = find(inorder, lo, hi, arr[idx]);
     int mid = lower_bound(inorder.begin() + lo, inorder.begin() + hi, arr[idx]) - inorder.begin();
-      if (mid == -1)
+      if (mid == hi + 1)
       return;
       if (lo == hi)
       {
