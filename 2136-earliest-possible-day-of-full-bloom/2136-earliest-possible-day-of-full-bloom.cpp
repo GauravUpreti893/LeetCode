@@ -1,7 +1,5 @@
-
 class Solution {
-public:
-   
+public:   
     int earliestFullBloom(vector<int>& plantTime, vector<int>& growTime) {
         int n = plantTime.size();
         vector<pair<int, int>> v(n);
