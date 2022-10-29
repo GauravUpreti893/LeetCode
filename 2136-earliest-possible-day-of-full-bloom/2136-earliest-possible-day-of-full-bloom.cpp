@@ -1,10 +1,4 @@
-bool compare(pair<int,int>&a, pair<int, int> &b)
-{
-    if (a.first > b.first)
-        return true;
-    else
-        return false;
-}
+
 class Solution {
 public:
    
@@ -15,17 +9,15 @@ public:
         {
             v[i] = {growTime[i], plantTime[i]};
         }
-        sort(v.begin(), v.end(), compare);
+        sort(v.begin(), v.end(), greater<pair<int, int>>());
         int mx = 0, ans = 0;
         for (int i = 0; i < n; i++)
         {
-            // cout<<v[i].first<<" "<<v[i].second<<endl;
             ans += v[i].second;
             mx -= v[i].second;
             mx = max(mx, v[i].first);
         }
         ans += mx;
-        // cout<<mx<<endl;
         return ans;
     }
 };
