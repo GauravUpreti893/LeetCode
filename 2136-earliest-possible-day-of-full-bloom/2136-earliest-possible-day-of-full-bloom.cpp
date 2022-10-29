@@ -6,10 +6,11 @@ bool compare(pair<int,int>&a, pair<int, int> &b)
         return false;
     else
     {
-        if (a.second < b.second)
-            return true;
-        else
-            return false;
+        // if (a.second < b.second)
+        //     return true;
+        // else
+        //     return false;
+        return false;
     }
 }
 class Solution {
