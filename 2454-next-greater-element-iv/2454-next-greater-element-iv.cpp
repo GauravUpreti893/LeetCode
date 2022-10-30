@@ -3,7 +3,7 @@ public:
     vector<int> secondGreaterElement(vector<int>& nums) {
         int n = nums.size();
         vector<int> ans(n, -1);
-        stack<int> st1, st2;
+        stack<int> st1, st2, temp;
         for (int i = 0; i < n; i++)
         {
             while (!st2.empty() && nums[st2.top()] < nums[i])
@@ -11,7 +11,6 @@ public:
                 ans[st2.top()] = nums[i];
                 st2.pop();
             }
-            stack<int> temp;
             while (!st1.empty() && nums[st1.top()] < nums[i])
             {
                 temp.push(st1.top());
