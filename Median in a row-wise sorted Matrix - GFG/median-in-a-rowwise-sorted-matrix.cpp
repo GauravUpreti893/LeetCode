@@ -10,34 +10,38 @@ using namespace std;
 
 class Solution{   
 public:
-    int median(vector<vector<int>> &a, int n, int m) {
-        // code here
-        //eg: 1 2 3 3    3    4 5 7 10    median will have 4 elements to its left
-        //if countSmaller(x) > 4 then x cannot be ans but if it is <= 4 it might be ans 
-        int low = 1, high = 2000, req = (n * m) / 2 ;
-        int ans = -1;
-    
-        auto countSmaller = [&](int val) {
-            int smaller = 0;
-            for (int i = 0; i < n; i++) {
-                smaller += lower_bound(a[i].begin(), a[i].end(), val) - a[i].begin();
+    int median(vector<vector<int>> &matrix, int R, int C){
+        // code here     
+        int lo = matrix[0][0];
+        int hi = matrix[0][C - 1];
+        for (int i = 1; i < R; i++)
+        {
+            lo = min(lo, matrix[i][0]);
+            hi = max(hi, matrix[i][C - 1]);
+        }
+        int mid, ans = -1;
+        while (lo <= hi)
+        {
+            mid = (lo + hi)/2;
+            int count = 0;
+            for (int i = 0; i < R; i++)
+            {
+                count += lower_bound(matrix[i].begin(), matrix[i].end(), mid) - matrix[i].begin();
             }
-            return smaller;
-        };
-    
-        while (low <= high) {
-            int mid = (low + high) >> 1;
-            int smallerElements = countSmaller(mid);
-            if (smallerElements <= req) {
+            if (count <= (R*C)/2)
+            {
                 ans = mid;
-                low = mid + 1;
+                lo = mid + 1;
             }
             else
-                high = mid - 1;
+            {
+                hi = mid - 1;
+            }
         }
         return ans;
     }
 };
+
 
 
 //{ Driver Code Starts.
