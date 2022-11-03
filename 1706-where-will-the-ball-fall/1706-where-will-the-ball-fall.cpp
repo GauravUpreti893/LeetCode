@@ -19,8 +19,7 @@ public:
                     flag = false;
                     break;
                 }
-                int temp = col;
-                col += grid[j][temp]; 
+                col += grid[j][col]; 
                 if (col < 0 || col >= m)
                 {
                     ans[i] = -1;
