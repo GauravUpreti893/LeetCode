@@ -4,7 +4,7 @@ public:
         int n = words.size();
         bool flag = true;
         int ans = 0;
-        map<string, int> mp;
+        unordered_map<string, int> mp;
         for (int i = 0; i < n; i++)
         {
             mp[words[i]]++;
@@ -35,7 +35,9 @@ public:
             else
             {
                 reverse(s.begin(), s.end());
-                int l1 = mp[s];
+                int l1 = 0;
+                if (mp.find(s) != mp.end())
+                    l1 = mp[s];
                 ans += min(l, l1)*2;
             }
         }
