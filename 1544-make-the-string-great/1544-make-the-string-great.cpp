@@ -1,24 +1,19 @@
 class Solution {
 public:
     string makeGood(string s) {
-        string ans;
-        stack<char> st;
         int n = s.size();
-        for (int i = 0; i < n; i++)
+        int j = 1;
+        for (int i = 1; i < n; i++)
         {
-            if (!st.empty() && abs(st.top() - s[i]) == 32)
+            if (j > 0 && abs(s[i] - s[j - 1]) == 32)
             {
-                st.pop();
+                j--;
             }
             else
-                st.push(s[i]);
+            {
+                s[j++] = s[i];
+            }
         }
-        while (!st.empty())
-        {
-            ans += st.top();
-            st.pop();
-        }
-        reverse(ans.begin(), ans.end());
-        return ans;
+        return s.substr(0, j);
     }
 };
