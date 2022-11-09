@@ -6,23 +6,33 @@ using namespace std;
 class Solution{
 
   public:
-  int minimum(int* arr, int n, long long sum, long long x, vector<vector<int>> &dp)
-  {
-      if (n < 0)
-      return 1e9;
-      if (dp[n][x] != -1)
-      return dp[n][x];
-      int res = abs(2*x - sum);
-      res = min(res, min(minimum(arr, n - 1, sum, x - arr[n], dp), minimum(arr, n -1, sum, x, dp)));
-      return dp[n][x] = res;
-  }
 	int minDifference(int arr[], int n)  { 
 	    // Your code goes here
-	    long long sum = 0;
+	    int sum = 0;
 	    for (int i = 0; i < n; i++)
 	    sum += arr[i];
-	    vector<vector<int>> dp(n, vector<int> (sum + 1, -1));
-	    return minimum(arr, n - 1, sum, sum, dp);
+	    vector<vector<bool>> dp(n + 1, vector<bool> (sum + 1));
+	    for (int i = 1; i <= n; i++)
+	    dp[i][0] = true;
+	    int mn = sum;
+	    for (int i = 1; i <= sum; i++)
+	    {
+	        dp[0][i] = false;
+	    }
+	    for (int i = 1; i <= n; i++)
+	    {
+	        for (int j = 1; j <= sum; j++)
+	        {
+	            dp[i][j] = dp[i - 1][j];
+	            if (arr[i - 1] <= j)
+	            dp[i][j] = dp[i][j] | dp[i - 1][j - arr[i - 1]];
+	            if (dp[i][j])
+	            {
+	                mn = min(mn, abs(2*j - sum));
+	            }
+	        }
+	    }
+	    return mn;
 	} 
 };
 
