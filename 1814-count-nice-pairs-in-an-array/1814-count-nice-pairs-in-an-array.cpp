@@ -7,17 +7,12 @@ public:
         int mod = 1e9 + 7;
         for (int j = 0; j < n; j++)
         {
-            string rev = to_string(nums[j]);
-            reverse(rev.begin(), rev.end());
-            int i = 0, m = rev.size();
-            while (i < m && rev[i] == '0')
-            {
-                i++;
-            }
+            int t = nums[j];
             int r = 0;
-            for (; i < m; i++)
+            while (t)
             {
-                r = r*10 + rev[i] - '0';
+                r = r*10 + t%10;
+                t /= 10;
             }
             ans += (mp[nums[j] - r])%mod;
             ans %= mod;
