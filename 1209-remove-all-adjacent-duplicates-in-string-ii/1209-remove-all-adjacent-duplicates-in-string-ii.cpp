@@ -16,6 +16,7 @@ public:
                         i++;
                         j = 0;
                         s[j] = s[i];
+                        count[j] = 1;
                     }
                 }
                 else
