@@ -1,24 +1,31 @@
 class Solution {
 public:
     string removeDuplicates(string s) {
-        stack<char> st;
         int n = s.size();
-        for (int i = 0; i < n; i++)
+        int j = 0;
+        for (int i = 1; i < n; i++)
         {
-            if (!st.empty() && st.top() == s[i])
+            if (s[i] == s[j])
             {
-                st.pop();
+                j--;
+                if (j < 0)
+                {
+                    
+                    i++;
+                    if (i < n)
+                    {
+                        j = 0;
+                        s[j] = s[i];
+                    }
+                }
             }
             else
-                st.push(s[i]);
+            {
+                j++;
+                s[j] = s[i];
+            }
+            // cout<<j<<endl;
         }
-        string ans;
-        while (!st.empty())
-        {
-            ans += st.top();
-            st.pop();
-        }
-        reverse(ans.begin(), ans.end());
-        return ans;
+        return s.substr(0,j + 1);
     }
 };
