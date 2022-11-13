@@ -7,7 +7,7 @@ public:
         while (i < n && s[i] == ' ')
             i++;
         string str;
-        while (i < n)
+        while (true)
         {
             str.clear();
             while (i < n && s[i] != ' ')
@@ -20,8 +20,9 @@ public:
             {
                 i++;
             }
-            if (i != n)
-                ans = ' ' + ans;
+            if (i == n)
+                break;
+            ans = ' ' + ans;
         }
         return ans;
     }
