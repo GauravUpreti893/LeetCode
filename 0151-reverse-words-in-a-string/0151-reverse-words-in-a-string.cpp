@@ -6,9 +6,10 @@ public:
         int i = 0;
         while (i < n && s[i] == ' ')
             i++;
+        string str;
         while (i < n)
         {
-            string str;
+            str.clear();
             while (i < n && s[i] != ' ')
             {
                 str += s[i];
