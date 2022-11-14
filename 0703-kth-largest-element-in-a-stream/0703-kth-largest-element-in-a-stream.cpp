@@ -1,45 +1,35 @@
 class KthLargest {
 public:
-    multiset<int, greater<int>> st;
-    multiset<int, greater<int>> :: iterator it;
-    int size, K;
+    priority_queue<int, vector<int>, greater<int>> pq;
+    int K;
     KthLargest(int k, vector<int>& nums) {
-        int n = nums.size();
-        size = min(n, k);
         K = k;
+        int n = nums.size();
         for (int i = 0; i < n; i++)
         {
-            st.insert(nums[i]);
-        }
-        if (n != 0)
-        it = st.begin();
-        for (int i = 0; i < size - 1; i++)
-        {
-            it++;
+            if (pq.size() < k)
+            {
+                pq.push(nums[i]);
+            }
+            else if (pq.top() < nums[i])
+            {
+                pq.pop();
+                pq.push(nums[i]);
+            }
         }
     }
     
     int add(int val) {
-        st.insert(val);
-        if (size != K)
+        if (pq.size() < K)
         {
-            if (size)
-            {
-                if (*it >= val)
-                {
-                    it++;
-                }
-            }
-            else
-                it = st.begin();
-            size++;
-            return *it;
+            pq.push(val);
         }
-        if (val > *it)
+        else if (pq.top() < val)
         {
-            it = --it;
+            pq.pop();
+            pq.push(val);
         }
-        return *it;
+        return pq.top();
     }
 };
 
