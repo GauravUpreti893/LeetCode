@@ -37,7 +37,7 @@ public:
         }
         if (val > *it)
         {
-            it = prev(it);
+            it = --it;
         }
         return *it;
     }
