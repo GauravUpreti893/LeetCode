@@ -7,28 +7,16 @@ public:
         int n = nums.size();
         for (int i = 0; i < n; i++)
         {
-            if (pq.size() < k)
-            {
-                pq.push(nums[i]);
-            }
-            else if (pq.top() < nums[i])
-            {
+            pq.push(nums[i]);
+            if (pq.size() > k)
                 pq.pop();
-                pq.push(nums[i]);
-            }
         }
     }
     
     int add(int val) {
-        if (pq.size() < K)
-        {
-            pq.push(val);
-        }
-        else if (pq.top() < val)
-        {
+        pq.push(val);
+        if (pq.size() > K)
             pq.pop();
-            pq.push(val);
-        }
         return pq.top();
     }
 };
