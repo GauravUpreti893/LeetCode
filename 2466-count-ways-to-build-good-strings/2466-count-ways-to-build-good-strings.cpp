@@ -1,24 +1,27 @@
 class Solution {
 public:
-    int mod = 1e9 + 7;
-    int count(int l, vector<int> &dp, int z, int o)
-    {
-        if (l < 0)
-            return 0;
-        if (dp[l] != -1)
-            return dp[l];
-        return dp[l] = (count(l - z, dp, z, o) + count(l - o, dp, z, o)) % mod;
-    }
     int countGoodStrings(int low, int high, int zero, int one) {
-        int ans = 0;
-        vector<int> dp(high + 1, -1);
+        vector<int> dp(high + 1, 0);
         dp[0] = 1;
-        for (int l = low; l <= high; l++)
+        int ans = 0, mod = 1e9 + 7;
+        for (int i = 1; i <= high; i++)
         {
-            ans += count(l, dp, zero, one);
-            ans = ans % mod;
+            if (i >= zero)
+            {
+                dp[i] += dp[i - zero];
+                dp[i] %= mod;
+            }
+            if (i >= one)
+            {
+                dp[i] += dp[i - one];
+                dp[i] %= mod;
+            }
+            if (i >= low)
+            {
+                ans += dp[i];
+                ans %= mod;
+            }
         }
-        
         return ans;
     }
 };
