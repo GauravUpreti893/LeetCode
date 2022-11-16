@@ -9,18 +9,19 @@
 
 class Solution {
 public:
-    int fun (int lo, int hi)
-    {
-        int mid = lo + (hi - lo)/2;
-        int res = guess(mid);
-        if (res == 0)
-            return mid;
-        else if (res == -1)
-            return fun(lo, mid - 1);
-        else
-            return fun(mid + 1, hi);
-    }
     int guessNumber(int n) {
-        return fun(1, n);
+        int res, mid, lo = 1, hi = n;
+        while (lo <= hi)
+        {
+            mid = lo + (hi - lo)/2;
+            res = guess(mid);
+            if (res == 0)
+            return mid;
+            else if (res == -1)
+                hi = mid - 1;
+            else
+               lo = mid + 1;
+        }
+        return 0;
     }
 };
