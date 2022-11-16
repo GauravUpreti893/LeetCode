@@ -12,11 +12,11 @@ public:
     int maximumPath(int N, vector<vector<int>> Matrix)
     {
         // code here
-        vector<vector<int>> dp(N, vector<int> (N + 2));
+        vector<vector<int>> dp(2, vector<int> (N + 2));
         int ans = 0;
         for (int i = 1; i <= N; i++)
         dp[0][i] = Matrix[0][i - 1];
-        for (int i = 0; i < N; i++)
+        for (int i = 0; i < 2; i++)
         {
             dp[i][0] = 0;
             dp[i][N + 1] = 0;
@@ -25,12 +25,12 @@ public:
         {
             for (int j = 1; j <= N; j++)
             {
-                dp[i][j] = max({dp[i - 1][j - 1], dp[i - 1][j], dp[i - 1][j + 1]}) + Matrix[i][j - 1];
+                dp[i%2][j] = max({dp[!(i%2)][j - 1], dp[!(i%2)][j], dp[!(i%2)][j + 1]}) + Matrix[i][j - 1];
             }
         }
         for (int i = 1; i <= N; i++)
         {
-            ans = max(ans, dp[N - 1][i]);
+            ans = max(ans, dp[(N - 1)%2][i]);
         }
         return ans;
     }
