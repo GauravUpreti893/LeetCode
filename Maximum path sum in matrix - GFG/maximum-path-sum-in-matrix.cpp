@@ -9,24 +9,28 @@ using namespace std;
 
 class Solution{
 public:
-    int maxpath(int n, int m, vector<vector<int>> &matrix, vector<vector<int>> &dp)
-    {
-        if (n < 0 || m < 0 || max(n, m) == matrix.size())
-        return 0;
-        if (dp[n][m] != -1)
-        return dp[n][m];
-        return dp[n][m] = max({maxpath(n - 1, m - 1, matrix, dp), maxpath(n - 1, m, matrix, dp), maxpath(n - 1, m + 1, matrix, dp)}) + matrix[n][m];
-    }
     int maximumPath(int N, vector<vector<int>> Matrix)
     {
         // code here
-        vector<vector<int>> dp(N, vector<int> (N, -1));
-        for (int i = 0; i < N; i++)
-        dp[0][i] = Matrix[0][i];
+        vector<vector<int>> dp(N, vector<int> (N + 2));
         int ans = 0;
+        for (int i = 1; i <= N; i++)
+        dp[0][i] = Matrix[0][i - 1];
         for (int i = 0; i < N; i++)
         {
-            ans = max(ans, maxpath(N - 1, i, Matrix, dp));
+            dp[i][0] = 0;
+            dp[i][N + 1] = 0;
+        }
+        for (int i = 1; i < N; i++)
+        {
+            for (int j = 1; j <= N; j++)
+            {
+                dp[i][j] = max({dp[i - 1][j - 1], dp[i - 1][j], dp[i - 1][j + 1]}) + Matrix[i][j - 1];
+            }
+        }
+        for (int i = 1; i <= N; i++)
+        {
+            ans = max(ans, dp[N - 1][i]);
         }
         return ans;
     }
