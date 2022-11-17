@@ -2,7 +2,7 @@ class Solution {
 public:
     int pathsum(int n, int m, vector<vector<int>> &triangle, vector<vector<int>> &dp)
     {
-        if (dp[n][m] != 1e9)
+        if (dp[n][m] != 2* 1e6)
             return dp[n][m];
         return dp[n][m] = min(pathsum(n + 1, m, triangle, dp), pathsum(n + 1, m + 1, triangle, dp)) + triangle[n][m]; 
     }
@@ -11,7 +11,7 @@ public:
         int n = triangle.size();
         for (int i = 0; i < n; i++)
         {
-            vector<int> v(i + 1, 1e9);
+            vector<int> v(i + 1, 2* 1e6);
             dp.push_back(v);
         }
         for (int i = 0; i < n; i++)
