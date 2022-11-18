@@ -8,34 +8,24 @@
  */
 class Solution {
 public:
-    ListNode *detectCycle(ListNode *head) {
-        unordered_map<ListNode*, int> mp;
-        while (head != NULL)
+    ListNode *detectCycle(ListNode *head) {  
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while (fast != NULL && fast->next != NULL)
         {
-            if (mp[head])
+            slow = slow->next;
+            fast = fast->next;
+            fast = fast->next;
+            if (slow == fast)
+            {
+                while (slow != head)
+                {
+                    slow = slow->next;
+                    head = head->next;
+                }
                 return head;
-            mp[head] = 1;
-            head = head->next;
+            }
         }
         return NULL;
-        // ListNode* slow = head;
-        // ListNode* fast = head;
-        // if (head == NULL)
-        //     return NULL;
-        // fast = fast->next;
-        // if (fast == NULL)
-        //     return NULL;
-        // fast = fast->next;
-        // while (slow != fast)
-        // {
-        //     slow = slow->next;
-        //     if (fast == NULL)
-        //     return NULL;
-        //     fast = fast->next;
-        //     if (fast == NULL)
-        //         return NULL;
-        //     fast = fast->next;
-        // }
-        // return slow;
     }
 };
