@@ -8,7 +8,7 @@ public:
             {
                 if (board[i][j] == '.')
                     continue;
-                if (mp[(i/3)*10 + j/3][board[i][j]] == 1 || row[i][board[i][j]] == 1 || col[j][board[i][j]] == 1)
+                if (mp[(i/3)*10 + j/3][board[i][j]]|| row[i][board[i][j]] || col[j][board[i][j]])
                     return false;
                 mp[(i/3)*10 + j/3][board[i][j]] = 1;
                 row[i][board[i][j]] = 1;
