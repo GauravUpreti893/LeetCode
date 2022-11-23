@@ -5,20 +5,20 @@
 
 <p style="user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Example 1:</strong></span></p>
 
-<pre style="user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Input: </strong>arr = [3, 2, 1]
+<pre style="position: relative; user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Input: </strong>arr = [3, 2, 1]
 <strong style="user-select: auto;">Output: </strong>0
 <strong style="user-select: auto;">Explanation: </strong>There is no magic triplet.</span>
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper" style="user-select: auto;"></div></pre>
 
 <p style="user-select: auto;"><br style="user-select: auto;">
 <span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Example 2:</strong></span></p>
 
-<pre style="user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Input: </strong>arr = [1, 2, 3, 4]
+<pre style="position: relative; user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Input: </strong>arr = [1, 2, 3, 4]
 <strong style="user-select: auto;">Output: </strong>4
 <strong style="user-select: auto;">Explanation: </strong>Fours magic triplets are 
 (1, 2, 3), (1, 2, 4), (1, 3, 4) and 
 (2, 3, 4).</span>
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper" style="user-select: auto;"></div></pre>
 
 <p style="user-select: auto;">&nbsp;</p>
 
