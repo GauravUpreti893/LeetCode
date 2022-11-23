@@ -11,11 +11,8 @@ public:
                     if (!grid[i][j])
                         return false;
                 }
-                else 
-                {
-                    if (grid[i][j])
-                        return false;
-                }
+                else if (grid[i][j])
+                    return false;
             }
         }
         return true;
