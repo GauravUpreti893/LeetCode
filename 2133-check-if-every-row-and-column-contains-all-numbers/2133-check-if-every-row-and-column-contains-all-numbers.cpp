@@ -4,23 +4,13 @@ public:
         int n = matrix.size();
         for (int i = 0; i < n; i++)
         {
-            vector<bool> v(n, 0);
+            vector<bool> v(n, 0), v1(n, 0);
             for (int j = 0; j < n; j++)
             {
-                if (v[matrix[i][j] - 1])
-                    return false;
-                v[matrix[i][j] - 1] = true;      
-            }
-            
-        }
-        for (int j = 0; j < n; j++)
-        {
-            vector<bool> v(n, 0);
-            for (int i = 0; i < n; i++)
-            {
-                if (v[matrix[i][j] - 1])
+                if (v[matrix[i][j] - 1] || v1[matrix[j][i] - 1])
                     return false;
                 v[matrix[i][j] - 1] = true;
+                v1[matrix[j][i] - 1] = true;
             }
             
         }
