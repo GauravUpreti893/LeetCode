@@ -7,19 +7,29 @@ class Solution{
 	public:
 	int countTriplets(vector<int>nums){
 	    // Code here.
-	    int ans = 0 ;
-	    for(int j = 1 ; j<nums.size() -1  ; j++){
-	        int smaller = 0 ; 
-	        for(int i = j-1 ; i>=0 ; i--){
-	            if(nums[i]<nums[j]) smaller++ ;
+	    int n = nums.size(), j;
+	    int ans = 0, s, l;
+	    for (int i = 1; i < n; i++)
+	    {
+	        j = i - 1;
+	        s = 0;
+	        l = 0;
+	        while (j >= 0)
+	        {
+	            if (nums[j] < nums[i])
+	            s++;
+	            j--;
 	        }
-	        int greater = 0 ; 
-	        for(int k =  j+1 ; k<nums.size() ; k++){
-	            if(nums[j]<nums[k]) greater++ ;
+	        j = i + 1;
+	        while (j < n)
+	        {
+	            if (nums[j] > nums[i])
+	            l++;
+	            j++;
 	        }
-	        ans = ans + smaller*greater ;
+	        ans += s*l;
 	    }
-	    return ans ;
+	    return ans;
 	}
 };
 
