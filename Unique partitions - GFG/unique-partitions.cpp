@@ -18,7 +18,7 @@ class Solution{
 	    else
 	    {
 	        partition(ans, v, n, idx);
-	        partition(ans, v, n, idx - 1);
+	       // partition(ans, v, n, idx - 1);
 	    }
 	    n += idx;
 	    v.pop_back();
@@ -33,18 +33,7 @@ class Solution{
         vector<int> v;
         int idx = n;
         partition(ans, v, n, idx);
-        vector<vector<int>> res;
-        int m = ans.size();
-        map<vector<int>,int, greater<vector<int>>> mp;
-        for (int i = 0; i < m; i++)
-        {
-            mp[ans[i]] = 1;
-        }
-        for (auto it = mp.begin(); it != mp.end(); it++)
-        {
-            res.push_back(it->first);
-        }
-        return res;
+        return ans;
     }
 };
 
