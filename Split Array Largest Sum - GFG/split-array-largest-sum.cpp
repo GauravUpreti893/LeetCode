@@ -52,7 +52,7 @@ class Solution {
                 lo = mid + 1;
             }
         }
-        return lo;
+        return ans;
     }
 };
 
