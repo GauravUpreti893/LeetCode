@@ -6,7 +6,7 @@
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
-<pre style="position: relative;"><span style="font-size:18px"><strong>Input:</strong>
+<pre><span style="font-size:18px"><strong>Input:</strong>
 N = 2
 <strong>Output:</strong>
 6
@@ -18,7 +18,7 @@ Possible ways to break the number:
 0 + 1 + 1 = 2
 1 + 1 + 0 = 2
 1 + 0 + 1 = 2
-</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</span></pre>
 
 <p>&nbsp;</p>
 
@@ -26,7 +26,7 @@ Possible ways to break the number:
 
 <p><span style="font-size:18px"><strong>Example 2:</strong></span></p>
 
-<pre style="position: relative;"><span style="font-size:18px"><strong>Input:</strong>
+<pre><span style="font-size:18px"><strong>Input:</strong>
 N = 3
 <strong>Output:</strong>
 10
@@ -41,7 +41,7 @@ Possible ways to break the number:
 1+2+0 = 3
 2+0+1 = 3
 2+1+0 = 3
-1+1+1 = 3</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+1+1+1 = 3</span></pre>
 
 <p>&nbsp;</p>
 
