@@ -6,22 +6,17 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
 public: 
-    vector<long long> value;
+    vector<long long> res;
     void precompute()
     {
         // Code Here
-        value = vector<long long> (60);
+        vector<long long> value(60);
         long long n = 1;
-        for (int i = 59; i >= 0; i--)
+        for (int i = 0; i < 60;  i++)
         {
             value[i] = n;
             n *= 2;
         }
-    }
-    
-    long long solve(long long l, long long r){
-        // Code Here
-        long long ans = 0, n;
         for (int i = 0; i < 60; i++)
         {
             for (int j = i + 1; j < 60; j++)
@@ -29,14 +24,17 @@ public:
                 for (int k = j + 1; k < 60; k++)
                 {
                     n = value[i] + value[j] + value[k];
-                    if (n >= l && n <= r)
-                    {
-                        ans++;
-                    }
+                    res.push_back(n);
                 }
             }
         }
-        return ans;
+        sort(res.begin(), res.end());
+        return;
+    }
+    
+    long long solve(long long l, long long r){
+        // Code Here
+        return upper_bound(res.begin(), res.end(), r) - lower_bound(res.begin(), res.end(), l);
     }
     
 };
