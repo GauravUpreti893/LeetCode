@@ -11,22 +11,21 @@ using namespace std;
 long long maxArea(long long A[], int len)
 {
     // Your code goes here
-    vector<long long> minarr(101, 1e5), maxarr(101, 0);
-    for (long long int i = 0; i < len; i++)
+    long long i = 0, j = len - 1, ans = 0;
+    while (i < j)
     {
-        maxarr[A[i]] = max(maxarr[A[i]], i);
-        minarr[A[i]] = min(minarr[A[i]], i);
-     }
-     long long ans = 0;
-     for (long long int i = 1; i <= 100; i++)
-     {
-         for (long long int j = i; j <= 100; j++)
-         {
-             if (minarr[i] != 1e5 && minarr[j] != 1e5)
-             ans = max({ans, i *(abs(maxarr[j] - minarr[i])), i *(abs(maxarr[i] - minarr[j]))});
-         }
-     }
-     return ans;
+        if (A[i] >= A[j])
+        {
+            ans = max(ans, A[j] *(j - i));
+            j--;
+        }
+        else
+        {
+            ans = max(ans, A[i] *(j - i));
+            i++;
+        }
+    }
+    return ans;
 }
 
 //{ Driver Code Starts.
