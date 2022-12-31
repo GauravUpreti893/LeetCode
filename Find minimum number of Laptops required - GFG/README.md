@@ -5,7 +5,7 @@
 <p><br>
 <span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
-<pre style="position: relative;"><span style="font-size:18px"><strong>Input:
+<pre><span style="font-size:18px"><strong>Input:
 </strong>N = 3
 start[] = {1, 2, 3}
 end[] = {4, 4, 6}
@@ -15,11 +15,11 @@ end[] = {4, 4, 6}
 We can clearly see that everyone's supposed to
 be doing their job at time 3. So, 3 laptops
 will be required at minimum.</span>
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p><span style="font-size:18px"><strong>Example 2:</strong></span></p>
 
-<pre style="position: relative;"><span style="font-size:18px"><strong>Input:
+<pre><span style="font-size:18px"><strong>Input:
 </strong>N = 3
 start[] = {1, 5, 2}
 end[] = {2, 6, 3}
@@ -27,7 +27,7 @@ end[] = {2, 6, 3}
 1
 <strong>Explanation:</strong>
 All jobs can be done using 1 laptop only.
-</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</span></pre>
 
 <p><br>
 <span style="font-size:18px"><strong>Your Task:&nbsp;&nbsp;</strong><br>
