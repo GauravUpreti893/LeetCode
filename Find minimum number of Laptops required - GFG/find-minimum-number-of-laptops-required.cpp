@@ -12,29 +12,17 @@ class Solution {
   public:
     int minLaptops(int N, int start[], int end[]) {
         // Code here
-        vector<pair<int, int>> arr(N);
+        map<int, int> mp;
         for (int i = 0; i < N; i++)
         {
-            arr[i] = {start[i], end[i]};
+            mp[start[i]]++;
+            mp[end[i]]--;
         }
-        sort(arr.begin(), arr.end());
-        // for (int i = 0; i < N; i++)
-        // {
-        //     cout<<arr[i].first<<" "<<arr[i].second<<endl;
-        // }
-        int ans = 1, count = 1;
-        priority_queue<int, vector<int>, greater<int>> pq; 
-        pq.push(arr[0].second);
-        for (int j = 1; j < N; j++)
+        int ans = 0, sum = 0;
+        for (auto it = mp.begin(); it != mp.end(); it++)
         {
-            while (!pq.empty() && pq.top() <= arr[j].first)
-            {
-                pq.pop();
-                count--;
-            }
-            count++;
-            pq.push(arr[j].second);
-            ans = max(ans, count);
+            sum += it->second;
+            ans = max(ans, sum);
         }
         return ans;
     }
