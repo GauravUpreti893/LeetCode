@@ -27,17 +27,16 @@ class Solution{
 	int compute_value(int n)
 	{
 	    // Code here
-	    ll ans = 2, ncr = 1;
-	    for (ll r = 1; r < n; r++)
+	    ll ncr = 1;
+	    n *= 2;
+	    for (ll r = 1; r <= n/2; r++)
 	    {
 	        ncr *= (n - r + 1);
 	        ncr %= mod;
 	        ncr *= modinverse(r);
 	        ncr %= mod;
-	        ans += (ncr*ncr)%mod;
-	        ans %= mod;
 	    }
-	    return (int)ans;
+	    return (int)ncr;
 	}
 };
 
