@@ -11,26 +11,40 @@ class Solution {
   public:
     int isItPossible(string S, string T, int M, int N) {
         // code here
+        int i = 0, j;
         if (M != N)
         return 0;
-        int i = 0, j = 0;
-        while (i < N && S[i] == '#')
-           i++;
-           while (j < N && T[j] == '#')
-           j++;
-        while (i < N && j < N)
+        while (i < M)
         {
-           if (S[i] != T[j])
-           return 0;
-           i++;
-           j++;
-           while (i < N && S[i] == '#')
-           i++;
-           while (j < N && T[j] == '#')
-           j++;
+            if (S[i] != T[i])
+            {
+                if (S[i] == 'A' || (T[i] == 'B'))
+                return 0;
+                j = i;
+                if (S[i] == '#')
+                {
+                    while (i < N && S[i] == '#')
+                    {
+                        i++;
+                    }
+                    if (i == N || S[i] == 'B')
+                    return 0;
+                    swap(S[i], S[j]); // T[i] = 'A' here
+                }
+                else
+                {
+                    while (i < N && S[i] == 'B')
+                    {
+                        i++;
+                    }
+                    if (i == N || S[i] == 'A')
+                    return 0;
+                    swap(S[i], S[j]);
+                }
+                i = j;
+            }
+            i++;
         }
-        if (i < N || j < N)
-        return 0;
         return 1;
     }
 };
