@@ -25,15 +25,20 @@ public:
     {
         // code here
         int n = words.size();
-        sort(words.begin(), words.end(), compare);
+        // sort(words.begin(), words.end(), compare);
         unordered_map<string, int> mp;
         for (int i = 0; i < n; i++)
         {
             mp[words[i]] = 1;
             // cout<<words[i]<<" ";
         }
+        string ans;
         for (int i = 0; i < n; i++)
         {
+            if ((words[i].size() < ans.size()) || ((words[i].size() == ans.size()) && ans.compare(words[i]) <= 0))
+            {
+                continue;
+            }
             string str;
             int m = words[i].size();
             bool flag = true;
@@ -47,9 +52,9 @@ public:
                 }
             }
             if (flag)
-            return words[i];
+            ans = words[i];
         }
-        return "";
+        return ans;
     }
 };
 
