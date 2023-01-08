@@ -7,20 +7,20 @@ The knights have to be placed on different squares. A knight can move two square
 
 <p><strong><span style="font-size:18px">Example 1:</span></strong></p>
 
-<pre><strong><span style="font-size:18px">Input:
+<pre style="position: relative;"><strong><span style="font-size:18px">Input:
 </span></strong><span style="font-size:18px">N = 2, M = 2
 <strong>Output: </strong>12 
 <strong>Explanation</strong>: There are 12 ways we can place a black and a white Knight on this chessboard such that they cannot attack each other.</span>
 
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><strong><span style="font-size:18px">Example 2:</span></strong></p>
 
-<pre><strong><span style="font-size:18px">Input:
+<pre style="position: relative;"><strong><span style="font-size:18px">Input:
 </span></strong><span style="font-size:18px">N = 2, M = 3
 <strong>Output: </strong>26
 <strong>Explanation</strong>: There are 26 ways we can place a black and a white Knight on this chessboard such that they cannot attack each other.</span>
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><span style="font-size:18px"><strong>Your Task:</strong><br>
 Your task is to complete the function <strong>numOfWays()&nbsp;</strong>which takes the chessboard dimensions N and M as inputs and returns the number of ways we can place 2 Knights on this chessboard such that they cannot attack each other. Since this number can be very large, return it modulo 10<sup>9</sup>+7.</span></p>
