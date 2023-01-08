@@ -21,23 +21,25 @@ int main() {
 
 //Function to find out the number of ways we can place a black and a 
 //white Knight on this chessboard such that they cannot attack each other.
-long long numOfWays(int n, int m)
+long long numOfWays(int N, int M)
 {
     // write code here
-    long long ans=0;
-     vector<pair<int,int>>dr={{1,2},{2,1},{-1,2},{2,-1},{-2,1},{-1,-2},{-2,-1},{1,-2}};
-    long long mod=pow(10,9)+7;
-    for(int i=0;i<m;i++){
-        for(auto j=0;j<n;j++){
-            int count=n*m-1;
-            for(auto &r:dr){
-                int x=r.first+i,y=j+r.second;
-                if(x<0||y<0||x>=m||y>=n)continue;
-                count--;
-            }
-            ans+=count;
-            ans%=mod;
+    long long n = N*M;
+    long long ans = n*(n - 1), mod = 1e9 + 7;
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < M; j++)
+        {
+            if (j && (i < N - 2))
+            ans -= 2;
+            if ((j != M - 1) && (i < N - 2))
+            ans -= 2;
+            if ((j > 1) && (i < N - 1))
+            ans -= 2;
+            if ((j < (M - 2)) && (i < N - 1))
+            ans -= 2;
         }
     }
-    return ans;
+    
+    return ans % mod;
 }
