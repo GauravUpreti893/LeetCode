@@ -28,7 +28,7 @@ class Solution {
             }
             else if (i != parent)
             {
-                lowest[idx] = min(lowest[idx], disctime[i]);
+                lowest[idx] = min(lowest[idx], lowest[i]);
             }
         }
         if (parent == -1 && children > 1)
