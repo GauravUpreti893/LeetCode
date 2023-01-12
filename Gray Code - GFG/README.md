@@ -7,20 +7,20 @@ A Gray code sequence must begin with 0.</span></div>
 
 <div><span style="font-size:18px"><strong>Example 1:</strong></span></div>
 
-<pre style="position: relative;"><span style="font-size:18px"><strong>Input:</strong>
+<pre><span style="font-size:18px"><strong>Input:</strong>
 N = 2
 <strong>Output: </strong>
 00 01 11 10
 <strong>Explanation: </strong>
 00 and 01 differ by one bit.
 01 and 11 differ by one bit.
-11 and 10 also differ by one bit.</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+11 and 10 also differ by one bit.</span></pre>
 
 <div>&nbsp;</div>
 
 <div><span style="font-size:18px"><strong>Example 2:</strong></span></div>
 
-<pre style="position: relative;"><span style="font-size:18px"><strong>Input:</strong>
+<pre><span style="font-size:18px"><strong>Input:</strong>
 N=3
 <strong>Output:</strong>
 000 001 011 010 110 111 101 100
@@ -29,7 +29,7 @@ N=3
 001 and 011 differ by one bit.
 011 and 010 differ by one bit.
 Similarly, every successive pattern 
-differs by one bit.</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+differs by one bit.</span></pre>
 
 <div><span style="font-size:18px"><strong>Your task:</strong></span></div>
 
