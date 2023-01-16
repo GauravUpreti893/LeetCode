@@ -24,6 +24,7 @@ class Solution{
         {
             st.insert(arr[i]);
             long long int key = st.order_of_key(arr[i] + 1), size = i + 1;
+            
             ans += size - key;
         }
         return ans;
