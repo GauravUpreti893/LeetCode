@@ -1,77 +1,66 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 class Solution{
   public:
     // arr[]: Input Array
     // N : Size of the Array arr[]
     // Function to count inversions in the array.
-    void merge(long long arr[], long long lo, long long mid, long long hi, long long &count)
+    long long merge(long long nums[], int lo, int mid, int hi)
     {
-        int n = (mid - lo + 1);
-        int m = (hi - mid);
-        long long int *arr1 = new long long int[n];
-        long long int *arr2 = new long long int[m];
-        for (int i = 0; i < n; i++)
+        vector<long long> a, b;
+        for (int i = lo; i <= mid; i++)
+        a.push_back(nums[i]);
+        for (int i = mid + 1; i <= hi; i++)
+        b.push_back(nums[i]);
+        int n = a.size(), m = b.size(), i = 0, j = 0, k = lo;
+        long long res = 0;
+        while ((i < n) && (j < m))
         {
-            arr1[i] = arr[lo + i];
-        }
-        for (int i = 0; i < m; i++)
-        {
-            arr2[i] = arr[mid + i + 1];
-        }
-        int k = lo, i = 0, j = 0;
-        while (i < n && j < m)
-        {
-            if (arr1[i] > arr2[j])
-            {
-                // count+= j + 1;
-                arr[k++] = arr2[j++];
-            }
+            if (a[i] <= b[j])
+            nums[k++] = a[i++];
             else
             {
-                count += j;
-                arr[k++] = arr1[i++];
+                res += (n - i);
+                nums[k++] = b[j++];
             }
         }
+        bool flag = false;
         while (i < n)
         {
-            arr[k++] = arr1[i++];
-            count += m;
+            nums[k++] = a[i++];
+            flag = true;
         }
         while (j < m)
         {
-            arr[k++] = arr2[j++];
+            nums[k++] = b[j++];
         }
-        // cout<<lo<<" "<<mid<<" "<<hi<<" ";
-        // cout<<count<<endl;
-        return;
+        return res;
     }
-    void mergeSort(long long arr[], long long lo, long long hi, long long& count)
+    long long inversioncount(long long nums[], int lo, int hi)
     {
-        if (lo < hi)
+        if (lo >= hi)
         {
-            long long int mid = (lo + hi)/2;
-            mergeSort(arr, lo, mid, count);
-            mergeSort(arr, mid + 1, hi, count);
-            merge(arr, lo, mid, hi, count);
+            return 0;
         }
-        return;
+        long long int res = 0;
+        int mid = lo + (hi - lo)/2;
+        res += inversioncount(nums, lo, mid);
+        res += inversioncount(nums, mid + 1, hi);
+        res += merge(nums, lo, mid, hi);
+        return res;
     }
     long long int inversionCount(long long arr[], long long N)
     {
         // Your Code Here
-        long long int count = 0;
-        mergeSort(arr, 0, N - 1, count);
-        return count;
+        return inversioncount(arr, 0, N - 1);
     }
-
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main() {
     
@@ -92,4 +81,5 @@ int main() {
     
     return 0;
 }
-  // } Driver Code Ends
+
+// } Driver Code Ends
