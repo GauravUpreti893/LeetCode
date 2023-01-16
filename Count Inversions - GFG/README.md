@@ -8,25 +8,25 @@ Formally, two elements a[i] and a[j] form an inversion if a[i] &gt; a[j] and i &
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input</strong>: N = 5, arr[] = {2, 4, 1, 3, 5}
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input</strong>: N = 5, arr[] = {2, 4, 1, 3, 5}
 <strong>Output</strong>: 3
 <strong>Explanation</strong>: The sequence 2, 4, 1, 3, 5 
-has three inversions (2, 1), (4, 1), (4, 3).</span></pre>
+has three inversions (2, 1), (4, 1), (4, 3).</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><span style="font-size:18px"><strong>Example 2:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input</strong>: N = 5
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input</strong>: N = 5
 arr[] = {2, 3, 4, 5, 6}
 <strong>Output</strong>: 0
 <strong>Explanation</strong>: As the sequence is already 
-sorted so there is no inversion count.</span></pre>
+sorted so there is no inversion count.</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><span style="font-size:18px"><strong>Example 3:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input</strong>: N = 3, arr[] = {10, 10, 10}
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input</strong>: N = 3, arr[] = {10, 10, 10}
 <strong>Output</strong>: 0
 <strong>Explanation</strong>: As all the elements of array 
-are same, so there is no inversion count.</span></pre>
+are same, so there is no inversion count.</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><strong><span style="font-size:18px">Your Task:</span></strong><br>
 <span style="font-size:18px">You don't need to read input or print anything. Your task is to complete the function&nbsp;<strong>inversionCount()</strong>&nbsp;which takes the array arr[] and the size of the array as inputs and returns the inversion count of the given array.</span><br>
