@@ -4,20 +4,20 @@
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input:</strong>
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:</strong>
 S = "011"
 <strong>Output:</strong> 4
 <strong>Explanation: </strong>There are 4 substring which 
 has more 1s than 0s. i.e "011","1","11" and "1"
-</span></pre>
+</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><span style="font-size:18px"><strong>Example 2:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input:</strong>
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:</strong>
 S = "0000"
 <strong>Output:</strong> 0
 <strong>Explanation: </strong>There is no substring
-which has more 1s than 0s</span></pre>
+which has more 1s than 0s</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><span style="font-size:18px"><strong>Your Task: &nbsp;</strong><br>
 You dont need to read input or print anything. Complete the function&nbsp;<strong>countSubstring</strong><strong>()</strong>&nbsp;which takes&nbsp;the&nbsp;string&nbsp;S as input parameter and returns the number of substring which has more 1s than 0s.</span></p>
