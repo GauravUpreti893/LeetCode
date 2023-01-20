@@ -11,37 +11,33 @@ class Solution
 {
     public:
     //Function to find if there is a celebrity in the party or not.
-    int celebrity(vector<vector<int> >& arr, int n) 
+    int celebrity(vector<vector<int> >& M, int n) 
     {
-        // code here 
+        // code here
+        int i = 1;
+        int cel = 0;
+        while (i < n)
+        {
+            if (M[cel][i] && !M[i][cel])
+            {
+                cel = i;
+            }
+            i++;
+        }
         for (int i = 0; i < n; i++)
         {
-            bool flag = true;
-            for (int j = 0; j < n; j++)
+            if (M[cel][i])
             {
-                if (arr[i][j])
-                {
-                    flag = false;
-                    break;
-                }
-            }
-            if (flag)
-            {
-                for (int j = 0; j < n; j++)
-                {
-                    if (i != j && !arr[j][i])
-                    {
-                        flag = false;
-                        break;
-                    }
-                }
-            }
-            if (flag)
-            {
-                return i;
+                return -1;
             }
         }
-        return -1;
+        for (int i = 0; i < n; i++)
+        {
+            if (i != cel && (!M[i][cel]))
+            return -1;
+            
+        }
+        return cel;
     }
 };
 
