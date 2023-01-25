@@ -13,22 +13,22 @@ To reduce his workload, he has decided to perform&nbsp;one of the following two 
 <p><br>
 <span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input</strong>:
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input</strong>:
 s = abcabca
 <strong>Output:</strong>&nbsp;5
 <strong>Explanation</strong>: a -&gt; ab -&gt; abc -&gt; abcabc 
 -&gt; abcabca
-</span></pre>
+</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><br>
 <span style="font-size:18px"><strong>Example 2:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input:</strong>
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:</strong>
 s = abcdefgh
 <strong>Output:&nbsp;</strong>8
 <strong>Explanation</strong>: a -&gt; ab -&gt; abc -&gt; abcd 
 -&gt; abcde -&gt; abcdef -&gt; abcdefg -&gt; abcdefgh
-</span></pre>
+</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><br>
 <span style="font-size:18px"><strong>Your Task:&nbsp;&nbsp;</strong><br>
