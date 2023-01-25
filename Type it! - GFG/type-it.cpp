@@ -12,7 +12,7 @@ class Solution {
     int minOperation(string s) {
         // code here
         int n = s.size();
-        int mx = 1;
+        int mx = 0;
         string str;
         for (int i = 0; i < n; i++)
         {
@@ -30,9 +30,9 @@ class Solution {
                 }
             }
             if (flag)
-            mx = max(mx, m);
+            mx = max(mx, m - 1);
         }
-        return n - mx + 1;
+        return n - mx;
     }
 };
 
