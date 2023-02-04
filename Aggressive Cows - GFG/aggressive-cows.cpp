@@ -9,40 +9,49 @@ using namespace std;
 
 class Solution {
 public:
+bool check(vector<int> &pos, int mn, int k)
+{
+	k--;
+	int n = pos.size();
+	int prev = pos[0];
+	for (int i = 1; i < n; i++)
+	{
+		if (pos[i] - prev >= mn)
+		{
+			k--;
+			if (k == 0)
+			{
+				return true;
+			}
+			prev = pos[i];
+		}
+		
+	}
+	if (k == 0)
+    return true;
+	else
+	return false;
+}
+int solve(int n, int k, vector<int> &pos) {
 
-    int solve(int n, int k, vector<int> &stalls) {
-    
-        // Write your code here
-        int hi = 1e9, lo = 0, mid, ans = 0;
-        sort(stalls.begin(), stalls.end());
-        while (lo <= hi)
+    // Write your code here
+    int lo = 1, hi = 1e9, mid, ans;
+	sort(pos.begin(), pos.end());
+	while (lo <= hi)
+	{
+		mid = lo + (hi - lo)/2;
+		if (check(pos, mid, k))
+		{
+			ans = mid;
+			lo = mid + 1;
+		}
+		else
         {
-            mid = lo + (hi - lo)/2;
-            // cout<<lo<<" "<<mid<<" "<<hi<<endl;
-            int t = k - 1;
-            int prev = stalls[0];
-            for (int i = 1; i < n; i++)
-            {
-                if (stalls[i] - prev >= mid)
-                {
-                    t--;
-                    if (!t)
-                    break;
-                    prev = stalls[i];
-                }
-            }
-            if (!t)
-            {
-                ans = mid;
-                lo = mid + 1;
-            }
-            else
-            {
-                hi = mid - 1;
-            }
+            hi = mid - 1;
         }
-        return ans;
-    }
+	}
+    return ans;
+}
 };
 
 //{ Driver Code Starts.
