@@ -49,10 +49,14 @@ public:
             n = root;
             return true;
         }
-        bool left = findNode(root->left, target, l + 1, d - 1);
-        if (left)
-        return true;
-        return findNode(root->right, target, l + 1, d + 1);
+        else if (root->data > target)
+        {
+            return findNode(root->left, target, l + 1, d - 1);
+        }
+        else
+        {
+            return findNode(root->right, target, l + 1, d + 1);
+        }
     }
     long long sumofNodes(Node *root, int l, int d)
     {
