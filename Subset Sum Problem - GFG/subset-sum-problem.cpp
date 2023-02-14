@@ -9,30 +9,32 @@ using namespace std;
 
 class Solution{   
 public:
-    bool ispossible(vector<int> &arr, int sum, int idx, bool **dp)
-    {
-        if (!sum)
-        return true;
-        int n = arr.size();
-        if (idx == n || sum < 0)
-        return false;
-        if (!dp[sum][idx])
-        return dp[sum][idx];
-        return dp[sum][idx] = (ispossible(arr, sum - arr[idx], idx + 1, dp) || ispossible(arr, sum, idx + 1, dp));
-    }
-    bool isSubsetSum(vector<int>arr, int sum){
+    bool isSubsetSum(vector<int>&arr, int sum){
         // code here 
         int n = arr.size();
-        bool **dp = new bool*[sum + 1];
-        for (int i = 0; i <= sum; i++)
+        int s = 0;
+        for (int i = 0; i < n; i++)
         {
-            dp[i] = new bool[n];
-            for (int j = 0; j < n; j++)
+            s += arr[i];
+        }
+        if (sum > s)
+        return false;
+        vector<vector<bool>> dp(s + 1, vector<bool> (n));
+        for (int i = 0; i < n; i++)
+        dp[0][i] = 1;
+        dp[arr[0]][0] = 1;
+        for (int i = 1; i <= s; i++)
+        {
+            for (int j = 1; j < n; j++)
             {
-                dp[i][j] = 1;
+                if ((i - arr[j] >= 0))
+                {
+                    dp[i][j] = dp[i - arr[j]][j - 1];
+                }
+                dp[i][j] = dp[i][j] || dp[i][j - 1];
             }
         }
-        return ispossible(arr, sum, 0, dp);
+        return dp[sum][n - 1];
     }
 };
 
