@@ -5,23 +5,23 @@
 <p><br>
 <span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input</strong></span>:
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input</strong></span>:
 <span style="font-size:18px">N = 6
 arr[] = {3, 34, 4, 12, 5, 2}
 sum = 9
 <strong>Output:</strong>&nbsp;1&nbsp;
 <strong>Explanation</strong>: Here there exists a subset with
 sum = 9, 4+3+2 = 9.</span>
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><span style="font-size:18px"><strong>Example 2:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input</strong></span>:
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input</strong></span>:
 <span style="font-size:18px">N = 6
 arr[] = {3, 34, 4, 12, 5, 2}
 sum = 30
 <strong>Output:</strong>&nbsp;0&nbsp;
-<strong>Explanation</strong>: There is no subset with sum 30.</span></pre>
+<strong>Explanation</strong>: There is no subset with sum 30.</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><br>
 <span style="font-size:18px"><strong>Your Task:&nbsp;&nbsp;</strong><br>
