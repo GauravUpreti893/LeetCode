@@ -19,23 +19,22 @@ public:
         }
         if (sum > s)
         return false;
-        vector<vector<bool>> dp(n, vector<bool> (s + 1));
-        for (int i = 0; i < n; i++)
+        vector<vector<bool>> dp(2, vector<bool> (s + 1));
+        for (int i = 0; i < 2; i++)
         dp[i][0] = 1;
         dp[0][arr[0]] = 1;
-        
         for (int i = 1; i < n; i++)
         {
             for (int j = 1; j <= sum; j++)
             {
                 if ((j - arr[i] >= 0))
                 {
-                    dp[i][j] = dp[i - 1][j - arr[i]];
+                    dp[i%2][j] = dp[!(i % 2)][j - arr[i]];
                 }
-                dp[i][j] = dp[i][j] || dp[i - 1][j];
+                dp[i%2][j] = dp[i%2][j] || dp[!(i % 2)][j];
             }
         }
-        return dp[n - 1][sum];
+        return dp[(n - 1)%2][sum];
     }
 };
 
