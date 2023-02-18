@@ -8,37 +8,47 @@ using namespace std;
 //User function Template for C++
 class Solution{
 public:
-    bool dfs(int n, vector<int> &arr, vector<int> &vis, int i)
+    bool stones(vector<int> &arr, vector<int> &vis, int i)
     {
-        if(vis[i])
-            return 1;
-        int nextInd = i + arr[i];
-        if(nextInd < 0 || nextInd >= n)
-            return 0;
-            
-        vis[i] = 1;   
-        if(dfs(n, arr, vis, nextInd))
-            return 1;
-        
-        vis[i] = 0;
-        return 0;
-    }
-    int goodStones(int n,vector<int> &arr){
-        vector<int> vis(n, 0);
-        for(int i = 0; i < n; i++)
+        int idx = i + arr[i], n = arr.size();
+        vis[i] = 1;
+        bool res = false;
+        if (idx >= 0 && idx < n)
         {
-            if(!vis[i])
+            if (vis[idx])
             {
-                dfs(n, arr, vis, i);
+                vis[i] = 2;
+                vis[idx] = 2;
+                return true;
+            }
+            else
+            {
+                res |= stones(arr, vis, idx);
+                if (res)
+                vis[i] = 2;
             }
         }
-        int count = 0;
-        for(int i = 0; i < n; i++)
+        if (!res)
+        vis[i] = 0;
+        return res;
+    }
+    int goodStones(int n,vector<int> &arr){
+        // Code here
+        vector<int> vis(n, 0);
+        for (int i = 0; i < n; i++)
         {
-            if(!vis[i])
-                count++;
+            if (!vis[i])
+            {
+                stones(arr, vis, i);
+            }
         }
-        return count;
+        int ans = 0;
+        for (int i = 0; i < n; i++)
+        {
+            ans += ((vis[i] != 2)?1:0);
+            // cout<<vis[i]<<endl;
+        }
+        return ans;
     }  
 };
 
