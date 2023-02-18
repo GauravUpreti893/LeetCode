@@ -10,23 +10,22 @@ using namespace std;
 
 class Solution {
   public:
-    long long solve(int N, int K, vector<long long>& GeekNum) {
+    long long solve(int N, int K, vector<long long> GeekNum) {
         // code here
+        long long sum = 0;
         if (N <= K)
         return GeekNum[N - 1];
-        vector<long long> dp(N + 1);
-        long long sum = 0;
         for (int i = 0; i < K; i++)
         {
-            dp[i + 1] = GeekNum[i];
             sum += GeekNum[i];
         }
-        for (int i = K + 1; i <= N; i++)
+        for (int i = K + 2; i <= N; i++)
         {
-            dp[i] = sum;
-            sum += sum - dp[i - K];
+            long long sub = GeekNum[(i - 2) % K];
+            GeekNum[(i - 2) % K] = sum;
+            sum += sum - sub;
         }
-        return dp[N];
+        return sum;
     }
 };
 
