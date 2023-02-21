@@ -13,15 +13,7 @@ public:
         // code here
         x--;
         y--;
-        int mx = 0;
-        for (int i = 0; i < N; i++)
-        {
-            for (int j = 0; j < M; j++)
-            {
-                mx = max(mx, abs(x - i) + abs(y - j));
-            }
-        }
-        return mx;
+        return max({x + y, abs(N - 1 - x) + y, x + abs(M - 1 - y), abs(N - 1 - x) + abs(M - 1 - y)});
     }
 };
 
