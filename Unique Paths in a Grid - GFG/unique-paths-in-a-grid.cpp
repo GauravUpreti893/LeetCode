@@ -12,7 +12,7 @@ class Solution {
         // code here
         if (!grid[0][0])
         return 0;
-        vector<vector<long long>> dp(n, vector<long long> (m, 0));
+        vector<vector<long long>> dp(2, vector<long long> (m, 0));
         long long mod = 1e9 + 7;
         dp[0][0] = 1;
         for (int i = 1; i < m; i++)
@@ -23,15 +23,17 @@ class Solution {
         }
         for (int i = 1; i < n; i++)
         {
+            dp[i%2][0] = 0;
             if (grid[i][0])
-            dp[i][0] = dp[i - 1][0];
+            dp[i%2][0] = dp[!(i%2)][0];
             for (int j = 1; j < m; j++)
             {
+                dp[i%2][j] = 0;
                 if (grid[i][j])
-                dp[i][j] = (dp[i - 1][j] + dp[i][j - 1]) % mod;
+                dp[i%2][j] = (dp[!(i%2)][j] + dp[i%2][j - 1]) % mod;
             }
         }
-        return dp[n - 1][m - 1];
+        return dp[(n - 1) % 2][m - 1];
     }
 };
 
