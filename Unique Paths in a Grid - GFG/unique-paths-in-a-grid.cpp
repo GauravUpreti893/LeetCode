@@ -8,21 +8,30 @@ using namespace std;
 
 class Solution {
   public:
-    long long paths(vector<vector<int>> &grid, vector<vector<int>> &dp, int i, int j)
-    {
-        long long mod = 1e9 + 7;
-        int n = grid.size(), m = grid[0].size();
-        if (i == n || j == m || !grid[i][j])
-        return 0;
-        if (dp[i][j] != -1)
-        return dp[i][j];
-        return dp[i][j] = (paths(grid, dp, i + 1, j) + paths(grid, dp, i, j + 1)) % mod;
-    }
     int uniquePaths(int n, int m, vector<vector<int>> &grid) {
         // code here
-        vector<vector<int>> dp(n, vector<int> (m, -1));
-        dp[n - 1][m - 1] = 1;
-        return paths(grid, dp, 0, 0);
+        if (!grid[0][0])
+        return 0;
+        vector<vector<long long>> dp(n, vector<long long> (m, 0));
+        long long mod = 1e9 + 7;
+        dp[0][0] = 1;
+        for (int i = 1; i < m; i++)
+        {
+            if (!grid[0][i])
+            break;
+            dp[0][i] = 1;
+        }
+        for (int i = 1; i < n; i++)
+        {
+            if (grid[i][0])
+            dp[i][0] = dp[i - 1][0];
+            for (int j = 1; j < m; j++)
+            {
+                if (grid[i][j])
+                dp[i][j] = (dp[i - 1][j] + dp[i][j - 1]) % mod;
+            }
+        }
+        return dp[n - 1][m - 1];
     }
 };
 
