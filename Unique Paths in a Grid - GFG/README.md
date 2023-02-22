@@ -10,7 +10,7 @@
 <p><br>
 <strong><span style="font-size:18px">Example 1:</span></strong></p>
 
-<pre style="position: relative;"><span style="font-size:18px"><strong>Input:
+<pre><span style="font-size:18px"><strong>Input:
 </strong>n = 3, m = 3
 grid[][] = {{1, 1, 1};
 &nbsp;           {1, 0, 1};
@@ -26,18 +26,18 @@ grid[][] = {{1, 1, 1};
 1 0 <strong>1</strong>
 1<strong> </strong>1 <strong>1
 </strong>This is another possible path.</span>
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p><span style="font-size:18px"><strong>Example 2:</strong></span></p>
 
-<pre style="position: relative;"><span style="font-size:18px"><strong>Input:
+<pre><span style="font-size:18px"><strong>Input:
 </strong>n = 1, m = 3
 grid = {{1, 0, 1}}
 <strong>Output :</strong>
 0
 <strong>Explanation:</strong>
 There is no possible path to reach the end.
-</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</span></pre>
 
 <p><br>
 <span style="font-size:18px"><strong>Your Task:&nbsp;&nbsp;</strong><br>
