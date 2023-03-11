@@ -1,33 +1,28 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
+// } Driver Code Ends
 //User function template for C++
 class Solution{
 public:
 	int rowWithMax1s(vector<vector<int> > arr, int n, int m) {
 	    // code here
-	    int row = -1;
-	    int pos = m - 1;
+	    int ans = -1, j = m - 1;
 	    for (int i = 0; i < n; i++)
 	    {
-	        while (pos >=0 && arr[i][pos])
+	        while (j >= 0 && arr[i][j])
 	        {
-	            row = i;
-	            pos--;
-	        }
-	        if (pos < 0)
-	        {
-	            return row;
+	            j--;
+	            ans = i;
 	        }
 	    }
-	    return row;
+	    return ans;
 	}
 
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 int main() {
     int t;
     cin >> t;
@@ -46,4 +41,5 @@ int main() {
     }
     return 0;
 }
-  // } Driver Code Ends
+
+// } Driver Code Ends
