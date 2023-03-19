@@ -8,44 +8,39 @@ using namespace std;
 
 class Solution{   
   public:
-    string secondSmallest(int s, int d){
+    string secondSmallest(int S, int D){
         // code here 
-        if(s==1 || d==1 || 9*d <= s)return "-1";
-        string res="";
-        while(res.size()!=d){
-            if(s>=9){
-                s-=9;
-                res+="9";
-            }else{
-                res=to_string(s)+res;
-                s-=s;
+        if (S == 1 || D == 1 || S >= 9*D)
+        return "-1";
+        string ans;
+        for (int i = 0; i < D; i++)
+        {
+            ans += "0";
+        }
+        ans[0] = '1';
+        S--;
+        if (S < 9)
+        {
+            ans[D - 1] += (S - 1);
+            ans[D - 2]++;
+            return ans;
+        }
+        for (int i = D - 1; i >= 0; i--)
+        {
+            if (S >= 9)
+            {
+                ans[i] = '9';
+                S -= 9;
+            }
+            else
+            {
+                ans[i + 1] = '8';
+                S++;
+                ans[i] += S;
+                return ans;
             }
         }
-    
-        if(res[0]=='0'){
-            res[0]='1';
-            for(int i=1;i<d;i++){
-                if(res[i]!='0'){
-                    res[i]=res[i]-1;
-                    break;
-                }
-            }
-        }
-
-        if(res[d-1]!='9'){
-            res[d-1]=res[d-1]-1;
-            res[d-2]=res[d-2]+1;
-        }else{
-            for(int i=d-2;i>=0;i--){
-                if(res[i]!='9'){
-                    res[i]=res[i]+1;
-                    res[i+1]=res[i+1]-1;
-                    break;
-                }
-            }
-        }
-        
-        return res;
+        return ans;
     }
 };
 
