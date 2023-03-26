@@ -12,10 +12,10 @@ class Solution {
         // Code here
         bitset<100001> bst;
         sort(frogs, frogs + N);
+        if (frogs[0] == 1)
+        return 0;
         for (int i = 0; i < N; i++)
         {
-            if (frogs[i] == 1)
-            return 0;
             if (frogs[i] <= leaves && !bst[frogs[i]])
             {
                 for (int j = frogs[i]; j <= leaves; j += frogs[i])
