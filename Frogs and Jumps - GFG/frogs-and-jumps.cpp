@@ -10,29 +10,21 @@ class Solution {
   public:
     int unvisitedLeaves(int N, int leaves, int frogs[]) {
         // Code here
-        vector<bool> vis(leaves, 0);
-        unordered_map<int, int> mp;
+        bitset<100001> bst;
+        sort(frogs, frogs + N);
         for (int i = 0; i < N; i++)
         {
             if (frogs[i] == 1)
             return 0;
-            mp[frogs[i]] = 1;
-        }
-        for (auto it = mp.begin(); it != mp.end(); it++)
-        {
-            int x = it->first;
-            for (int j = x; j <= leaves; j += x)
+            if (frogs[i] <= leaves && !bst[frogs[i]])
             {
-                vis[j - 1] = 1;
+                for (int j = frogs[i]; j <= leaves; j += frogs[i])
+                {
+                    bst[j] = 1;
+                }
             }
         }
-        int ans = 0;
-        for (int i = 0; i < leaves; i++)
-        {
-            if (!vis[i])
-            ans++;
-        }
-        return ans;
+        return leaves - bst.count();
     }
 };
 
