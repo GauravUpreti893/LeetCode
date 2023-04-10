@@ -14,20 +14,21 @@ class Solution {
     {
         fac[0] = 1;
         int n = 1e5;
+        long long p = 1e9 + 7;
         for (int i = 1; i <= n; i++)
         fac[i] = (fac[i - 1] * i) % p;
-        invfac[n] = modInverse(fac[n]);
+        invfac[n] = modInverse(fac[n], p);
         for (int i = n - 1; i >= 0; i--)
         {
             invfac[i] = ((i + 1)*invfac[i + 1]) % p;
         }
         return;
     }
-    unsigned long long modInverse(unsigned long long n)
+    unsigned long long modInverse(unsigned long long n, int p)
     {
-        return powerwithmod(n, p - 2);
+        return powerwithmod(n, p - 2, p);
     }
-    long long powerwithmod(long long x, int y)
+    long long powerwithmod(long long x, int y, int p)
     {
         unsigned long long res = 1; // Initialize result
   
