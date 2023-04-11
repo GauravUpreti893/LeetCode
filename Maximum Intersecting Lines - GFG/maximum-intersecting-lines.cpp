@@ -27,7 +27,6 @@ class Solution {
             ans = max(ans, i + 1 - sub);
             pq.push(lines[i][1]);
         }
-        // ans = max()
         return ans;
     }
 };
