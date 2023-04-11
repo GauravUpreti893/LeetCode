@@ -13,43 +13,11 @@ public:
         // code here
         int sum = a + b + c;
         int temp = a;
-        int ans = -1;
         a = max({a, b, c});
         c = min({temp, b, c});
-        int groups = 0;
         b = sum - a - c;
-        ans = min(a, b)*2;
-        groups = ans/2;
-        a -= b;
-        int x = min(a, c)*2;
-        ans += x;
-        groups += x/2;
-        a -= x;
-        c -= x;
-        if (a)
-        {
-            // ans += a;
-            if (a <= 2)
-            return sum;
-        }
-        else
-        {
-            // ans += c;
-            if (c <= 2)
-            return sum;
-        }
-        groups++;
-        ans += groups;
-        // cout<<ans<<endl;
-        if (ans >= sum)
-        return sum;
-        // cout<<ans<<endl;
-        ans = c*3;
-        a -= c;
-        b -= c;
-        ans += b*2;
-        a -= b;
-        if (a <= 2)
+        int s = (b + c + 1)*2;
+        if (a <= s)
         return sum;
         return -1;
     }
