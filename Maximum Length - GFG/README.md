@@ -4,17 +4,17 @@
 
 <p><strong><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000">Example 1:</span></span></span></strong></p>
 
-<pre style="position: relative;"><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000"><strong>Input</strong></span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000">:</span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000">
+<pre><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000"><strong>Input</strong></span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000">:</span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000">
 a = 3, b = 3, c = 3</span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000"><strong>
 Output:</strong></span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000"> </span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000">
 9</span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000"><strong>
 Explanation</strong></span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000">: </span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000">
 No three consecutive character of</span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000">
-the string "abcabcabc" is same.</span></span></span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+the string "abcabcabc" is same.</span></span></span></pre>
 
 <p><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000"><strong>Example 2:</strong></span></span></span></p>
 
-<pre style="position: relative;"><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000"><strong>Input:</strong></span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000">
+<pre><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000"><strong>Input:</strong></span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000">
 a = 11, b = 2, c = 2</span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000"><strong>
 Output: </strong></span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000">
 -1</span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000"><strong>
@@ -22,7 +22,7 @@ Explanation</strong></span></span></span><span style="font-size:13.5pt"><span st
 If we build a string of these character's,</span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000">
 the string will be"aabaacaabaac<u><strong>aaa</strong></u>", here
 we can see that there will be three consecutive <strong>a</strong>. So
-there </span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000">is no solution exist.</span></span></span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+there </span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000">is no solution exist.</span></span></span></pre>
 
 <p><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000"><strong>Your Task:&nbsp;&nbsp;</strong></span></span></span><br>
 <span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000">You don't need to read input or print anything. Your task is to complete the function </span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000"><strong>solve( )</strong></span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000"> which takes </span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000"><strong>integers a, b, and c</strong></span></span></span><span style="font-size:13.5pt"><span style="font-family:Arial"><span style="color:#000000"> as input parameters and returns the longest possible string length. If there is no possible answer return -1.</span></span></span></p>
