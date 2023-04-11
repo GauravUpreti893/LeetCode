@@ -11,28 +11,32 @@ class Solution{
 	    int sum = 0;
 	    for (int i = 0; i < n; i++)
 	    sum += arr[i];
-	    vector<vector<bool>> dp(n + 1, vector<bool> (sum + 1));
-	    for (int i = 1; i <= n; i++)
-	    dp[i][0] = true;
-	    int mn = sum;
-	    for (int i = 1; i <= sum; i++)
+	    int s = sum/2;
+	    vector<vector<bool>> dp(n + 1, vector<bool> (s + 1));
+	    for (int i = 1; i <= s; i++)
 	    {
-	        dp[0][i] = false;
+	        dp[0][i] = 0;
+	    }
+	    for (int i = 0; i <= n; i++)
+	    {
+	        dp[i][0] = 1;
 	    }
 	    for (int i = 1; i <= n; i++)
 	    {
-	        for (int j = 1; j <= sum; j++)
+	        for (int j = 1; j <= s; j++)
 	        {
 	            dp[i][j] = dp[i - 1][j];
-	            if (arr[i - 1] <= j)
-	            dp[i][j] = dp[i][j] | dp[i - 1][j - arr[i - 1]];
-	            if (dp[i][j])
-	            {
-	                mn = min(mn, abs(2*j - sum));
-	            }
+	            if (j - arr[i - 1] >= 0)
+                dp[i][j] = dp[i][j] | dp[i - 1][j - arr[i - 1]];
 	        }
 	    }
-	    return mn;
+	    int ans = 1e6;
+	    for (int i = 0; i <= s; i++)
+	    {
+	        if (dp[n][i])
+	        ans = min(ans, abs(sum - 2*i));
+	    }
+	    return ans;
 	} 
 };
 
