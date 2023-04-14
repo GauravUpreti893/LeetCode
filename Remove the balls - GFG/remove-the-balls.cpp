@@ -9,21 +9,31 @@ using namespace std;
 
 class Solution {
   public:
-    int finLength(int N, vector<int> color, vector<int> radius) {
-        stack<pair<int, int>> st;
-        for (int i = 0; i < N; i++)
+    int finLength(int N, vector<int> &color, vector<int>& radius) {
+        int j = 0;
+        for (int i = 1; i < N; i++)
         {
-            pair<int, int> p = {color[i], radius[i]};
-            if (!st.empty() && (st.top() == p))
+            pair<int, int> p1 = {color[i], radius[i]};
+            pair<int, int> p2 = {color[j], radius[j]};
+            if (p1 == p2)
             {
-                st.pop();
+                j--;
+                if (j < 0 && i < N - 1)
+                {
+                    j = 0;
+                    i++;
+                    color[j] = color[i];
+                    radius[j] = radius[i];
+                }
             }
             else
             {
-                st.push(p);
+                j++;
+                color[j] = color[i];
+                radius[j] = radius[i];
             }
         }
-        return st.size();
+        return j + 1;
     }
 };
 
