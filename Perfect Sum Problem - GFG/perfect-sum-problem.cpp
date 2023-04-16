@@ -6,28 +6,26 @@ using namespace std;
 class Solution{
 
 	public:
-	int fun(int arr[], int idx, int sum, vector<vector<int>> &dp)
-	{
-	    
-	    int n = dp.size();
-	    if (sum < 0)
-	    return 0;
-	    if (idx == n)
-	    {
-	        if (sum != 0)
-	        return 0;
-	        return 1;
-	    }
-	    if (dp[idx][sum] != -1)
-	    return dp[idx][sum];
-	    int mod = 1e9 + 7;
-	    return dp[idx][sum] = (fun(arr, idx + 1, sum - arr[idx], dp) + fun(arr, idx + 1, sum, dp)) % mod;
-	}
 	int perfectSum(int arr[], int n, int sum)
 	{
         // Your code goes here
-        vector<vector<int>> dp(n, vector<int> (sum + 1, -1));
-        return fun(arr, 0, sum, dp);
+        vector<vector<int>> dp(2, vector<int> (sum + 1, 0));
+        dp[0][0] = 1;
+        dp[1][0] = 1;
+	    int mod = 1e9 + 7;
+	    for (int i = 1; i <= n; i++)
+	    {
+	        for (int j = 0; j <= sum; j++)
+	        {
+	            dp[i%2][j] = dp[!(i%2)][j];
+	            if ((j - arr[i - 1]) >= 0)
+	            {
+	                dp[i%2][j] += dp[!(i%2)][j - arr[i - 1]];
+	                dp[i%2][j] %= mod;
+	            }
+	        }
+	    }
+	    return dp[n%2][sum];
 	}
 	  
 };
