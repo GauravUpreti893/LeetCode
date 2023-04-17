@@ -35,19 +35,22 @@ class Solution
         // your code here
         sort(arr, arr + n, compare);
         int count = 0, profit = 0;
-        vector<bool> taken(n, 0);
+        set<int> st;
+        for (int i = 0; i <= n; i++)
+        {
+            st.insert(i);
+        }
         for (int i = 0; i < n; i++)
         {
-            int dead = arr[i].dead;
-            for (int j = dead - 1; j >= 0; j--)
+            auto it = st.lower_bound(arr[i].dead);
+            auto itr = st.begin();
+            if (it != itr)
             {
-                if (!taken[j])
-                {
-                    taken[j] = 1;
-                    profit += arr[i].profit;
-                    count++;
-                    break;
-                }
+                it--;
+                // cout<<*it<<endl;  
+                st.erase(it);
+                profit += arr[i].profit;
+                count++;
             }
         }
         return {count, profit};
