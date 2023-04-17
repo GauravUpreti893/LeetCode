@@ -44,9 +44,7 @@ class Solution{
                 dp[child] = max(dp[child], dp[par] + duration[child]); // Cycle can also be present.
                 ans = max(ans, dp[child]);
             }
-            // ans = max(ans, dp[par]);
         }
-        // cout<<count<<endl;
         if (count != n)
         return -1;
         return ans;
