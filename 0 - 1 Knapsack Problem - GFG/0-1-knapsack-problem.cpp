@@ -1,43 +1,33 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include<bits/stdc++.h>
 using namespace std;
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 class Solution
 {
     public:
+    int maximum(int wt[], int val[], int i, int w, vector<vector<int>> &dp)
+    {
+        if (w < 0)
+        return -1e3;
+        int n = dp.size();  
+        if (w == 0 || i == n)
+        return 0;
+        if (dp[i][w] != -1)
+        return dp[i][w];
+        return dp[i][w] = max({0, maximum(wt, val, i + 1, w, dp), maximum(wt, val, i + 1, w - wt[i], dp) + val[i]});
+    }
     //Function to return max value that can be put in knapsack of capacity W.
     int knapSack(int W, int wt[], int val[], int n) 
     { 
        // Your code here
-       vector<vector<int>> profit(n + 1, vector<int> (W + 1));
-       for (int i = 0; i <= W; i++)
-       profit[0][i] = 0;
-       for (int i = 0; i <= n; i++)
-       {
-           profit[i][0] = 0;
-       }
-       int diff,p1;
-       for (int i = 1; i <= n; i++)
-       {
-           for (int j = 1; j <= W; j++)
-           {
-               diff = j - wt[i - 1];
-               if (diff < 0)
-               {
-                   p1 = 0;
-               }
-               else
-                p1 = profit[i - 1][diff] + val[i - 1];
-               profit[i][j] = max(p1, profit[i - 1][j]);
-           }
-       }
-       return profit[n][W];
+       vector<vector<int>> dp(n, vector<int> (W + 1, -1));
+       return maximum(wt, val, 0, W, dp);
     }
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main()
  {
@@ -66,4 +56,5 @@ int main()
         
     }
 	return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
