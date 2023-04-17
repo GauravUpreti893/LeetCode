@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 // Program to find the maximum profit job sequence from a given array 
 // of jobs with deadlines and profits 
 #include<bits/stdc++.h>
@@ -13,7 +13,7 @@ struct Job
 }; 
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 /*
 struct Job 
 { 
@@ -22,10 +22,9 @@ struct Job
     int profit; // Profit if job is over before or on deadline 
 };
 */
-bool compare(Job j1, Job j2)
+bool compare(Job &a, Job &b)
 {
-    
-    return j1.profit > j2.profit;
+    return a.profit > b.profit;
 }
 class Solution 
 {
@@ -36,30 +35,26 @@ class Solution
         // your code here
         sort(arr, arr + n, compare);
         int count = 0, profit = 0;
-        vector<int> isfree(n, 0);
-        int d;
-        for (int i = 0; i < n;i++)
+        vector<bool> taken(n, 0);
+        for (int i = 0; i < n; i++)
         {
-            d = arr[i].dead;
-            for (int j = d - 1; j >= 0; j--)
+            int dead = arr[i].dead;
+            for (int j = dead - 1; j >= 0; j--)
             {
-                if (!isfree[j])
+                if (!taken[j])
                 {
-                    isfree[j] = 1;
-                    count++;
+                    taken[j] = 1;
                     profit += arr[i].profit;
+                    count++;
                     break;
                 }
             }
         }
-        vector<int> ans;
-        ans.push_back(count);
-        ans.push_back(profit);
-        return ans;
+        return {count, profit};
     } 
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 // Driver program to test methods 
 int main() 
 { 
@@ -91,4 +86,5 @@ int main()
 }
 
 
-  // } Driver Code Ends
+
+// } Driver Code Ends
