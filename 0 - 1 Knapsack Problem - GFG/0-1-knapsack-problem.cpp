@@ -16,7 +16,7 @@ class Solution
         return 0;
         if (dp[i][w] != -1)
         return dp[i][w];
-        return dp[i][w] = max({0, maximum(wt, val, i + 1, w, dp), maximum(wt, val, i + 1, w - wt[i], dp) + val[i]});
+        return dp[i][w] = max(maximum(wt, val, i + 1, w, dp), maximum(wt, val, i + 1, w - wt[i], dp) + val[i]);
     }
     //Function to return max value that can be put in knapsack of capacity W.
     int knapSack(int W, int wt[], int val[], int n) 
