@@ -7,23 +7,21 @@ using namespace std;
 class Solution
 {
     public:
-    int maximum(int wt[], int val[], int i, int w, vector<vector<int>> &dp)
-    {
-        if (w < 0)
-        return -1e3;
-        int n = dp.size();  
-        if (w == 0 || i == n)
-        return 0;
-        if (dp[i][w] != -1)
-        return dp[i][w];
-        return dp[i][w] = max(maximum(wt, val, i + 1, w, dp), maximum(wt, val, i + 1, w - wt[i], dp) + val[i]);
-    }
     //Function to return max value that can be put in knapsack of capacity W.
     int knapSack(int W, int wt[], int val[], int n) 
     { 
        // Your code here
-       vector<vector<int>> dp(n, vector<int> (W + 1, -1));
-       return maximum(wt, val, 0, W, dp);
+       vector<vector<int>> dp(n + 1, vector<int> (W + 1, 0));
+       for (int i = 1; i <= n; i++)
+       {
+           for (int j = 1; j <= W; j++)
+           {
+               dp[i][j] = dp[i - 1][j];
+               if (j - wt[i - 1] >= 0)
+               dp[i][j] = max(dp[i][j], dp[i - 1][j - wt[i - 1]] + val[i - 1]);
+           }
+       }
+       return dp[n][W];
     }
 };
 
