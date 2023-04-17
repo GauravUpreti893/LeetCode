@@ -47,7 +47,6 @@ class Solution
             if (it != itr)
             {
                 it--;
-                // cout<<*it<<endl;  
                 st.erase(it);
                 profit += arr[i].profit;
                 count++;
