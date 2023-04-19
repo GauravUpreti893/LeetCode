@@ -5,17 +5,17 @@
 <p><br>
 <span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
-<pre style="position: relative;"><span style="font-size:18px"><strong>Input</strong>: V = 30, M = 3, coins[] = {25, 10, 5}
+<pre><span style="font-size:18px"><strong>Input</strong>: V = 30, M = 3, coins[] = {25, 10, 5}
 <strong>Output:</strong> 2</span>
 <span style="font-size:18px"><strong>Explanation</strong>: Use one 25 cent coin
-and one 5 cent coin</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+and one 5 cent coin</span></pre>
 
 <div><span style="font-size:18px"><strong>Example 2:</strong></span></div>
 
-<pre style="position: relative;"><span style="font-size:18px"><strong>Input</strong>: V = 11, M = 4,coins[] = {9, 6, 5, 1} 
+<pre><span style="font-size:18px"><strong>Input</strong>: V = 11, M = 4,coins[] = {9, 6, 5, 1} 
 <strong>Output:</strong> 2</span> 
 <span style="font-size:18px"><strong>Explanation</strong>: Use one 6 cent coin
-and one 5 cent coin</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+and one 5 cent coin</span></pre>
 
 <div><br>
 <span style="font-size:18px"><strong>Your Task:&nbsp;&nbsp;</strong><br>
