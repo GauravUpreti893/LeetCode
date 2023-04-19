@@ -1,36 +1,34 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 // Initial Template for C++
 
 #include <bits/stdc++.h>
 using namespace std;
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 // User function Template for C++
 
 class Solution{
   public:
-  int cut(int *price, int n, vector<int> &table)
-  {
-      if (table[n] != -1)
-      return table[n];
-      table[n] = price[n - 1];
-      for (int i = 1; i < n; i++)
-      {
-          table[n] = max(table[n],price[i - 1] + cut(price, n - i, table));
-      }
-      return table[n];
-  }
+    int cut (int price[], vector<vector<int>> &dp, int i, int j)
+    {
+        if (dp[i][j] != -1)
+        return dp[i][j];
+        int cost = 0;
+        for (int k = i + 1; k <= j; k++)
+        {
+            cost = max(cost, cut(price, dp, k, j) + price[k - i - 1]);
+        }
+        return dp[i][j] = cost;
+    }
     int cutRod(int price[], int n) {
         //code here
-        vector<int> table(n + 1, -1);
-        table[0] = 0;
-        table[1] = price[0];
-        return cut(price, n,table);
+        vector<vector<int>> dp(n + 1, vector<int> (n + 1, -1));
+        return cut(price, dp, 0, n);
     }
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main() {
     int t;
@@ -47,4 +45,5 @@ int main() {
         cout << ob.cutRod(a, n) << endl;
     }
     return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
