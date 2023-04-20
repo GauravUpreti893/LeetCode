@@ -12,7 +12,7 @@ You want to build an <strong>expression&nbsp;</strong>out of <strong>A&nbsp;</st
 <p><br>
 <span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input:
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:
 </strong>N = 5
 A[] = {1, 1, 1, 1, 1}
 target = 3
@@ -27,18 +27,18 @@ make the sum of nums be target 3.
 +1 + 1 + 1 - 1 + 1 = 3
 +1 + 1 + 1 + 1 - 1 = 3</span><span style="font-size:18px"><strong>
 </strong>
-</span></pre>
+</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><span style="font-size:18px"><strong>Example 2:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input:
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:
 </strong>N = 1
 A[] = {1}
 target = 1
 <strong>Output:
 </strong>1
 </span>
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><span style="font-size:18px"><strong>Your Task:</strong><br>
 The task is to complete the function <strong>findTargetSumWays</strong>() which finds and returns the number of different expressions that can be built.</span></p>
