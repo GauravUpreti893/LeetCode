@@ -9,35 +9,42 @@ using namespace std;
 //Back-end complete function Template for C++
 
 class Solution {
-  public:
-    int findTargetSumWays(vector<int>&arr ,int d) {
-        //Your code here
-        int sum = 0;
-        int n = arr.size();
-        for (int i = 0; i < n; i++)
-        {
-            sum += arr[i];
-        }
-        if ((sum + d) % 2)
+public:
+    int findTargetSumWays(vector<int>& nums, int target) {
+        int sum=0;
+        int n=nums.size();
+        if(n==1)
+        return nums[0]==abs(target);
+
+        for(int i=0;i<n;i++)
+        sum+=nums[i];
+        
+        if((sum+target)%2)
         return 0;
-        int x = (sum + d)/2;
-        if (x < 0)
-            return 0;
-        vector<vector<int>> dp(2, vector<int> (x + 1, 0));
-        dp[0][0] = 1;
-        dp[1][0] = 1;
-        for (int i = 1; i <= n; i++)
-        {
-            for (int j = 0; j <= x; j++)
-            {
-                dp[i%2][j] = dp[!(i%2)][j];
-                if (j - arr[i - 1] >= 0)
-                {
-                    dp[i%2][j] += dp[!(i%2)][j - arr[i - 1]];
-                }
+        
+        int find=(sum+target)/2;
+        if (find < 0)
+        return 0;
+        vector<vector<int>> dp(n+1,vector<int>(find+1,0));
+        for(int i=0;i<=n;i++){
+            for(int j=0;j<=find;j++){
+                if(i==0)
+                dp[i][j]=0;
+                if(j==0)
+                dp[i][j]=1;
             }
         }
-        return dp[n%2][x];
+
+        for(int i=1;i<=n;i++){
+            for(int j=0;j<=find;j++){
+                if(nums[i-1]<=j)
+                dp[i][j]=dp[i-1][j-nums[i-1]]+dp[i-1][j];
+                else
+                dp[i][j]=dp[i-1][j];
+            }
+        }
+
+        return dp[n][find];
     }
 };
 
