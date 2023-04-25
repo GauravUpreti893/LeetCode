@@ -1,6 +1,6 @@
 # Game Of Subsets
 ## Hard
-<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Elena is the topper of the class. Once her teacher asked her a problem. He gave Elena an array of intergers of length <strong>n</strong>. He calls a subset of array <strong>arr good</strong>&nbsp;if its product can be represented as a product of one or more&nbsp;<strong>distinct prime</strong>&nbsp;numbers. He asked her to find the number of different&nbsp;<strong>good</strong>&nbsp;subsets in&nbsp;<strong><code>arr</code></strong>&nbsp;modulo&nbsp;<code>10<sup>9</sup>&nbsp;+ 7</code>.</span></p>
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Elena is the topper of the class. Once her teacher asked her a problem. He gave Elena an array of integers of length <strong>n</strong>. He calls a subset of array <strong>arr good</strong>&nbsp;if its product can be represented as a product of one or more&nbsp;<strong>distinct prime</strong>&nbsp;numbers. He asked her to find the number of different&nbsp;<strong>good</strong>&nbsp;subsets in&nbsp;<strong><code>arr</code></strong>&nbsp;modulo&nbsp;<code>10<sup>9</sup>&nbsp;+ 7</code>.</span></p>
 
 <p><span style="font-size:18px">As a good friend of Elena help her to solve the problem.</span></p>
 
