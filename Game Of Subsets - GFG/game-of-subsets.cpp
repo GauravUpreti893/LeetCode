@@ -10,26 +10,26 @@ using namespace std;
 
 class Solution{
 public:
-unsigned long long powerwithmod(unsigned long long x, int y, int p)
-{
-    unsigned long long res = 1; // Initialize result
-  
-    x = x % p; // Update x if it is more than or
-    // equal to p
-  
-    while (y > 0) 
+    unsigned long long powerwithmod(unsigned long long x, int y, int p)
     {
+        unsigned long long res = 1; // Initialize result
       
-        // If y is odd, multiply x with result
-        if (y & 1)
-            res = (res * x) % p;
-  
-        // y must be even now
-        y = y >> 1; // y = y/2
-        x = (x * x) % p;
+        x = x % p; // Update x if it is more than or
+        // equal to p
+      
+        while (y > 0) 
+        {
+          
+            // If y is odd, multiply x with result
+            if (y & 1)
+                res = (res * x) % p;
+      
+            // y must be even now
+            y = y >> 1; // y = y/2
+            x = (x * x) % p;
+        }
+        return res;
     }
-    return res;
-}
     int goodSubsets(vector<int> &arr, int n){
         // Code here
         vector<int> v;
