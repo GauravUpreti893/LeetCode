@@ -30,6 +30,29 @@ public:
         }
         return res;
     }
+    long long moduloMultiplication(long long a, long long b,
+                               long long mod)
+    {
+    long long res = 0; // Initialize result
+
+    // Update a if it is more than
+    // or equal to mod
+    a %= mod;
+
+    while (b) {
+        // If b is odd, add a with result
+        if (b & 1)
+            res = (res + a) % mod;
+
+        // Here we assume that doing 2*a
+        // doesn't cause overflow
+        a = (2 * a) % mod;
+
+        b >>= 1; // b = b / 2
+    }
+
+    return res;
+    }
     int goodSubsets(vector<int> &arr, int n){
         // Code here
         vector<int> v;
@@ -54,52 +77,40 @@ public:
             }
         }
         n = v.size();
-        vector<vector<int>> factors(n);
+        vector<int> primes{2, 3, 5, 7, 11, 13, 17, 19, 23, 29};
+        vector<bitset<10>> factors(n);
         for (int i = 0; i < n; i++)
         {
-            for (int j = 2; j <= v[i]; j++)
+            for (int j = 0; j < 10; j++)
             {
-                if (v[i] % j == 0)
-                factors[i].push_back(j);
+                if (v[i] % primes[j] == 0)
+                factors[i][j] = 1;
             }
         }
         int size = pow(2, n);
         for (int i = 1; i < size; i++)
         {
             vector<bool> exist(31, 0);
+            bitset<10> bst;
             long long prod = 1;
             for (int j = 0; j < n; j++)
             {
                 if (i & (1<<j))
                 {
-                    bool flag = false;
-                    int m = factors[j].size();
-                    for (int k = 0; k < m; k++)
+                    if ((bst & factors[j]).any())
                     {
-                        if (exist[factors[j][k]])
-                        {
-                            flag = true;
-                            prod = 0;
-                            break;
-                        }
-                        else
-                        {
-                            exist[factors[j][k]] = 1;
-                        }
+                        prod = 0;
+                        break;
                     }
-                    if (flag)
-                    break;
+                    bst |= factors[j];
                     prod *= freq[v[j]];
                     prod %= mod;
                 }
             }
             ans += prod;
-            // if (prod)
-            // cout<<i<<endl;
         }
         long long mult = powerwithmod(2, one, mod);
-        ans *= mult;
-        ans %= mod;
+        ans = moduloMultiplication(ans, mult, mod);
         return ans;
     }
 };
