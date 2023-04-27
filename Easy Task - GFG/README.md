@@ -14,7 +14,7 @@
 
 <p><strong>Example 1:</strong></p>
 
-<pre><strong>Input:</strong>
+<pre style="position: relative;"><strong>Input:</strong>
 <strong>n</strong>=4
 <strong>s</strong>="abab"
 <strong>q</strong>=2
@@ -25,11 +25,11 @@
 First query is of type 1 so after changing character at index 2 
 to d  s becomes <strong>abdb</strong> . Now Second query is of type 2 in which 
 the 1st(k=1) lexographically largest character is <strong>"d" in substring "bdb"(s[1:3])</strong>. So we 
-returned a array with result of type 2 query <strong>{"d"}</strong>.</pre>
+returned a array with result of type 2 query <strong>{"d"}</strong>.<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><strong>Example 2:</strong></p>
 
-<pre><strong>Input:</strong>
+<pre style="position: relative;"><strong>Input:</strong>
 <strong>n</strong>=3
 <strong>s</strong>="aaa"
 <strong>q</strong>=3
@@ -39,7 +39,7 @@ returned a array with result of type 2 query <strong>{"d"}</strong>.</pre>
 <strong>Explanation:</strong>
 After applying first two queries s becomes <strong>aec</strong>. Now for 
 the last query which is a type 2 second largest character 
-in subtring s starting from index 1 to ending at index 2 is <strong>"c"</strong>.</pre>
+in subtring s starting from index 1 to ending at index 2 is <strong>"c"</strong>.<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><strong>Your Task:</strong><br>
 You don't need to read input or print anything. Your task is to complete the function&nbsp;<strong>easyTask()</strong>&nbsp;which takes an integer&nbsp;<strong>n</strong>,string&nbsp;<strong>s</strong>,an integer&nbsp;<strong>q</strong>&nbsp;and an array&nbsp;<strong>queries</strong>&nbsp;which contains &nbsp;queries of<strong>&nbsp;</strong><strong>type1</strong>&nbsp;and&nbsp;<strong>type2</strong>&nbsp;&nbsp;respectively and returns an array&nbsp;<strong>res</strong>&nbsp;such that res array contains the&nbsp;<strong>answer for each type2 query in</strong>&nbsp;<strong>same order as it appeared in queries.</strong></p>
