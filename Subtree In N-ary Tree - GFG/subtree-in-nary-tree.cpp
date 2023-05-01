@@ -50,7 +50,7 @@ public:
         int n = (root->children).size();
         for (int i = 0; i < n; i++)
         {
-            str += findduplicate((root->children)[i], mp);
+            str += "%" + findduplicate((root->children)[i], mp) + "%";
         }
         if (mp.find(str) == mp.end())
         mp[str] = 1;
