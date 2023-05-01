@@ -41,17 +41,16 @@ public:
 
 class Solution{
 public:
-    string findduplicate(Node* root, string add, unordered_map<string, int> &mp)
+    string findduplicate(Node* root, unordered_map<string, int> &mp)
     {
         string str;
-        // str += '#';
-        // str += add;
-        // str += '#';
+        str += '#';
         str += to_string(root->data);
+        str += '#';
         int n = (root->children).size();
         for (int i = 0; i < n; i++)
         {
-            str += findduplicate((root->children)[i], to_string(i), mp);
+            str += findduplicate((root->children)[i], mp);
         }
         if (mp.find(str) == mp.end())
         mp[str] = 1;
@@ -62,7 +61,7 @@ public:
     int duplicateSubtreeNaryTree(Node *root){
         // Code here
         unordered_map<string, int> mp;
-        findduplicate(root, "", mp);
+        findduplicate(root, mp);
         int ans = 0;
         for (auto it = mp.begin(); it != mp.end(); it++)
         {
