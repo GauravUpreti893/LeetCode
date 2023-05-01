@@ -5,21 +5,21 @@ Two trees are&nbsp;<strong>duplicate</strong>&nbsp;if they have the&nbsp;<strong
 
 <p><span style="font-size:18px">Example 1:</span></p>
 
-<pre style="position: relative;"><span style="font-size:18px"><strong>Input:</strong>
+<pre><span style="font-size:18px"><strong>Input:</strong>
 1 N 2 2 3 N 4 N 4 4 3 N N N N N
 <img alt="" src="https://media.geeksforgeeks.org/img-practice/n-ary-1-1668854978.PNG" style="height:241px; width:400px">
 <strong>Output:</strong> 2
 <strong>Explanation:</strong> [4], [3] are duplicate subtree.</span>
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p><span style="font-size:18px">Example 2:</span></p>
 
-<pre style="position: relative;"><strong><span style="font-size:18px">Input:
+<pre><strong><span style="font-size:18px">Input:
 </span></strong><span style="font-size:18px">1 N 2 3 N 4 5 6 N N N N
 <img alt="" src="https://media.geeksforgeeks.org/img-practice/Duplicaten-arytree-1-1668674633.png">
 <strong>Output:</strong> 0
 <strong>Explanation:</strong> No duplicate subtree found.</span>
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p><span style="font-size:18px"><strong>Your Task:</strong><br>
 You don't need to read input or print anything. Your task is to complete the function duplicateSubtreeNaryTree</span><span style="font-size:18px">() which takes root of n-ary tree as input, and return an integer value as number of duplicate subtrees.</span></p>
