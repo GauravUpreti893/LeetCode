@@ -5,19 +5,19 @@
 <p><br>
 <span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
-<pre style="position: relative;"><span style="font-size:18px"><strong>Input: </strong>S1 = "ABCDGH", S2 = "ACDGHR", n = 6, m = 6
+<pre><span style="font-size:18px"><strong>Input: </strong>S1 = "ABCDGH", S2 = "ACDGHR", n = 6, m = 6
 <strong>Output:</strong> 4
 <strong>Explanation</strong>: The longest common substring
 is "CDGH" which has length 4.</span>
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p><span style="font-size:18px"><strong>Example 2:</strong></span></p>
 
-<pre style="position: relative;"><span style="font-size:18px"><strong>Input</strong>: S1 = "ABC", S2 "ACB", n = 3, m = 3
+<pre><span style="font-size:18px"><strong>Input</strong>: S1 = "ABC", S2 "ACB", n = 3, m = 3
 <strong>Output:</strong> 1
 <strong>Explanation</strong>: The longest common substrings
 are "A", "B", "C" all having length 1.
-</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</span></pre>
 
 <p><br>
 <span style="font-size:18px"><strong>Your Task:</strong><br>
