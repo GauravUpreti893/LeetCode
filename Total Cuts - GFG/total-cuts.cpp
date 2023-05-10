@@ -12,16 +12,22 @@ class Solution{
 public:
     int totalCuts(int N,int k,vector<int> &A){
         // Code here
-        multiset<int> st;
-        for (int i = 0; i < N; i++)
-        st.insert(A[i]);
+        stack<int> st;
+        st.push(A[N - 1]);
+        for (int i = N - 2; i >= 0; i--)
+        {
+            if (st.top() >= A[i])
+            st.push(A[i]);
+        }
         int ans = 0;
         int mx = 0;
         for (int i = 0; i < N - 1; i++)
         {
             mx = max(mx, A[i]);
-            st.erase(st.find(A[i]));
-            int mn = *(st.begin());
+            if (st.top() == A[i])
+            st.pop();
+            int mn = st.top();
+            // cout<<mn<<endl;
             if (mx + mn >= k)
             ans++;
         }
