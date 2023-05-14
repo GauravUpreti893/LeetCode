@@ -30,23 +30,15 @@ public:
 // } Driver Code Ends
 class Solution {
   public:
-    long long find(vector<int> &arr, vector<vector<long long>> &dp, int i, bool taken)
-    {
-        int n = arr.size();
-        if (i == n)
-        return 0;
-        if (dp[i][taken] != -1)
-        return dp[i][taken];
-        if (taken)
-        {
-            return dp[i][taken] = max(find(arr, dp, i + 1, 0), arr[i] + find(arr, dp, i + 1, 1));
-        }
-        return dp[i][taken] = arr[i] + find(arr, dp, i + 1, 1);
-    }
     long long findMaxSubsetSum(int N, vector<int> &A) {
         // code here
-        vector<vector<long long>> dp(N, vector<long long> (2, -1));
-        return find(A, dp, 0, 1);
+        vector<vector<long long>> dp(N + 1, vector<long long> (2, 0));
+        for (int i = N - 1; i >= 0; i--)
+        {
+            dp[i][1] = max(dp[i + 1][0], A[i] + dp[i + 1][1]);
+            dp[i][0] = A[i] + dp[i + 1][1];
+        }
+        return dp[0][1];
     }
 };
 
