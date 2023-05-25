@@ -93,8 +93,6 @@ class Solution {
         int n = S.size();
         vector<string> ans;
         combination(S, ans, 0, target, "");
-        // if (ans.size() == 0)
-        // ans.push_back("");
         return ans;
     }
 };
