@@ -26,18 +26,18 @@ class Solution{
         // code here
         double res = pow(n, 1.0/x);
         int size = ceil(res);
-        vector<vector<int>> dp(size + 2, vector<int> (n + 1, 0));
+        vector<vector<int>> dp(2, vector<int> (n + 1, 0));
         int mod = 1e9 + 7;
-        for (int i = 1; i <= size + 1; i++)
-        dp[i][0] = 1;
+        dp[0][0] = 1;
+        dp[1][0] = 1;
         for (int i = size; i > 0; i--)
         {
             for (long long j = 1; j <= n; j++)
             {
-                dp[i][j] = dp[i + 1][j];
+                dp[i%2][j] = dp[!(i%2)][j];
                 long long res = j - power(i, x);
                 if ( res >= 0)
-                dp[i][j] = (dp[i][j] + dp[i + 1][res]) % mod;
+                dp[i%2][j] = (dp[i%2][j] + dp[!(i%2)][res]) % mod;
             }
         }
         return dp[1][n];
