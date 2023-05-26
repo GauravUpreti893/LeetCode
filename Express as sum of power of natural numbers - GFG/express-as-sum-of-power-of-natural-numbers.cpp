@@ -21,25 +21,26 @@ class Solution{
         }
         return x;
     }
-    int ways(vector<vector<int>> &dp, int x, int no, long long n)
-    {
-        int size = dp.size();
-        if (n == 0)
-        return 1;
-        if (no == size || n < 0)
-        return 0;
-        if (dp[no][n] != -1)
-        return dp[no][n];
-        int mod = 1e9 + 7;
-        return dp[no][n] = (ways(dp, x, no + 1, n) + ways(dp, x, no + 1, n - power(no, x))) % mod;
-    }
     int numOfWays(int n, int x)
     {
         // code here
         double res = pow(n, 1.0/x);
         int size = ceil(res);
-        vector<vector<int>> dp(size + 1, vector<int> (n + 1, -1));
-        return ways(dp, x, 1, n);
+        vector<vector<int>> dp(size + 2, vector<int> (n + 1, 0));
+        int mod = 1e9 + 7;
+        for (int i = 1; i <= size + 1; i++)
+        dp[i][0] = 1;
+        for (int i = size; i > 0; i--)
+        {
+            for (long long j = 1; j <= n; j++)
+            {
+                dp[i][j] = dp[i + 1][j];
+                long long res = j - power(i, x);
+                if ( res >= 0)
+                dp[i][j] = (dp[i][j] + dp[i + 1][res]) % mod;
+            }
+        }
+        return dp[1][n];
     }
 };
 
