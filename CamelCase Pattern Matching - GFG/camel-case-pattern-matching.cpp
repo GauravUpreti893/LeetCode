@@ -3,32 +3,72 @@
 using namespace std;
 
 // } Driver Code Ends
+
+class Node{
+public:
+    Node* links[26];
+    vector<int> ans;
+};
+class Trie {
+    Node* root;
+public:
+    Trie() {
+        root = new Node();
+    }
+    
+    void insert(string word, int idx) {
+        int n = word.size();
+        Node* curr = root;
+        for (int i = 0; i < n; i++)
+        {
+            if (word[i] >= 'a' && word[i] <= 'z')
+            continue;
+            if (curr->links[word[i] - 'A'] != NULL)
+            {
+                curr = curr->links[word[i] - 'A'];
+            }
+            else
+            {
+                Node* n = new Node();
+                curr->links[word[i] - 'A'] = n;
+                curr = n;
+            }
+            (curr->ans).push_back(idx);
+        }
+        return;
+    }
+    
+    vector<int> search(string& word) {
+        int n = word.size();
+        Node* curr = root;
+        for (int i = 0; i < n; i++)
+        {
+            if (curr->links[word[i] - 'A'] == NULL)
+            return {};
+            curr = curr->links[word[i] - 'A'];
+        }
+        return curr->ans;
+    }
+};
 class Solution {
   public:
-    vector<string> CamelCase(int N, vector<string>& Dictionary, string Pattern) {
+    vector<string> CamelCase(int N, vector<string> Dictionary, string Pattern) {
         // code here
+        Trie tri;
         int m = Dictionary.size();
-        unordered_map<string, vector<int>> mp;
         for (int i = 0; i < m; i++)
         {
-            int m1 = Dictionary[i].size();
-            string str;
-            for (int j = 0; j < m1; j++)
-            {
-                if (Dictionary[i][j] >= 'A' && Dictionary[i][j] <= 'Z')
-                {
-                    str += Dictionary[i][j];
-                    mp[str].push_back(i);
-                }
-            }
+            tri.insert(Dictionary[i], i);
         }
-        vector<string> ans;
-        for (auto i : mp[Pattern])
+        vector<int> res = tri.search(Pattern);
+        m = res.size();
+        if (m == 0)
+        return {"-1"};
+        vector<string> ans(m);
+        for (int i = 0; i < m; i++)
         {
-            ans.push_back(Dictionary[i]);
+            ans[i] = Dictionary[res[i]];
         }
-        if (ans.size() == 0)
-        ans.push_back("-1");
         return ans;
     }
 };
