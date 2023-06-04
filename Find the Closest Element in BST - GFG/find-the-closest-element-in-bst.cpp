@@ -38,28 +38,28 @@ class Solution
     //Function to find the least absolute difference between any node
 	//value of the BST and the given integer.
 	int ans;
-	int mindif(Node* root, int k)
+	void mindif(Node* root, int k)
 	{
 	    if (root->data == k)
         {
             ans = 0;
-            return 0;
+            return;
         }
         if (root->data > k)
         {
             ans = min(ans, root->data - k);
             if (root->left == NULL)
-            return root->data - k;
-            return mindif(root->left, k);
+            return;
+            mindif(root->left, k);
         }
         else
         {
             ans = min(ans, k - root->data);
             if (root->right == NULL)
             {
-                return k - root->data;
+                return;
             }
-            return mindif(root->right, k);
+            mindif(root->right, k);
         }
 	}
     int minDiff(Node *root, int k)
