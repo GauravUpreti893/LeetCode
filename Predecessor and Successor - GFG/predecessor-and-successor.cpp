@@ -39,33 +39,24 @@ struct Node
 class Solution
 {
     public:
-    void dfs1(Node* root, Node*& pre, int key)
+    void dfs(Node* root, Node*& pre, Node* &suc, int key)
     {
         if (root == NULL)
         return;
         if (root->key < key)
         {
             pre = root;
-            dfs1(root->right, pre, key);
+            dfs(root->right, pre, suc, key);
         }
-        else
-        {
-            dfs1(root->left, pre, key);
-        }
-        return;
-    }
-    void dfs2(Node* root, Node*& suc, int key)
-    {
-        if (root == NULL)
-        return;
-        if (root->key > key)
+        else if (root->key > key)
         {
             suc = root;
-            dfs2(root->left, suc, key);
+            dfs(root->left, pre, suc, key);
         }
         else
         {
-            dfs2(root->right, suc, key);
+            dfs(root->right, pre, suc, key);
+            dfs(root->left, pre, suc, key);
         }
         return;
     }
@@ -74,8 +65,7 @@ class Solution
         // Your code goes here
         pre = NULL;
         suc = NULL;
-        dfs1(root, pre, key);
-        dfs2(root, suc, key);
+        dfs(root, pre, suc, key);
         return;
     }
 };
