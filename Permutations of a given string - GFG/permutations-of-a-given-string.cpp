@@ -6,18 +6,35 @@ using namespace std;
 class Solution
 {
 	public:
-		vector<string>find_permutation(string S)
-		{
-		    // Code here there
-		   sort(S.begin(), S.end());
-		   vector<string> ans;
-		   ans.push_back(S);
-		   while (next_permutation(S.begin(), S.end()))
-		   {
-		      ans.push_back(S);
-		   }
-		   return ans;
-		}
+	map<string, bool> mp;
+	void permut(string& s, int idx)
+	{
+	    int n = s.size();
+	    if (idx == n)
+	    {
+	        mp[s] = 1;
+	        return;
+	    }
+	    char c = s[idx];
+	    for (int i = idx; i < n; i++)
+	    {
+	        swap(s[idx], s[i]);
+	        permut(s, idx + 1);
+	        swap(s[idx], s[i]);
+	    }
+	    return;
+	}
+	vector<string>find_permutation(string& S)
+	{
+	    // Code here there
+	    permut(S, 0);
+	    vector<string> ans;
+	    for (auto it = mp.begin(); it != mp.end(); it++)
+	    {
+	        ans.push_back(it->first);
+	    }
+	    return ans;
+	}
 };
 
 
