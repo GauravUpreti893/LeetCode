@@ -10,17 +10,24 @@ using namespace std;
 
 class Solution{
   public:
+    int rod(int *price, vector<int> &dp, int st)
+    {
+        int n = dp.size();
+        if (st == n)
+        return 0;
+        if (dp[st] != -1)
+        return dp[st];
+        int ans = 0;
+        for (int i = st; i < n; i++)
+        {
+            ans = max(ans, price[i - st] + rod(price, dp, i + 1));
+        }
+        return dp[st] = ans;
+    }
     int cutRod(int price[], int n) {
         //code here
-        vector<int> dp(n + 1, 0);
-        for (int i = 1; i <= n; i++)
-        {
-            for (int j = 1; j <= i; j++)
-            {
-                dp[i] = max(dp[i], dp[i - j] + price[j - 1]);
-            }
-        }
-        return dp[n];
+        vector<int> dp(n, -1);
+        return rod(price, dp, 0);
     }
 };
 
