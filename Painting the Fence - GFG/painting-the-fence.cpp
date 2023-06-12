@@ -9,18 +9,18 @@ class Solution{
     public:
     long long countWays(int n, int k){
         // code here
-        vector<pair<long long, long long>> dp(n + 1);
+        vector<pair<long long, long long>> dp(2);
         dp[1] = {k, k};
         long long mod = 1e9 + 7;
         for (int i = 2; i <= n; i++)
         {
-            pair<long long, long long> p = dp[i - 1];
+            pair<long long, long long> p = dp[!(i%2)];
             pair<long long, long long> ans;
             ans.first = (p.second * (k - 1)) % mod;
             ans.second = (p.first + ans.first) % mod;
-            dp[i] = ans;
+            dp[i%2] = ans;
         }
-        return dp[n].second;
+        return dp[n%2].second;
     }
 };
 
