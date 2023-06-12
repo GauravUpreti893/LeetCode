@@ -7,22 +7,20 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
     public:
-    pair<long long, long long> count(vector<pair<long long, long long>> &dp, int n, long long k)
-    {
-        if (dp[n].first != -1)
-        return dp[n];
-        long long mod = 1e9 + 7;
-        pair<long long, long long> p = count(dp, n - 1, k);
-        pair<long long, long long> ans;
-        ans.first = (p.second * (k - 1)) % mod;
-        ans.second = (p.first + ans.first) % mod;
-        return dp[n] = ans;
-    }
     long long countWays(int n, int k){
         // code here
-        vector<pair<long long, long long>> dp(n + 1, {-1, -1});
+        vector<pair<long long, long long>> dp(n + 1);
         dp[1] = {k, k};
-        return count(dp, n, k).second;
+        long long mod = 1e9 + 7;
+        for (int i = 2; i <= n; i++)
+        {
+            pair<long long, long long> p = dp[i - 1];
+            pair<long long, long long> ans;
+            ans.first = (p.second * (k - 1)) % mod;
+            ans.second = (p.first + ans.first) % mod;
+            dp[i] = ans;
+        }
+        return dp[n].second;
     }
 };
 
