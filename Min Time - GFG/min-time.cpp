@@ -6,67 +6,78 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    long long minimum(int idx, unordered_map<long long, long long> &start, unordered_map<long long, long long> &end, vector<int> &type, bool flag, vector<vector<long long>> &dp)
-    {
-        int n = type.size();
-        long long pos = 0;
-        if (idx)
-        {
-            if (flag)
-            pos = end[type[idx - 1]];
-            else
-            pos = start[type[idx - 1]];
-        }
-        if (idx == n)
-        return abs(pos);
-        if (dp[idx][flag] != -1)
-        return dp[idx][flag];
-        int t = type[idx];
-        
-        if (pos <= start[t])
-        {
-            return dp[idx][flag] = minimum(idx + 1, start, end, type, 1, dp) + end[t] - pos;
-        }
-        else if (pos >= end[t])
-        {
-            return dp[idx][flag] = minimum(idx + 1, start, end, type, 0, dp) + pos - start[t];
-        }
-        else
-        {
-            return dp[idx][flag] = min(minimum(idx + 1, start, end, type, 0, dp) + end[t] - pos + end[t] - start[t],  minimum(idx + 1, start, end, type, 1, dp) + pos - start[t] + end[t] - start[t]);
-        }
-    }
-    long long minTime(int n, vector<int> &locations, vector<int> &type) {
+    long long minTime(int n, vector<int> &locations, vector<int> &types) {
         // code here
-        unordered_map<long long, long long> start, last;
+        unordered_map<long long, long long> start, end;
         for (int i = 0; i < n; i++)
         {
-            if (start.find(type[i]) == start.end())
+            if (start.find(types[i]) == start.end())
             {
-                start[type[i]] = locations[i];
+                start[types[i]] = locations[i];
             }
             else
             {
-                start[type[i]] = min(start[type[i]], (long long)locations[i]);
+                start[types[i]] = min(start[types[i]], (long long)locations[i]);
             }
-            if (last.find(type[i]) == last.end())
+            if (end.find(types[i]) == end.end())
             {
-                last[type[i]] = locations[i];
+                end[types[i]] = locations[i];
             }
             else
             {
-                last[type[i]] = max(last[type[i]], (long long)locations[i]);
+                end[types[i]] = max(end[types[i]], (long long)locations[i]);
             }
         }
-        vector<int> arr;
+        vector<int> type;
         for (auto it = start.begin(); it != start.end(); it++)
         {
-            arr.push_back(it->first);
+            type.push_back(it->first);
         }
-        n = arr.size();
-        sort(arr.begin(), arr.end());
-        vector<vector<long long>> dp(n, vector<long long> (2, -1));
-        return minimum(0,start, last, arr, 0, dp);
+        n = type.size();
+        sort(type.begin(), type.end());
+        vector<vector<long long>> dp(n + 1, vector<long long> (2, 0));
+        dp[n][0] = abs(start[type[n - 1]]);
+        dp[n][1] = abs(end[type[n - 1]]);
+        for (int idx = n - 1; idx >= 0; idx--)
+        {
+            long long pos = 0;
+            if (idx)
+            {
+                pos = start[type[idx - 1]];
+            }
+            int t = type[idx];
+            bool flag = 0;
+            if (pos <= start[t])
+            {
+                dp[idx][flag] = dp[idx + 1][1] + end[t] - pos;
+            }
+            else if (pos >= end[t])
+            {
+                dp[idx][flag] = dp[idx + 1][0] +  pos - start[t];
+            }
+            else
+            {
+                 dp[idx][flag] = min(dp[idx + 1][0] + end[t] - pos + end[t] - start[t], dp[idx + 1][1] + pos - start[t] + end[t] - start[t]);
+            }
+            flag = 1;
+            if (idx)
+            {
+                pos = end[type[idx - 1]];
+                if (pos <= start[t])
+                {
+                     dp[idx][flag] = dp[idx + 1][1] + end[t] - pos;
+                }
+                else if (pos >= end[t])
+                {
+                     dp[idx][flag] = dp[idx + 1][0] +  pos - start[t];
+                }
+                else
+                {
+                     dp[idx][flag] = min(dp[idx + 1][0] + end[t] - pos + end[t] - start[t], dp[idx + 1][1] + pos - start[t] + end[t] - start[t]);
+                }
+            }
+        }
+        return dp[0][0];
     }
 };
 
