@@ -10,27 +10,20 @@ using namespace std;
 class Solution{
     public:
     // Function to insert element into the queue
+    unordered_map<int, int> mp;
     void insert(queue<int> &q, int k){
         // Your code here
         q.push(k);
+        mp[k]++;
     }
     
     // Function to find frequency of an element
     // return the frequency of k
     int findFrequency(queue<int> &q, int k){
         // Your code here
-        int n = q.size(), ans = 0;
-        for (int i = 0; i < n; i++)
-        {
-            if (q.front() == k)
-            {
-                ans++;
-            }
-            int x = q.front();
-            q.pop();
-            q.push(x);
-        }
-        return ans;
+        if (mp[k])
+        return mp[k];
+        return -1;
     }
     
 };
