@@ -8,35 +8,34 @@ class Solution {
   public:
     bool lemonadeChange(int N, vector<int> &bills) {
         // code here
-        map<int, int, greater<int>> mp;
-        mp[5] = 0;
-        mp[10] = 0;
-        mp[15] = 0;
+        int f = 0, t = 0;
         for (int i = 0; i < N; i++)
         {
             int x = bills[i] - 5;
-            if (x)
+            if (x == 15)
             {
-                for (auto it = mp.begin(); it != mp.end(); it++)
+                if (t >=1 && f >= 1)
                 {
-                    int n = x / (it->first);
-                    if (it->second >= n)
-                    {
-                        it->second -= n;
-                        x = x % (it->first);
-                    }
-                    else
-                    {
-                        x = x - (it->first)*(it->second);
-                        it->second = 0;
-                    }
-                    if (!x)
-                    break;
+                    t--;
+                    f--;
                 }
-                if (x)
+                else if (f >= 3)
+                {
+                    f -= 3;
+                }
+                else
                 return false;
             }
-            mp[bills[i]]++;
+            else if (x == 5)
+            {
+                if (f >= 1)
+                f--;
+                else
+                return false;
+                t++;
+            }
+            else
+            f++;
         }
         return true;
     }
