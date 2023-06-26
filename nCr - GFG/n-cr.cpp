@@ -11,22 +11,20 @@ class Solution{
 public:
     int nCr(int n, int r){
         // code here
-        vector<int> prev(2, 1);
-        int mod = 1e9 + 7;
         if (n < r)
         return 0;
-        for (int i = 2; i <= n; i++)
+        vector<int> ncr(r + 1, 0);
+        ncr[0] = 1;
+        int mod = 1e9 + 7;
+        for (int i = 1; i <= n; i++)
         {
-            vector<int> curr = {1};
-            int m = prev.size();
-            for (int j = 0; j < m - 1; j++)
+            int s = min(i, r);
+            for (int j = s; j > 0; j--)
             {
-                curr.push_back((prev[j] + prev[j + 1]) % mod);
+                ncr[j] = (ncr[j] + ncr[j - 1]) % mod;
             }
-            curr.push_back(1);
-            prev = curr;
         }
-        return prev[r];
+        return ncr[r];
     }
 };
 
