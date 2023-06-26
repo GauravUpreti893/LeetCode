@@ -9,7 +9,7 @@ class Solution {
     vector<int> longestIncreasingSubsequence(int n, vector<int>& arr) {
         // Code here
         vector<int> dp(n, 1), hash(n), ans;
-        int idx = 0, len = 0;
+        int idx = 0, len = 1;
         for (int i = 0; i < n; i++)
         {
             hash[i] = i;
@@ -38,9 +38,7 @@ class Solution {
         {
             ans.push_back(arr[idx]);
             idx = hash[idx];
-            // cout<<arr[idx]<<" "<<idx<<endl;
         }
-        // cout<<idx<<endl;
         ans.push_back(arr[idx]);
         reverse(ans.begin(), ans.end());
         return ans;
