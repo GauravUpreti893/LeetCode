@@ -10,19 +10,18 @@ class Solution{
     unsigned long long int countSub(int arr[], int n)
     {
         // Your code goes here
-        vector<unsigned long long > freq(n, 1);
-        unsigned long long ans = n;
+        vector<unsigned long long> freq(10, 0);
         for (int i = 0; i < n; i++)
         {
-            for (int j = i + 1; j < n; j++)
+            freq[arr[i]]++;
+            for (int j = 0; j < arr[i]; j++)
             {
-                if (arr[j] > arr[i])
-                {
-                    ans += freq[i];
-                    freq[j] += freq[i];
-                }
+                freq[arr[i]] += freq[j];
             }
         }
+        unsigned long long ans = 0;
+        for (int i = 0; i < 10; i++)
+        ans += freq[i];
         return ans;
     }
 };
