@@ -9,24 +9,23 @@ using namespace std;
 
 class Solution{
 public:
-    int mult(int arr[], vector<vector<int>> &dp, int st, int end)
-    {
-        if (st == end)
-        return 0;
-        if (dp[st][end] != -1)
-        return dp[st][end];
-        int ans = 1e9;
-        for (int i = st; i < end; i++)
-        {
-            ans = min(ans, mult(arr, dp, st, i) + mult(arr, dp, i + 1, end) + arr[st] * arr[i + 1] * arr[end + 1]);
-        }
-        return dp[st][end] = ans;
-    }
     int matrixMultiplication(int N, int arr[])
     {
         // code here
-        vector<vector<int>> dp(N - 1, vector<int> (N - 1, -1));
-        return mult(arr, dp, 0, N - 2);
+        vector<vector<int>> dp(N - 1, vector<int> (N - 1, 0));
+        for (int st = N - 1; st >= 0; st--)
+        {
+            for (int end = st + 1; end < N - 1; end++)
+            {
+                int ans = 1e9;
+                for (int i = st; i < end; i++)
+                {
+                    ans = min(ans, dp[st][i] + dp[i + 1][end] + arr[st] * arr[i + 1] * arr[end + 1]);
+                }
+                dp[st][end] = ans;
+            }
+        }
+        return dp[0][N - 2];
     }
 };
 
