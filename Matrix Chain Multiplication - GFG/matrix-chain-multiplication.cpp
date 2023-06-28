@@ -1,38 +1,36 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 // Initial Template for C++
 
 #include <bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
+// } Driver Code Ends
 // User function Template for C++
 
 class Solution{
 public:
-    int matrixmul(int n, int *arr, vector<vector<int>> &table, int i, int j)
+    int mult(int arr[], vector<vector<int>> &dp, int st, int end)
     {
-        if (table[i][j] != INT_MAX/3)
-        return table[i][j];
-        for (int k = i; k < j; k++)
+        if (st == end)
+        return 0;
+        if (dp[st][end] != -1)
+        return dp[st][end];
+        int ans = 1e9;
+        for (int i = st; i < end; i++)
         {
-            table[i][j] = min(table[i][j],matrixmul(n,arr,table,i,k) +  matrixmul(n,arr,table,k + 1,j) + arr[i - 1]*arr[k]*arr[j]);
+            ans = min(ans, mult(arr, dp, st, i) + mult(arr, dp, i + 1, end) + arr[st] * arr[i + 1] * arr[end + 1]);
         }
-        return table[i][j];
+        return dp[st][end] = ans;
     }
     int matrixMultiplication(int N, int arr[])
     {
         // code here
-        vector<vector<int>> table(N, vector<int> (N,INT_MAX/3));
-        for (int i = 1; i < N; i++)
-        {
-            table[i][i] = 0;
-        }
-        return matrixmul(N,arr, table,1, N - 1);
-        
+        vector<vector<int>> dp(N - 1, vector<int> (N - 1, -1));
+        return mult(arr, dp, 0, N - 2);
     }
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main(){
     int t;
@@ -48,4 +46,5 @@ int main(){
         cout<<ob.matrixMultiplication(N, arr)<<endl;
     }
     return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
