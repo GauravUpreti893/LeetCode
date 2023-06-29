@@ -5,9 +5,15 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
 public:
-    int isHappy(int N, unordered_map<int, bool> &mp){
+    int isHappy(int N){
         // code here
         int sum = 0;
+        if (N < 10)
+        {
+            if (N == 1 || N == 7)
+            return 1;
+            return 0;
+        }
         while (N)
         {
             int r = N % 10;
@@ -16,18 +22,14 @@ public:
         }
         if (sum == 1)
         return 1;
-        if (mp.find(sum) != mp.end())
-        return 0;
-        mp[sum] = 1;
-        return isHappy(sum, mp);
+        return isHappy(sum);
     }
     int nextHappy(int N){
         // code here
         while (1)
         {
             N++;
-            unordered_map<int, bool> mp;
-            if (isHappy(N, mp))
+            if (isHappy(N))
             return N;
         }
     }
