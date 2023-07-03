@@ -8,18 +8,29 @@ class Solution{
 public:
     int maxIndexDiff(int arr[], int n) {
         // code here
-        int i = 0, j = n - 1, ans = 0;
-        while (i < j)
+        vector<int> minonleft(n), maxonright(n);
+        int mn = INT_MAX, mx = 0;
+        for (int i = 0; i < n; i++)
         {
-            if (arr[i] <= arr[j])
+            mn = min(mn, arr[i]);
+            minonleft[i] = mn;
+        }
+        for (int i = n - 1; i >= 0; i--)
+        {
+            mx = max(mx, arr[i]);
+            maxonright[i] = mx;
+        }
+        int i = 0, j = 0, ans = 0;
+        while (i < n && j < n)
+        {
+            if (minonleft[i] <= maxonright[j])
             {
                 ans = max(ans, j - i);
-                i++;
-                j = n - 1;
+                j++;
             }
             else
             {
-                j--;
+                i++;
             }
         }
         return ans;
