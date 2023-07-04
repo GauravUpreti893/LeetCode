@@ -21,21 +21,14 @@ class Solution{
                 i++;
                 prod *= (long long)a[i];
             }
-            // cout<<i<<" "<<prod<<endl;
             int x = i - st;
             ans += x*(x + 1)/2 - sub;
-            // cout<<x*(x + 1)/2<<endl;
-            // cout<<prod<<" ";
             while (st <= i && prod >= k)
             {
                 prod /= (long long)a[st++];
             }
             x = i - st;
             sub = x*(x + 1)/2;
-            // cout<<st<<" "<<sub<<" "<<i<<endl;
-            // cout<<st<<endl;
-            // cout<<prod<<endl;
-            // i++;
         }
         int x = n - st;
         ans += x * (x + 1)/2 - sub;
