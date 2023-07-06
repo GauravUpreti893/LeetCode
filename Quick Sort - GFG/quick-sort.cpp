@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <stdio.h>
 #include <bits/stdc++.h>
 using namespace std;
@@ -12,7 +12,7 @@ void printArray(int arr[], int size)
     printf("\n");
 }
 
- // } Driver Code Ends
+// } Driver Code Ends
 class Solution
 {
     public:
@@ -22,9 +22,9 @@ class Solution
         // code here
         if (low >= high)
         return;
-        int p = partition(arr,low, high);
-        quickSort(arr, low, p - 1);
-        quickSort(arr, p + 1, high);
+        int pivot = partition(arr, low, high);
+        quickSort(arr, low, pivot - 1);
+        quickSort(arr, pivot + 1, high);
         return;
     }
     
@@ -32,22 +32,23 @@ class Solution
     int partition (int arr[], int low, int high)
     {
        // Your code here
-       int i = low - 1;
-       for (int j = low; j <= high; j++)
-       {
-           if (arr[j] <= arr[high])
-           {
-               i++;
-               swap(arr[j],arr[i]);
-           }
-       }
-       return i;
-       
+        int i = low -1;
+        for (int j = low; j < high; j++)
+        {
+            if (arr[j] < arr[high])
+            {
+                i++;
+                swap(arr[i], arr[j]);
+            }
+        }
+        i++;
+        swap(arr[i], arr[high]);
+        return i;
     }
 };
 
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 int main()
 {
     int arr[1000],n,T,i;
@@ -61,4 +62,5 @@ int main()
     printArray(arr, n);
     }
     return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
