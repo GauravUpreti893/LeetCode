@@ -12,22 +12,34 @@ class Solution
     int missingNumber(int arr[], int n) 
     { 
         // Your code here
-        sort(arr, arr + n);
-        int i = 0;
-        while (i < n && arr[i] <= 0)
-        i++;
-        int next = 1;
-        while (i < n)
+        int i = -1;
+        for (int j = 0; j < n; j++)
         {
-            if (arr[i] != next)
-            return next;
-            while (i < n && arr[i] == next)
+            if (arr[j] <= 0)
             {
                 i++;
+                swap(arr[i], arr[j]);
             }
-            next++;
         }
-        return next;
+        for (int j = 0; j <= i; j++)
+        {
+            arr[j] = -arr[j];
+            if (arr[j] == 0)
+            arr[j] = 1;
+        }
+        i++;
+        for (; i < n; i++)
+        {
+            int x = abs(arr[i]);
+            if (x <= n && arr[x - 1] > 0)
+            arr[x - 1] = -arr[x - 1];
+        }
+        for (int i = 0; i < n; i++)
+        {
+            if (arr[i] > 0)
+            return i + 1;
+        }
+        return n + 1;
     } 
 };
 
