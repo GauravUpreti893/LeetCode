@@ -15,20 +15,20 @@ Count the number of ways we can parenthesize the expression so that the value of
 
 <p><strong><span style="font-size:18px">Example 1:</span></strong></p>
 
-<pre><span style="font-size:18px"><strong>Input:</strong> N = 7
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:</strong> N = 7
 S = T|T&amp;F^T
 <strong>Output:</strong> 4
 <strong>Explaination:</strong> The expression evaluates 
 to true in 4 ways ((T|T)&amp;(F^T)), 
-(T|(T&amp;(F^T))), (((T|T)&amp;F)^T) and (T|((T&amp;F)^T)).</span></pre>
+(T|(T&amp;(F^T))), (((T|T)&amp;F)^T) and (T|((T&amp;F)^T)).</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><strong><span style="font-size:18px">Example 2:</span></strong></p>
 
-<pre><span style="font-size:18px"><strong>Input:</strong> N = 5
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:</strong> N = 5
 S = T^F|F
 <strong>Output:</strong> 2
 <strong>Explaination:</strong> ((T^F)|F) and (T^(F|F)) are the 
-only ways.</span></pre>
+only ways.</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p>&nbsp;</p>
 
