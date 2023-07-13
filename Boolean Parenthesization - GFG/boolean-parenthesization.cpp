@@ -11,98 +11,98 @@ using namespace std;
 
 class Solution{
 public:
-    int ways(string &s, vector<vector<vector<long long>>> &dp, int st, int end, bool flag)
-    {
-        if (st == end)
-        {
-            bool f = (s[st] == 'T');
-            return flag == f;
-        }
-        int mod = 1003;
-        if (dp[st][end][flag] != -1)
-        return dp[st][end][flag];
-        int ans = 0;
-        for (int i = st + 1; i < end; i += 2)
-        {
-            if (flag)
-            {
-                if (s[i] == '&')
-                {
-                    long long left = ways(s, dp, st, i - 1, 1);
-                    long long right = ways(s, dp, i + 1, end, 1);
-                    ans += (left * right) % mod;
-                    ans %= mod;
-                }
-                else if (s[i] == '|')
-                {
-                    long long left = ways(s, dp, st, i - 1, 1);
-                    long long right = ways(s, dp, i + 1, end, 0);
-                    ans += (left * right) % mod;
-                    ans %= mod;
-                    left = ways(s, dp, st, i - 1, 0);
-                    right = ways(s, dp, i + 1, end, 1);
-                    ans += (left * right) % mod;
-                    ans %= mod;
-                    left = ways(s, dp, st, i - 1, 1);
-                    right = ways(s, dp, i + 1, end, 1);
-                    ans += (left * right) % mod;
-                    ans %= mod;
-                }
-                else
-                {
-                    long long left = ways(s, dp, st, i - 1, 1);
-                    long long right = ways(s, dp, i + 1, end, 0);
-                    ans += (left * right) % mod;
-                    ans %= mod;
-                    left = ways(s, dp, st, i - 1, 0);
-                    right = ways(s, dp, i + 1, end, 1);
-                    ans += (left * right) % mod;
-                    ans %= mod;
-                }
-            }
-            else
-            {
-                if (s[i] == '&')
-                {
-                    long long left = ways(s, dp, st, i - 1, 1);
-                    long long right = ways(s, dp, i + 1, end, 0);
-                    ans += (left * right) % mod;
-                    ans %= mod;
-                    left = ways(s, dp, st, i - 1, 0);
-                    right = ways(s, dp, i + 1, end, 1);
-                    ans += (left * right) % mod;
-                    ans %= mod;
-                    left = ways(s, dp, st, i - 1, 0);
-                    right = ways(s, dp, i + 1, end, 0);
-                    ans += (left * right) % mod;
-                    ans %= mod;
-                }
-                else if (s[i] == '|')
-                {
-                    long long left = ways(s, dp, st, i - 1, 0);
-                    long long right = ways(s, dp, i + 1, end, 0);
-                    ans += (left * right) % mod;
-                    ans %= mod;
-                }
-                else
-                {
-                    long long left = ways(s, dp, st, i - 1, 0);
-                    long long right = ways(s, dp, i + 1, end, 0);
-                    ans += (left * right) % mod;
-                    ans %= mod;
-                    left = ways(s, dp, st, i - 1, 1);
-                    right = ways(s, dp, i + 1, end, 1);
-                    ans += (left * right) % mod;
-                    ans %= mod;
-                }
-            }
-        }
-        return dp[st][end][flag] = ans;
-    }
-    int countWays(int N, string S){
+    int countWays(int N, string s){
         // code here
-       vector<vector<vector<long long>>> dp(N, vector<vector<long long>> (N, vector<long long> (2, -1)));
-        return ways(S, dp, 0, N - 1, 1);
+       vector<vector<vector<long long>>> dp(N + 1, vector<vector<long long>> (N + 1, vector<long long> (2, 0)));
+       for (int st = N - 1; st >= 0; st--)
+       {
+           for (int end = st; end < N; end++)
+           {
+                if (st == end)
+                {
+                    bool f = (s[st] == 'T');
+                    dp[st][end][0] = (0 == f);
+                    dp[st][end][1] = (1 == f);
+                    continue;
+                }
+                int mod = 1003;
+                int ans = 0, ans1 = 0;
+                for (int i = st + 1; i < end; i += 2)
+                {
+                        if (s[i] == '&')
+                        {
+                            long long left = dp[st][i - 1][1];
+                            long long right = dp[i + 1][end][1];
+                            ans += (left * right) % mod;
+                            ans %= mod;
+                        }
+                        else if (s[i] == '|')
+                        {
+                            long long left = dp[st][i - 1][1];
+                            long long right = dp[i + 1][end][0];
+                            ans += (left * right) % mod;
+                            ans %= mod;
+                            left = dp[st][i - 1][0];
+                            right = dp[i + 1][end][1];
+                            ans += (left * right) % mod;
+                            ans %= mod;
+                            left = dp[st][i - 1][1];
+                            right = dp[i + 1][end][1];
+                            ans += (left * right) % mod;
+                            ans %= mod;
+                        }
+                        else
+                        {
+                            long long left = dp[st][i - 1][1];
+                            long long right = dp[i + 1][end][0];
+                            ans += (left * right) % mod;
+                            ans %= mod;
+                            left = dp[st][i - 1][0];
+                            right = dp[i + 1][end][1];
+                            ans += (left * right) % mod;
+                            ans %= mod;
+                        }
+                    
+                        if (s[i] == '&')
+                        {
+                            long long left = dp[st][i - 1][1];
+                            long long right = dp[i + 1][end][0];
+                            ans1 += (left * right) % mod;
+                            ans1 %= mod;
+                            left = dp[st][i - 1][0];
+                            right = dp[i + 1][end][1];
+                            ans1 += (left * right) % mod;
+                            ans1 %= mod;
+                            left = dp[st][i - 1][0];
+                            right = dp[i + 1][end][0];
+                            ans1 += (left * right) % mod;
+                            ans1 %= mod;
+                        }
+                        else if (s[i] == '|')
+                        {
+                            long long left = dp[st][i - 1][0];
+                            long long right = dp[i + 1][end][0];
+                            ans1 += (left * right) % mod;
+                            ans1 %= mod;
+                        }
+                        else
+                        {
+                            long long left = dp[st][i - 1][0];
+                            long long right = dp[i + 1][end][0];
+                            ans1 += (left * right) % mod;
+                            ans1 %= mod;
+                            left = dp[st][i - 1][1];
+                            right = dp[i + 1][end][1];
+                            ans1 += (left * right) % mod;
+                            ans1 %= mod;
+                        }
+
+                }
+                dp[st][end][1] = ans;
+                dp[st][end][0] = ans1;
+            }
+       }
+        return dp[0][N - 1][1];
     }
 };
 
