@@ -25,6 +25,8 @@ class twoStacks
     //Function to push an integer into the stack1.
     void push1(int x)
     {
+        if (top2 - top1 <= 1)
+        return;
         top1++;
         arr[top1] = x;
         return;
@@ -33,6 +35,8 @@ class twoStacks
     //Function to push an integer into the stack2.
     void push2(int x)
     {
+        if (top2 - top1 <= 1)
+        return;
         top2--;
         arr[top2] = x;
         return;
