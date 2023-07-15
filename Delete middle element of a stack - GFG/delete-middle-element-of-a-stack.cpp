@@ -14,19 +14,14 @@ class Solution
     void deleteMid(stack<int>&s, int n)
     {
         // code here.. 
-        stack<int> st;
-        n /= 2;
-        for (int i = 0; i < n; i++)
-        {
-            st.push(s.top());
-            s.pop();
-        }
+        int val = s.top();
         s.pop();
-        for (int i = 0; i < n; i++)
+        if (s.size() == (n + 1)/2  - 1)
         {
-            s.push(st.top());
-            st.pop();
+            return;
         }
+        deleteMid(s, n);
+        s.push(val);
         return;
     }
 };
