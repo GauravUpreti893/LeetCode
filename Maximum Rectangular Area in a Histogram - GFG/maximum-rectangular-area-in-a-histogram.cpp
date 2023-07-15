@@ -1,72 +1,51 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 class Solution
 {
     public:
     //Function to find largest rectangular area possible in a given histogram.
-    long long getMaxArea(long long arr[], int n)
+    long long getMaxArea(long long heights[], int n)
     {
         // Your code here
-        vector<int> left(n), right(n);
-      stack<pair<long long int, int>> st;
-        bool flag;
-        for (int i = n - 1; i >= 0; i--)
-        {
-            flag = 1;
-            while (!st.empty())
-            {
-                if (st.top().first >= arr[i])
-                st.pop();
-                else
-                {
-                    right[i] = st.top().second - 1;
-                    flag = 0;
-                    break;
-                }
-            }
-            st.push({arr[i],i});
-            if (flag)
-            {
-                right[i] = n - 1;
-            }
-        }
-        stack<pair<long long int, int>> s;
+        // int n = heights.size();
+        vector<long long> left(n, -1), right(n, n);
+        stack<pair<long long, int>> st,st1;
         for (int i = 0; i < n; i++)
         {
-            flag = 1;
-            while (!s.empty())
+            while (!st.empty() && (st.top().first >= heights[i]))
             {
-                if (s.top().first >= arr[i])
-                s.pop();
-                else
-                {
-                    left[i] = s.top().second + 1;
-                    flag = 0;
-                    break;
-                }
+                st.pop();
             }
-            s.push({arr[i],i});
-            if (flag)
-            {
-                left[i] = 0;
-            }
+            if (!st.empty())
+            left[i] = st.top().second;
+            st.push({heights[i], i});
         }
-        long long mx = 0, area;
-        for (int i = 0; i < n;i++)
+        st = st1;
+        for (int i = n - 1; i >= 0; i--)
         {
-            area = arr[i]*(right[i] - left[i] + 1);
-            mx = max(mx, area);
+            while (!st.empty() && (st.top().first >= heights[i]))
+            {
+                st.pop();
+            }
+            if (!st.empty())
+            right[i] = st.top().second;
+            st.push({heights[i], i});
         }
-        return mx;
+        long long area = 0;
+        for (int i = 0; i < n; i++)
+        {
+            area = max(area, heights[i] * (right[i] - left[i] - 1));
+        }
+        return area;
     }
 };
 
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main()
  {
@@ -87,4 +66,5 @@ int main()
     }
 	return 0;
 }
-  // } Driver Code Ends
+
+// } Driver Code Ends
