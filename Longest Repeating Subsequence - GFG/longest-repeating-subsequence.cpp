@@ -8,7 +8,7 @@ class Solution {
 		int LongestRepeatingSubsequence(string str){
 		    // Code here
 		    int n = str.size();
-		    vector<vector<int>> dp(n + 1, vector<int> (n + 1, 0));
+		    vector<vector<int>> dp(2, vector<int> (n + 1, 0));
 		    int ans = 0;
 		    for (int i = n - 2; i >= 0; i--)
 		    {
@@ -16,12 +16,11 @@ class Solution {
 		        {
 		            if (str[i] == str[j])
 		            {
-		              //  cout<<i<<" "<<j<<endl;
-		                dp[i][j] = 1 + dp[i + 1][j + 1];
-		                ans = max(ans, dp[i][j]);
+		                dp[i%2][j] = 1 + dp[!(i%2)][j + 1];
+		                ans = max(ans, dp[i%2][j]);
 		            }
 		            else
-		            dp[i][j] = max(dp[i + 1][j], dp[i][j + 1]);
+		            dp[i%2][j] = max(dp[!(i%2)][j], dp[i%2][j + 1]);
 		        }
 		    }
 		    return ans;
