@@ -44,42 +44,38 @@ int main()
 
 /* The functions which 
 builds the segment tree */
-void construct(int idx, int low, int high, int *st, int *arr)
+int build(int arr[], int segtree[], int idx, int st, int end)
 {
-    if (low == high)
-    {
-        st[idx] = arr[low];
-        return;
-    }
-    int mid = (low + high)/2;
-    construct(2*idx + 1, low, mid, st, arr);
-    construct(2*idx + 2, mid + 1, high, st, arr);
-    st[idx] = min(st[2*idx + 1], st[2*idx + 2]);
-    return;
+    if (st == end)
+    return segtree[idx] = arr[st];
+    int mid = (st + end)/2;
+    int left = build(arr, segtree, 2*idx + 1, st, mid);
+    int right = build(arr, segtree, 2*idx + 2, mid + 1, end);
+    return segtree[idx] = min(left, right);
 }
 int *constructST(int arr[],int n)
 {
   //Your code here
-  int *st = new int[4*n];
-    construct(0, 0, n - 1, st, arr);
-    return st;
+  int *segtree = new int[2*n];
+  build(arr, segtree, 0, 0, n - 1);
+  return segtree;
 }
 
 
 /* The functions returns the
  min element in the range
  from a and b */
-int minimum(int *st, int idx, int low, int high, int l, int h)
-{
-    if (low >= l && high <= h)
-    return st[idx];
-    if (low > h || high < l)
-    return 1e9;
-    int mid = (low + high)/2;
-    return min(minimum(st, 2*idx + 1, low, mid, l, h), minimum(st, 2*idx + 2, mid + 1, high, l, h));
-}
-int RMQ(int st[] , int n, int a, int b)
+ int findmin(int segtree[], int a, int b, int idx, int st, int end)
+ {
+     if ((a <= st) && (b >= end))
+     return segtree[idx];
+     else if ((st > b) || (end < a))
+     return 1e9;
+     int mid = (st + end)/2;
+     return min(findmin(segtree, a, b, 2*idx + 1, st, mid), findmin(segtree, a, b, 2*idx + 2, mid + 1, end));
+ }
+int RMQ(int segtree[] , int n, int a, int b)
 {
 //Your code here
-    return minimum(st, 0, 0, n - 1, a, b);
+    return findmin(segtree, a, b, 0,  0, n - 1);
 }
