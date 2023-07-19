@@ -13,7 +13,7 @@ The function <strong>RMQ</strong> should return the min element in the array fro
 
 <p><span style="font-size:18px"><strong>Example:</strong></span></p>
 
-<pre style="position: relative;"><span style="font-size:18px"><strong>Input (To be used only for expected output) </strong>
+<pre><span style="font-size:18px"><strong>Input (To be used only for expected output) </strong>
 1
 4
 1 2 3 4
@@ -25,7 +25,7 @@ The function <strong>RMQ</strong> should return the min element in the array fro
 1.</strong> For query 1 ie 0 2 the element in this range are 1 2 3 
 &nbsp;  and the min element is 1. 
 <strong>2.</strong> For query 2 ie 2 3 the element in this range are 3 4 
-&nbsp;  and the min element is 3.</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+&nbsp;  and the min element is 3.</span></pre>
 
 <p><span style="font-size:18px"><strong>Constraints:</strong><br>
 1&lt;=T&lt;=100<br>
