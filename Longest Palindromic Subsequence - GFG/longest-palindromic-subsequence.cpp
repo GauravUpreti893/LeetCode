@@ -10,26 +10,23 @@ using namespace std;
 
 class Solution{
   public:
-    int longest(string &a, string &b, vector<vector<int>> &dp, int i, int j)
-    {
-        int n = a.size();
-        if (i == n || j == n)
-        return 0;
-        if (dp[i][j] != -1)
-        return dp[i][j];
-        if (a[i] == b[j])
-        dp[i][j] = 1 + longest(a, b, dp, i + 1, j + 1);
-        else
-        dp[i][j] = max(longest(a, b, dp, i + 1, j), longest(a, b, dp, i, j + 1));
-        return dp[i][j];
-    }
-    int longestPalinSubseq(string A) {
+    int longestPalinSubseq(string a) {
         //code here
-        string B = A;
-        reverse(B.begin(), B.end());
-        int n = A.size();
-        vector<vector<int>> dp(n, vector<int> (n, -1));
-        return longest(A, B, dp, 0, 0);
+        string b = a;
+        reverse(b.begin(), b.end());
+        int n = a.size();
+        vector<vector<int>> dp(2, vector<int> (n + 1, 0));
+        for (int i = n - 1; i >= 0; i--)
+        {
+            for (int j = n - 1; j >= 0; j--)
+            {
+                if (a[i] == b[j])
+                dp[i][j] = 1 + dp[i + 1][j + 1];
+                else
+                dp[i][j] = max(dp[i + 1][j], dp[i][j + 1]);
+            }
+        }
+        return dp[0][0];
     }
 };
 
