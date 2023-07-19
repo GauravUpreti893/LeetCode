@@ -21,9 +21,9 @@ class Solution{
             for (int j = n - 1; j >= 0; j--)
             {
                 if (a[i] == b[j])
-                dp[i][j] = 1 + dp[i + 1][j + 1];
+                dp[i%2][j] = 1 + dp[!(i%2)][j + 1];
                 else
-                dp[i][j] = max(dp[i + 1][j], dp[i][j + 1]);
+                dp[i%2][j] = max(dp[!(i%2)][j], dp[i%2][j + 1]);
             }
         }
         return dp[0][0];
