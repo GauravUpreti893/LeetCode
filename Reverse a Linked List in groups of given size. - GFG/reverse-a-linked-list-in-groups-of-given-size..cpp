@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -27,7 +27,7 @@ void printList(struct node *node)
 }
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 /*
   Reverse a linked list
   The input list will have at least one element  
@@ -51,72 +51,41 @@ class Solution
     public:
     struct node *reverse (struct node *head, int k)
     { 
-       if (k == 1)
-       return head;
-       node *curr = head, *prev, *next, *temp;
-       bool check = 0;
-       node *newhead;
-       while (curr != NULL)
-       {
-           bool flag = 0;
-           temp = curr;
-           if (check == 0)
-           {
-               check = 1;
-               for (int i = 0; i < k - 1; i++)
-               {
-                   temp = temp->next;
-               }
-               newhead = temp;
-           }
-           temp = curr;
-           int i;
-           for (i = 0; i < 2*k - 1; i++)
-           {
-               if (temp->next == NULL)
-               {
-                   flag = 1;
-                  break;
-               }
-               temp = temp->next;
-           }
-           if (i == k - 1)
-           {
-               prev = NULL;
-           }
-           else
-           prev = temp;
-           if (temp->next == NULL)
-           flag = 1;
-           for (int i = 0; i < k; i++)
-           {
-               next = curr->next;
-               curr->next = prev;
-               prev = curr;
-               curr = next;
-           }
-        //   cout<<curr->data<<endl;
-          if (flag)
-          break;
-      }
-      prev = NULL;
-      if (curr != NULL && curr->next != NULL)
-      {
-          while (curr != NULL)
-          {
-            //   cout<<curr->data<<" ";
-              next = curr->next;
-              curr->next = prev;
-              prev = curr;
-              curr = next;
-          }
-      }
-      return newhead;
+        // Complete this method
+        node* curr = head, *prev =  NULL, *next;
+        for (int i = 0; i < k; i++)
+        {
+            if (curr == NULL)
+            break;
+            next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        }
+        node* last = head;
+        head = prev;
+        while (curr != NULL)
+        {
+            prev = NULL;
+            node* temp = curr;
+            for (int i = 0; i < k; i++)
+            {
+                if (curr == NULL)
+                break;
+                next = curr->next;
+                curr->next = prev;
+                prev = curr;
+                curr = next;
+            }
+            last->next = prev;
+            last = temp;
+        }
+        return head;
     }
 };
 
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 /* Drier program to test above function*/
 int main(void)
@@ -158,4 +127,5 @@ int main(void)
     return(0);
 }
 
-  // } Driver Code Ends
+
+// } Driver Code Ends
