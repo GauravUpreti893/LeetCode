@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -15,7 +15,7 @@ struct Node {
 struct Node *start = NULL;
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 /*
  
   Node is defined as
@@ -36,75 +36,35 @@ class Solution
     Node* segregate(Node *head) {
         
         // Add code here
-        Node *a = NULL, *b = NULL, *c = NULL, *heada = NULL, *headb = NULL, *headc = NULL, *curr = head;
+        vector<int> freq(3, 0);
+        Node* curr = head;
         while (curr != NULL)
         {
-            if (curr->data == 0)
-            {
-                if (a == NULL)
-                {
-                    a = curr;
-                    heada = curr;
-                }
-                else
-                {
-                    a->next = curr;
-                    a = a->next;
-                }
-            }
-            else if (curr->data == 1)
-            {
-                if (b == NULL)
-                {
-                    b = curr;
-                    headb = curr;
-                }
-                else
-                {
-                    b->next = curr;
-                    b = b->next;
-                }
-            }
-            else
-            {
-                if (c == NULL)
-                {
-                    c = curr;
-                    headc = curr;
-                }
-                else
-                {
-                    c->next = curr;
-                    c = c->next;
-                }
-            }
+            freq[curr->data]++;
             curr = curr->next;
         }
-        if (c != NULL)
-        c->next = NULL;
-        if (heada == NULL)
+        curr = head;
+        int i = 0;
+        while (curr != NULL)
         {
-            if (headb == NULL)
-            return headc;
+            if (freq[i])
+            {
+                curr->data = i;
+                freq[i]--;
+                curr = curr->next;
+            }
             else
             {
-                b->next = headc;
-                return headb;
+                i++;
             }
+            
         }
-        if (headb == NULL)
-        {
-            a->next = headc;
-            return heada;
-        }
-        a->next = headb;
-        b->next = headc;
-        return heada;
+        return head;
     }
 };
 
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 // Function to sort a linked list of 0s, 1s and 2s
 void printList(struct Node *Node) {
@@ -153,4 +113,5 @@ int main() {
     }
 
     return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
