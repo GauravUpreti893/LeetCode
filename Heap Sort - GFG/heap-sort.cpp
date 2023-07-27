@@ -15,6 +15,23 @@ class Solution
     void heapify(int arr[], int n, int i)  
     {
       // Your Code Here
+      int l = 2*i + 1;
+      int r = 2*i + 2;
+      int mx = i;
+      if (l < n && arr[l] > arr[mx])
+      {
+          mx = l;
+      }
+      if (r < n && arr[r] > arr[mx])
+      {
+          mx = r;
+      }
+      if (mx != i)
+      {
+          swap(arr[i], arr[mx]);
+          heapify(arr, n, mx);
+      }
+      return;
     }
 
     public:
@@ -22,6 +39,11 @@ class Solution
     void buildHeap(int arr[], int n)  
     { 
     // Your Code Here
+        for (int i = n/2 - 1; i >= 0; i--)
+        {
+            heapify(arr, n, i);
+        }
+        return;
     }
 
     
@@ -30,13 +52,11 @@ class Solution
     void heapSort(int arr[], int n)
     {
         //code here
-        priority_queue<int, vector<int>, greater<int>> pq;
-        for (int i = 0; i < n; i++)
-        pq.push(arr[i]);
+        buildHeap(arr, n);
         for (int i = 0; i < n; i++)
         {
-            arr[i] = pq.top();
-            pq.pop();
+            swap(arr[0], arr[n - 1 - i]);
+            heapify(arr, n - i - 1, 0);
         }
         return;
     }
