@@ -110,23 +110,26 @@ struct Node {
 class Solution{
   public:
     // returns the inorder successor of the Node x in BST (rooted at 'root')
-    Node* prev;
-    Solution()
+    Node* res;
+    void dfs(Node* root, Node* x)
     {
-        prev = NULL;
+        if (root == NULL)
+        return;
+        if (root->data <= x->data)
+        {
+            dfs(root->right, x);
+            return;
+        }
+        res = root;
+        dfs(root->left, x);
+        return;
     }
     Node * inOrderSuccessor(Node *root, Node *x)
     {
         //Your code here
-        if (root == NULL)
-        return NULL;
-        Node* left = inOrderSuccessor(root->left, x);
-        if (left != NULL)
-        return left;
-        if (prev == x)
-        return root;
-        prev = root;
-        return inOrderSuccessor(root->right, x);
+        res = NULL;
+        dfs(root, x);
+        return res;
     }
 };
 
