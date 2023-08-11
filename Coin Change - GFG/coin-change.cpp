@@ -8,17 +8,17 @@ class Solution {
     long long int count(int coins[], int N, int S) {
 
         // code here.
-        vector<vector<long long>> dp(N + 1, vector<long long> (S + 1, 0));
-        // dp[0][0] = 1;
+        vector<vector<long long>> dp(2, vector<long long> (S + 1, 0));
+        dp[0][0] = 1;
+        dp[1][0] = 1;
         for (int idx = 1; idx <= N; idx++)
         {
-            dp[idx][0] = 1;
             for (int sum = 1; sum <= S; sum++)
             {
-                dp[idx][sum] = ((sum - coins[idx - 1] >= 0) ? dp[idx][sum - coins[idx - 1]] : 0) + dp[idx - 1][sum]; 
+                dp[idx&1][sum] = ((sum - coins[idx - 1] >= 0) ? dp[idx&1][sum - coins[idx - 1]] : 0) + dp[!(idx&1)][sum]; 
             }
         }
-        return dp[N][S];
+        return dp[N&1][S];
     }
 };
 
