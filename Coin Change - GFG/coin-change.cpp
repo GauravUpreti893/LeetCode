@@ -5,20 +5,20 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    long long int count(int coins[], int N, int amount) {
+    long long int count(int coins[], int N, int S) {
 
         // code here.
-        vector<long long> dp(amount + 1, 0);
-        dp[0] = 1;
-        for (int i = 1; i <= N; i++)
+        vector<vector<long long>> dp(N + 1, vector<long long> (S + 1, 0));
+        // dp[0][0] = 1;
+        for (int idx = 1; idx <= N; idx++)
         {
-            for (int j = 1; j <= amount; j++)
+            dp[idx][0] = 1;
+            for (int sum = 1; sum <= S; sum++)
             {
-                if (j - coins[i - 1] >= 0)
-                dp[j] += dp[j - coins[i - 1]];
+                dp[idx][sum] = ((sum - coins[idx - 1] >= 0) ? dp[idx][sum - coins[idx - 1]] : 0) + dp[idx - 1][sum]; 
             }
         }
-        return dp[amount];
+        return dp[N][S];
     }
 };
 
