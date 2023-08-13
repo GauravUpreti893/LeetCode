@@ -9,14 +9,15 @@ class Solution {
   public:
     int nthFibonacci(int n){
         // code here
-        vector<int> dp(3, 1);
-        int prev
+        int prev = 1, prevprev = 1, sum;
         int mod = 1e9 + 7;
         for (int i = 3; i <= n; i++)
         {
-            dp[i%3] = (dp[(i - 1) % 3] + dp[(i - 2) % 3]) % mod;
+            sum = (prev + prevprev) % mod;
+            prevprev = prev;
+            prev = sum;
         }
-        return dp[n%3];
+        return prev;
     }
 };
 
