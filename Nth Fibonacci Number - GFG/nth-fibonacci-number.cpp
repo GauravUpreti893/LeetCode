@@ -1,41 +1,40 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 // Initial Template for C++
 #include <bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
+// } Driver Code Ends
 // User function Template for C++
 class Solution {
   public:
-   long long int fibo(int n, long long int* &table)
+    int fibo(int n, vector<int> &dp)
     {
-        if (table[n] == -1)
-        {
-            table[n] = (fibo(n - 1,table) + fibo(n - 2, table)) % 1000000007;
-        }
-        return table[n];
+        if (n <= 2)
+        return 1;
+        if (dp[n] != -1)
+        return dp[n];
+        int mod = 1e9 + 7;
+        dp[n] = (fibo(n - 1, dp) + fibo(n - 2, dp)) % mod;
     }
-    long long int nthFibonacci(long long int n){
+    int nthFibonacci(int n){
         // code here
-        long long int *table = new long long int[n + 1];
-        for (int i = 0; i <= n; i++)
-            table[i] = -1;
-        table[0] = 0;
-        table[1] = 1;
-        return fibo(n,table);
+        vector<int> dp(n + 1, -1);
+        for (int i = 2)
+        return fibo(n, dp);
     }
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 int main() {
     int t;
     cin >> t;
     while (t--) {
-        long long int n;
+        int n;
         cin >> n;
         Solution ob;
         cout << ob.nthFibonacci(n) << endl;
     }
     return 0;
 }
-  // } Driver Code Ends
+
+// } Driver Code Ends
