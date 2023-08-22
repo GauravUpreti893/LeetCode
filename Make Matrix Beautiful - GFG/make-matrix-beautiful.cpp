@@ -10,7 +10,7 @@ class Solution
     public:
     //Function to find minimum number of operations that are required 
     //to make the matrix beautiful.
-    int findMinOpeartion(vector<vector<int>>& matrix, int n)
+    int findMinOpeartion(vector<vector<int> > matrix, int n)
     {
         // code here 
         int mx = 0;
@@ -42,6 +42,7 @@ class Solution
         return ans;
     } 
 };
+
 
 //{ Driver Code Starts.
 int main()
