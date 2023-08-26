@@ -22,20 +22,17 @@ class Solution{
         if (count != k)
         return -1;
         int ans = i, st = 0;
-        // cout<<ans<<endl;
         while (i < n)
         {
             if (!freq[s[i] - 'a'])
             {
                 freq[s[i] - 'a'] = 1;
                 ans = max(ans, i - st);
-                // cout<<i<<" "<<i - st<<" ";
                 while (freq[s[st] - 'a'] != 1)
                 {
                     freq[s[st++] - 'a']--;
                 }
                 freq[s[st++] - 'a'] = 0;
-                // cout<<st<<endl;
             }
             else
             freq[s[i] - 'a']++;
