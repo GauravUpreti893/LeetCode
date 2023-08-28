@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -51,7 +51,8 @@ int main() {
 		cout<<endl;
 	}
 	return 0;
-}// } Driver Code Ends
+}
+// } Driver Code Ends
 
 
 /*
@@ -69,18 +70,13 @@ Node *removeDuplicates(Node *head)
 {
  // your code goes here
     Node* curr = head;
-    
-    while (curr != NULL && curr->next != NULL && curr->data == curr->next->data)
+    while (curr != NULL)
     {
-        curr = curr->next;
-    }
-    head = curr;
-    while (curr != NULL && curr->next != NULL && curr->next->next != NULL)
-    {
-        if (curr->next->data == curr->next->next->data)
-        curr->next = curr->next->next;
-        else
-        curr = curr->next;
+        Node* next = curr->next;
+        while (next != NULL && next->data == curr->data)
+        next = next->next;
+        curr->next = next;
+        curr = next;
     }
     return head;
 }
