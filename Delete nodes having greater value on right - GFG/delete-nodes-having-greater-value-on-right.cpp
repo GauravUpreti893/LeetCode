@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include<bits/stdc++.h>
 
 using namespace std;
@@ -27,7 +27,7 @@ void print(Node *root)
 
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 /*
 
 The structure of linked list is the following
@@ -46,9 +46,27 @@ struct Node
 class Solution
 {
     public:
-    Node* reverse(Node* head)
+    Node *compute(Node *head)
     {
-        Node *curr = head, *prev = NULL, *next;
+        // your code goes here
+        Node* curr = head, *prev = NULL, *next;
+        while (curr != NULL)
+        {
+            next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        }
+        curr = prev;
+        while (curr->next != NULL)
+        {
+            if (curr->data > curr->next->data)
+            curr->next = curr->next->next;
+            else
+            curr = curr->next;
+        }
+        curr = prev;
+        prev = NULL;
         while (curr != NULL)
         {
             next = curr->next;
@@ -58,32 +76,12 @@ class Solution
         }
         return prev;
     }
-    Node *compute(Node *head)
-    {
-        // your code goes here
-        head = reverse(head);
-        int mx = head->data;
-        Node* curr = head;
-        while (curr != NULL && curr->next != NULL)
-        {
-            if (curr->next->data < mx)
-            {
-                curr->next = curr->next->next;
-            }
-            else
-            {
-                mx = curr->next->data;
-                curr = curr->next;
-            }
-        }
-        return reverse(head);
-    }
     
 };
    
 
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main()
 {
@@ -114,4 +112,5 @@ int main()
         cout<<endl;
     }
 }
-  // } Driver Code Ends
+
+// } Driver Code Ends
