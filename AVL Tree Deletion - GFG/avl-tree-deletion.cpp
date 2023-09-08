@@ -183,31 +183,78 @@ struct Node
 };
 
 */
-void inorder(Node* root, vector<int> &arr, int data)
+
+
+
+///////////*************Make a function for height next time, life will be so easy****//////////////
+Node* leftRotation(Node* root)
 {
-    if (root == NULL)
-    return;
-    inorder(root->left, arr, data);
-    if (root->data != data)
-    arr.push_back(root->data);
-    inorder(root->right, arr, data);
-    return;
+    Node* x = root->right;
+    Node* temp = x->left;
+    x->left = root;
+    root->right = temp;
+    root->height = 1 + max(root->left != NULL ? root->left->height : 0, temp != NULL ? temp->height : 0);
+    x->height = 1 + max(x->right != NULL ? x->right->height : 0, root->height);
+    return x;
 }
-Node* build(vector<int> &arr, int low, int hi)
+Node* rightRotation(Node* root)
 {
-    if (low > hi)
-    return NULL;
-    int mid = low + (hi - low)/2;
-    Node* curr = new Node(arr[mid]);
-    curr->left = build(arr, low, mid - 1);
-    curr->right = build(arr, mid + 1, hi);
-    return curr;
+    Node* x = root->left;
+    Node* temp = x->right;
+    x->right = root;
+    root->left = temp;
+    root->height = 1 + max(root->right != NULL ? root->right->height : 0,temp != NULL ? temp->height : 0);
+    x->height = 1 + max(x->left != NULL ? x->left->height : 0, root->height);
+    return x;
 }
-Node* deleteNode(Node* root, int data)
+Node* deleteNode(Node* root, int key)
 {
     //add code here,
-    vector<int> arr;
-    inorder(root, arr, data);
-    int n = arr.size();
-    return build(arr, 0, n - 1);
+    if (root == NULL)
+    return NULL;
+    if (root->data == key)
+    {
+        if (root->left == NULL && root->right == NULL)
+        return NULL;
+        if (root->left == NULL)
+        {
+            root = root->right;
+        }
+        else if (root->right == NULL)
+        {
+            root = root->left;
+        }
+        else
+        {
+            Node* succ = root->left, *par = root;
+            while (succ->right != NULL)
+            {
+                par = succ;
+                succ = succ->right;
+            }
+            swap(root->data, succ->data);
+            root->left = deleteNode(root->left, succ->data);
+        }
+    }
+    else if (root->data > key)
+    root->left = deleteNode(root->left, key);
+    else
+    root->right = deleteNode(root->right, key);
+    root->height = 1 + max((root->left != NULL) ? root->left->height : 0, (root->right!= NULL) ? root->right->height : 0); 
+    int balance = (root->left ? root->left->height : 0) - (root->right ? root->right->height : 0); 
+    if (balance > 1)
+    {
+        int bal = ((root->left->left != NULL) ? root->left->left->height : 0) - ((root->left->right != NULL) ? root->left->right->height : 0);
+        if (bal < 0)
+        root->left = leftRotation(root->left);
+        root = rightRotation(root);
+    }
+    if (balance < -1)
+    {
+        int bal = ((root->right->left != NULL) ? root->right->left->height : 0) - ((root->right->right != NULL) ? root->right->right->height : 0);
+        if (bal > 0)
+        root->right = rightRotation(root->right);
+        root = leftRotation(root);
+    }
+    return root;
 }
