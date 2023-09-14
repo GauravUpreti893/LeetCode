@@ -9,13 +9,11 @@ class Solution{
 	int count(int arr[], vector<vector<int>> &dp, int idx, int sum)
 	{
 	    int n = dp.size(), mod = 1e9 + 7;
-	   // if (idx == n - 1 && !sum && !arr[idx])
-	   // return 1;
 	    if (idx == n || sum < 0)
-	    return (sum == 0);
+	    return 0;
 	    if (dp[idx][sum] != -1)
 	    return dp[idx][sum];
-	    return dp[idx][sum] = (count(arr, dp, idx + 1, sum) + count(arr, dp, idx + 1, sum - arr[idx]) + (idx != n - 1 && !sum && !arr[idx]))%mod;
+	    return dp[idx][sum] = (count(arr, dp, idx + 1, sum) + count(arr, dp, idx + 1, sum - arr[idx]) + (sum == arr[idx]))%mod;
 	}
 	int perfectSum(int arr[], int n, int sum)
 	{
