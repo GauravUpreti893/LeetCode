@@ -9,13 +9,13 @@ class Solution{
 	int perfectSum(int arr[], int n, int S)
 	{
         // Your code goes here
-        vector<vector<int>> dp(n + 1, vector<int> (S + 1, 0));
+        vector<vector<int>> dp(2, vector<int> (S + 1, 0));
         int mod = 1e9 + 7;
         for (int idx = n - 1; idx >= 0; idx--)
         {
             for (int sum = 0; sum <= S; sum++)
             {
-                dp[idx][sum] = (dp[idx + 1][sum] + ((sum - arr[idx] >= 0)? dp[idx + 1][sum - arr[idx]] : 0) + (sum == arr[idx])) % mod;
+                dp[idx&1][sum] = (dp[!(idx & 1)][sum] + ((sum - arr[idx] >= 0)? dp[!(idx & 1)][sum - arr[idx]] : 0) + (sum == arr[idx])) % mod;
             }
         }
         return dp[0][S];
