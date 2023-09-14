@@ -6,20 +6,19 @@ using namespace std;
 class Solution{
 
 	public:
-	int count(int arr[], vector<vector<int>> &dp, int idx, int sum)
-	{
-	    int n = dp.size(), mod = 1e9 + 7;
-	    if (idx == n || sum < 0)
-	    return 0;
-	    if (dp[idx][sum] != -1)
-	    return dp[idx][sum];
-	    return dp[idx][sum] = (count(arr, dp, idx + 1, sum) + count(arr, dp, idx + 1, sum - arr[idx]) + (sum == arr[idx]))%mod;
-	}
-	int perfectSum(int arr[], int n, int sum)
+	int perfectSum(int arr[], int n, int S)
 	{
         // Your code goes here
-        vector<vector<int>> dp(n, vector<int> (sum + 1, -1));
-        return count(arr, dp, 0, sum);
+        vector<vector<int>> dp(n + 1, vector<int> (S + 1, 0));
+        int mod = 1e9 + 7;
+        for (int idx = n - 1; idx >= 0; idx--)
+        {
+            for (int sum = 0; sum <= S; sum++)
+            {
+                dp[idx][sum] = (dp[idx + 1][sum] + ((sum - arr[idx] >= 0)? dp[idx + 1][sum - arr[idx]] : 0) + (sum == arr[idx])) % mod;
+            }
+        }
+        return dp[0][S];
 	}
 	  
 };
