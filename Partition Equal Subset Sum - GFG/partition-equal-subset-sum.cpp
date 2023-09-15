@@ -9,28 +9,26 @@ using namespace std;
 
 class Solution{
 public:
-    bool check(int arr[], vector<vector<bool>> &dp, int idx, int sum)
-    {
-        int n = dp.size();
-        if (!sum)
-        return true;
-        if (idx == n || sum < 0)
-        return false;
-        if (!dp[idx][sum])
-        return false;
-        return dp[idx][sum] = check(arr, dp, idx + 1, sum) || check(arr, dp, idx + 1, sum - arr[idx]);
-    }
     int equalPartition(int N, int arr[])
     {
         // code here
-        int sum = 0;
+        int s = 0;
         for (int i = 0; i < N; i++)
-        sum += arr[i];
-        if (sum % 2)
+        s += arr[i];
+        if (s % 2)
         return 0;
-        sum /= 2;
-        vector<vector<bool>> dp(N, vector<bool> (sum + 1, 1));
-        return check(arr, dp, 0, sum);
+        s /= 2;
+        vector<vector<bool>> dp(N + 1, vector<bool> (s + 1, 0));
+        for (int i = 0; i <= N; i++)
+        dp[i][0] = 1;
+        for (int idx = N - 1; idx >= 0; idx--)
+        {
+            for (int sum = 0; sum <= s; sum++)
+            {
+                dp[idx][sum] = dp[idx + 1][sum] | ((sum - arr[idx] >= 0) ? dp[idx + 1][sum - arr[idx]] : false);
+            }
+        }
+        return dp[0][s];
     }
 };
 
