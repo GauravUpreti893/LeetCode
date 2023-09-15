@@ -18,14 +18,14 @@ public:
         if (s % 2)
         return 0;
         s /= 2;
-        vector<vector<bool>> dp(N + 1, vector<bool> (s + 1, 0));
-        for (int i = 0; i <= N; i++)
-        dp[i][0] = 1;
+        vector<vector<bool>> dp(2, vector<bool> (s + 1, 0));
+        dp[0][0] = 1;
+        dp[1][0] = 1;
         for (int idx = N - 1; idx >= 0; idx--)
         {
             for (int sum = 0; sum <= s; sum++)
             {
-                dp[idx][sum] = dp[idx + 1][sum] | ((sum - arr[idx] >= 0) ? dp[idx + 1][sum - arr[idx]] : false);
+                dp[idx&1][sum] = dp[!(idx&1)][sum] | ((sum - arr[idx] >= 0) ? dp[!(idx&1)][sum - arr[idx]] : false);
             }
         }
         return dp[0][s];
