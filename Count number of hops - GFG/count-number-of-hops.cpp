@@ -12,12 +12,12 @@ class Solution
     {
         
         // your code here
-        vector<long long> dp(n + 3, 0);
-        dp[n] = 1;
+        vector<long long> dp(4, 0);
+        dp[n%4] = 1;
         long long mod = 1e9 + 7;
         for (int idx = n - 1; idx >= 0; idx--)
         {
-            dp[idx] = (dp[idx + 1] + dp[idx + 2] + dp[idx + 3]) % mod;
+            dp[idx%4] = (dp[(idx + 1)%4] + dp[(idx + 2)%4] + dp[(idx + 3)%4]) % mod;
         }
         return dp[0];
     }
