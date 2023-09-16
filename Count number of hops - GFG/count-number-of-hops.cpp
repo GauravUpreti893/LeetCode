@@ -10,7 +10,6 @@ class Solution
     //Function to count the number of ways in which frog can reach the top.
     long long countWays(int n)
     {
-        
         // your code here
         vector<long long> dp(4, 0);
         dp[n%4] = 1;
