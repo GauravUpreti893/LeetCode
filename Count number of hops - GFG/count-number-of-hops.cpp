@@ -8,22 +8,18 @@ class Solution
 {
     public:
     //Function to count the number of ways in which frog can reach the top.
-    long long count(int idx, vector<long long> &dp)
-    {
-       long long ans = 0, mod = 1e9 + 7, n = dp.size();
-       if (idx >= n)
-       return idx == n;
-       if (dp[idx] != -1)
-       return dp[idx];
-       return dp[idx] = (count(idx + 1, dp) + count(idx + 2, dp) + count(idx + 3, dp))%mod;
-    }
     long long countWays(int n)
     {
         
         // your code here
-        vector<long long> dp(n, -1);
-        return count(0, dp);
-        
+        vector<long long> dp(n + 3, 0);
+        dp[n] = 1;
+        long long mod = 1e9 + 7;
+        for (int idx = n - 1; idx >= 0; idx--)
+        {
+            dp[idx] = (dp[idx + 1] + dp[idx + 2] + dp[idx + 3]) % mod;
+        }
+        return dp[0];
     }
 };
 
