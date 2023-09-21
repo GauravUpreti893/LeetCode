@@ -11,10 +11,10 @@ class Solution
     int FindMaxSum(int arr[], int n)
     {
         // Your code here
-        vector<int> dp(n + 2, 0);
+        vector<int> dp(2, 0);
         for (int idx = n - 1; idx >= 0; idx--)
         {
-            dp[idx] = max(dp[idx + 2] + arr[idx], dp[idx + 1]);
+            dp[idx&1] = max(dp[idx&1] + arr[idx], dp[!(idx&1)]);
         }
         return dp[0];
     }
