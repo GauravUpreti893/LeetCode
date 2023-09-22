@@ -9,10 +9,33 @@ class Solution
     vector<int> find(int arr[], int n , int x )
     {
         // code here
-        int idx = lower_bound(arr, arr + n, x) - arr;
-        if (idx == n || arr[idx] != x)
+        int lo = 0, hi = n - 1, mid, ans = 0, ans1 = 0;
+        while (lo <= hi)
+        {
+            mid = lo + (hi - lo)/2;
+            if (arr[mid] >= x)
+            {
+                ans = mid;
+                hi = mid - 1;
+            }
+            else
+            lo = mid + 1;
+        }
+        if (arr[ans] != x)
         return {-1, -1};
-        return {idx, (upper_bound(arr, arr + n, x) - arr)- 1};
+        lo = 0; hi = n - 1;
+        while (lo <= hi)
+        {
+            mid = lo + (hi - lo)/2;
+            if (arr[mid] <= x)
+            {
+                ans1 = mid;
+                lo = mid + 1;
+            }
+            else
+            hi = mid - 1;
+        }
+        return {ans, ans1};
     }
 };
 
