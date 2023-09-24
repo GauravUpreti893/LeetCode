@@ -20,14 +20,13 @@ class Solution{
             int x = (abs(arr[i]) - 1)%mx;
             if (arr[x] > 0)
             arr[x] *= -1;
-            else if (arr[x] < 0)
+            else if (arr[x] < 0 && -arr[x] < mx)
             {
                 arr[x] = -(-arr[x] + mx);
             }
         }
         for (int i = 0; i < n; i++)
         {
-            // cout<<arr[i]<<" ";
             if (arr[i] < 0 && -arr[i] >= mx)
             ans.push_back(i);
         }
