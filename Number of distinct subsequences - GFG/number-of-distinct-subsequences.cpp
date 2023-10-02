@@ -18,7 +18,6 @@ class Solution{
 	        int temp = ans;
             ans += (ans + (res[s[i] - 'a'] == -1) - ((res[s[i] - 'a'] == -1)?0:res[s[i] - 'a']) + mod)%mod;
             ans %= mod;
-            // cout<<ans<<endl;
             res[s[i] - 'a'] = temp;
 	    }
 	    return (ans + 1)%mod;
