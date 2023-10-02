@@ -11,25 +11,17 @@ class Solution{
 	int distinctSubsequences(string s)
 	{
 	    // Your code goes here
-	    int n = s.size();
-        long long mod =1e9 + 7;
-        vector<long long> dp(n + 1, 0);
-        vector<int> pos(26, -1);
-        for (int i = 1; i <= n; i++)
-        {
-            if (pos[s[i - 1] - 'a'] == -1)
-            {
-                pos[s[i - 1] - 'a'] = i;
-                dp[i] = dp[i - 1] + dp[i - 1] + 1;
-            }
-            else
-            {
-                dp[i] = (dp[i - 1] + dp[i - 1]) % mod - dp[pos[s[i - 1] - 'a'] - 1] + mod;
-                pos[s[i - 1] - 'a'] = i;
-            }
-            dp[i] %= mod;
-        }
-        return 1 + dp[n];
+	    int ans = 0, mod = 1e9 + 7, n = s.size();
+	    vector<int> res(26, -1);
+	    for (int i = 0; i < n; i++)
+	    {
+	        int temp = ans;
+            ans += (ans + (res[s[i] - 'a'] == -1) - ((res[s[i] - 'a'] == -1)?0:res[s[i] - 'a']) + mod)%mod;
+            ans %= mod;
+            // cout<<ans<<endl;
+            res[s[i] - 'a'] = temp;
+	    }
+	    return (ans + 1)%mod;
 	}
 };
 
