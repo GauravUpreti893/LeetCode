@@ -13,7 +13,7 @@ class Solution{
         string ans;
         while (n){
             n--;
-            ans = char(n % 26 + 'A') + ans;
+            ans = char(n%26 + 65) + ans;
             n /= 26;
         }
         return ans;
