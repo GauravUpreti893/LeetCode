@@ -21,22 +21,24 @@ struct Node {
 class Solution{
 
 public:
+    int ans;
+    Solution()
+    {
+        ans = -1;
+    }
     int floor(Node* root, int x) {
         // Code here
-        int ans = -1;
-        while (root != NULL)
-        {
-            if (root->data == x)
-            return x;
-            else if (root->data > x)
-            root = root->left;
-            else
-            {
-                ans = root->data;
-                root = root->right;
-            }
-        }
+        if (root == NULL)
         return ans;
+        if (root->data == x)
+        return x;
+        else if (root->data > x)
+        return floor(root->left, x);
+        else
+        {
+            ans = root->data;
+            return floor(root->right, x);
+        }
     }
 };
 
