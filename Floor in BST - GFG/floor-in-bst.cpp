@@ -21,22 +21,21 @@ struct Node {
 class Solution{
 
 public:
-    int ans;
-    bool inorder(Node* root, int x)
-    {
-        if (root == NULL)
-        return false;
-        if (inorder(root->left, x))
-        return true;
-        if (root->data > x)
-        return true;
-        ans = root->data;
-        return inorder(root->right, x);
-    }
     int floor(Node* root, int x) {
         // Code here
-        ans = -1;
-        inorder(root, x);
+        int ans = -1;
+        while (root != NULL)
+        {
+            if (root->data == x)
+            return x;
+            else if (root->data > x)
+            root = root->left;
+            else
+            {
+                ans = root->data;
+                root = root->right;
+            }
+        }
         return ans;
     }
 };
