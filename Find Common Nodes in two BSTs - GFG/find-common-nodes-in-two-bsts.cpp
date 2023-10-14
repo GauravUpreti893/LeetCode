@@ -86,24 +86,47 @@ class Solution
 {
     public:
     //Function to find the nodes that are common in both BST. 
-    vector<int> ans;
-    unordered_map<int, bool> mp;
-    void inorder(Node* root)
-    {
-        if (root == NULL)
-        return;
-        inorder(root->left);
-        if (mp.find(root->data) != mp.end())
-        ans.push_back(root->data);
-        mp[root->data] = 1;
-        inorder(root->right);
-        return;
-    }
     vector <int> findCommon(Node *root1, Node *root2)
     {
      //Your code here
-        inorder(root1);
-        inorder(root2);
+        stack<Node*> st1, st2;
+        vector<int> ans;
+        while (1)
+        {
+            if (root1)
+            {
+                st1.push(root1);
+                root1 = root1->left;
+            }
+            else if (root2)
+            {
+                st2.push(root2);
+                root2 = root2->left;
+            }
+            else if (!st1.empty() && !st2.empty())
+            {
+                if (st1.top()->data == st2.top()->data)
+                {
+                    ans.push_back(st1.top()->data);
+                    root1 = st1.top()->right;
+                    root2 = st2.top()->right;
+                    st1.pop();
+                    st2.pop();
+                }
+                else if (st1.top()->data > st2.top()->data)
+                {
+                    root2 = st2.top()->right;
+                    st2.pop();
+                }
+                else
+                {
+                    root1 = st1.top()->right;
+                    st1.pop();
+                }
+            }
+            else
+            break;
+        }
         return ans;
     }
 };
