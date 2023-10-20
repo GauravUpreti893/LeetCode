@@ -17,7 +17,7 @@ class Solution {
             sum += arr[i];
             sum %= 3;
         }
-        return sum % 3 == ;
+        return sum == 0;
     }
 };
 
