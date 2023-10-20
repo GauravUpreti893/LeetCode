@@ -14,14 +14,10 @@ class Solution {
         int sum = 0;
         for (int i = 0; i < N; i++)
         {
-            int x = arr[i];
-            while (x)
-            {
-                sum += x % 10;
-                x /= 10;
-            }
+            sum += arr[i];
+            sum %= 3;
         }
-        return sum % 3 == 0;
+        return sum % 3 == ;
     }
 };
 
