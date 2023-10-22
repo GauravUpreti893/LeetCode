@@ -4,22 +4,50 @@ using namespace std;
  
 
 // } Driver Code Ends
-long long  numberOfPaths(int m, int n)
+class Solution
 {
-    // Code Here
-    vector<vector<int>> dp(2, vector<int> (n + 1));
-    for (int i = 0; i < n; i++)
-    dp[0][i] = 0;
-    dp[0][1] = 1;
-    for (int i = 1; i <= m; i++)
+    public:
+    unsigned long long powerwithmod(unsigned long long x, int y, int p)
     {
-        for (int j = 1; j <= n; j++)
+        unsigned long long res = 1; // Initialize result
+      
+        x = x % p; // Update x if it is more than or
+        // equal to p
+      
+        while (y > 0) 
         {
-            dp[i%2][j] = dp[!(i%2)][j] + dp[i%2][j - 1];
+          
+            // If y is odd, multiply x with result
+            if (y & 1)
+                res = (res * x) % p;
+      
+            // y must be even now
+            y = y >> 1; // y = y/2
+            x = (x * x) % p;
         }
+        return res;
     }
-    return dp[m%2][n];
-}
+     
+    // Returns n^(-1) mod p  Only applicable if p is prime
+    unsigned long long modInverse(unsigned long long n, int p)
+    {
+        return powerwithmod(n, p - 2, p);
+    }
+    long long  numberOfPaths(int M, int N)
+    {
+        // Code Here
+        long long ans = 1, x = M + N - 2, mod = 1e9 + 7;
+        for (long long i = 1; i < M; i++)
+        {
+            ans = ans * (x - i + 1);
+            ans %= mod;
+            ans *= modInverse(i, mod);
+            ans %= mod;
+        }
+        return ans;
+    }
+};
+
 
 //{ Driver Code Starts.
 
@@ -30,9 +58,10 @@ int main()
 	cin>>t;
 	while(t--)
 	{
-		int n,m;
-		cin>>m>>n;
-	    cout << numberOfPaths(m, n)<<endl;
+		int N, M;
+		cin>>M>>N;
+		Solution ob;
+	    cout << ob.numberOfPaths(M, N)<<endl;
 	}
     return 0;
 }
