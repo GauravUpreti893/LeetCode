@@ -5,32 +5,21 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
 public:
-    int maxsum(int arr[], vector<int> &dp, int idx)
-    {
-        int n = dp.size();
-        if (idx == n)
-        return 0;
-        if (dp[idx] != -1)
-        return dp[idx];
-        int ans = arr[idx];
-        maxsum(arr, dp, idx + 1);
-        for (int i = idx + 1; i < n; i++)
-        {
-            if (arr[idx] < arr[i])
-            {
-                ans = max(ans, arr[idx] + maxsum(arr, dp, i));
-            }
-        }
-        return dp[idx] = ans;
-    }
 	int maxSumIS(int arr[], int n)  
 	{  
 	    // Your code goes here
-	    vector<int> dp(n, -1);
-	    maxsum(arr, dp, 0);
+	    vector<int> dp(n + 1, 0);
 	    int ans = 0;
-	    for (int i = 0; i < n; i++)
-	    ans = max(ans, dp[i]);
+	    for (int idx = n - 1; idx >= 0; idx--)
+	    {
+	        dp[idx] = arr[idx];
+	        for (int i = idx + 1; i < n; i++)
+            {
+                if (arr[idx] < arr[i])
+                dp[idx] = max(dp[idx], arr[idx] + dp[i]);
+            }
+            ans = max(ans, dp[idx]);
+	    }
 	    return ans;
 	}  
 };
