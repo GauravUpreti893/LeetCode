@@ -9,42 +9,37 @@ using namespace std;
 
 class Solution{
 public:
-    int palindromicPartition(string &s)
+    int count(string &str, vector<int> &dp, vector<vector<bool>> &ispalindrome, int idx)
+    {
+        int n = str.size(), ans = n;
+        if (idx == n)
+        return 0;
+        if (dp[idx] != -1)
+        return dp[idx];
+        for (int i = idx; i < n; i++)
+        {
+            if (ispalindrome[idx][i])
+            ans = min(ans, 1 + count(str, dp, ispalindrome, i + 1));
+        }
+        return dp[idx] = ans;
+    }
+    int palindromicPartition(string str)
     {
         // code here
-        int n = s.size();
-        vector<int> dp(n + 1, 0);
-        vector<vector<bool>> ispal(n, vector<bool> (n, 0));
+        int n = str.size();
+        vector<vector<bool>> ispalindrome(n, vector<bool> (n, 0));
         for (int i = 0; i < n; i++)
         {
             int j = i - 1, k = i + 1;
-            ispal[i][i] = 1;
-            while ((j >= 0) && (k < n) && s[j] == s[k])
-            {
-                ispal[j--][k++] = 1;
-            }
+            ispalindrome[i][i] = 1;
+            while (j >= 0 && k < n && str[j] == str[k])
+            ispalindrome[j--][k++] = 1;
             j = i, k = i + 1;
-            while ((j >= 0) && (k < n) && s[j] == s[k])
-            {
-                ispal[j--][k++] = 1;
-            }
+            while (j >= 0 && k < n && str[j] == str[k])
+            ispalindrome[j--][k++] = 1;
         }
-        for (int idx = n - 1; idx >= 0; idx--)
-        {
-            if (ispal[idx][n - 1])
-            {
-                dp[idx] = 0;
-                continue;
-            }
-            int ans = n - 1;
-            for (int i = idx; i < n; i++)
-            {
-                if (ispal[idx][i])
-                ans = min(ans, 1 + dp[i + 1]);
-            }
-            dp[idx] = ans;
-        }
-        return dp[0];
+        vector<int> dp(n, -1);
+        return count(str, dp, ispalindrome, 0) - 1;
     }
 };
 
