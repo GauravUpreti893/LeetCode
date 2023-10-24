@@ -5,18 +5,18 @@
 <p><br>
 <strong><span style="font-size:18px">Example 1:</span></strong></p>
 
-<pre style="position: relative;"><span style="font-size:18px"><strong>Input:</strong> str = "ababbbabbababa"
+<pre><span style="font-size:18px"><strong>Input:</strong> str = "ababbbabbababa"
 <strong>Output:</strong> 3
 <strong>Explaination:</strong> After 3 partitioning substrings 
 are "a", "babbbab", "b", "ababa".</span>
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p><strong><span style="font-size:18px">Example 2:</span></strong></p>
 
-<pre style="position: relative;"><span style="font-size:18px"><strong>Input:</strong> str = "aaabba"
+<pre><span style="font-size:18px"><strong>Input:</strong> str = "aaabba"
 <strong>Output:</strong> 1
 <strong>Explaination:</strong> The substrings after 1
-partitioning are "aa" and "abba".</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+partitioning are "aa" and "abba".</span></pre>
 
 <p><br>
 <span style="font-size:18px"><strong>Your Task:</strong><br>
