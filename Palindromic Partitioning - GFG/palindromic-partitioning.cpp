@@ -9,20 +9,6 @@ using namespace std;
 
 class Solution{
 public:
-    int count(string &str, vector<int> &dp, vector<vector<bool>> &ispalindrome, int idx)
-    {
-        int n = str.size(), ans = n;
-        if (idx == n)
-        return 0;
-        if (dp[idx] != -1)
-        return dp[idx];
-        for (int i = idx; i < n; i++)
-        {
-            if (ispalindrome[idx][i])
-            ans = min(ans, 1 + count(str, dp, ispalindrome, i + 1));
-        }
-        return dp[idx] = ans;
-    }
     int palindromicPartition(string str)
     {
         // code here
@@ -38,8 +24,17 @@ public:
             while (j >= 0 && k < n && str[j] == str[k])
             ispalindrome[j--][k++] = 1;
         }
-        vector<int> dp(n, -1);
-        return count(str, dp, ispalindrome, 0) - 1;
+        vector<int> dp(n + 1, n);
+        dp[n] = 0;
+        for (int idx = n - 1; idx >= 0; idx--)
+        {
+            for (int i = idx; i < n; i++)
+            {
+                if (ispalindrome[idx][i])
+                dp[idx] = min(dp[idx], 1 + dp[i + 1]);
+            }
+        }
+        return dp[0] - 1;
     }
 };
 
