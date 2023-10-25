@@ -9,20 +9,16 @@ using namespace std;
 
 class Solution{
 public:
-    int profit(int val[], int wt[], vector<vector<int>> &dp, int idx, int w)
-    {
-        int n = dp.size();
-        if (idx == n)
-        return 0;
-        if (dp[idx][w] != -1)
-        return dp[idx][w];
-        return dp[idx][w] = max(profit(val, wt, dp, idx + 1, w), ((w - wt[idx] >= 0) ? val[idx] + profit(val, wt, dp, idx, w - wt[idx]) : 0));
-    }
     int knapSack(int n, int W, int val[], int wt[])
     {
         // code here
-        vector<vector<int>> dp(n, vector<int> (W + 1, -1));
-        return profit(val, wt, dp, 0, W);
+        vector<vector<int>> dp(n + 1, vector<int> (W + 1, 0));
+        for (int idx = n - 1; idx >= 0; idx--)
+        {
+            for (int w = 1; w <= W; w++)
+            dp[idx][w] = max(dp[idx + 1][w], ((w - wt[idx] >= 0) ? val[idx] + dp[idx][w - wt[idx]] : 0));
+        }
+        return dp[0][W];
     }
 };
 
