@@ -12,11 +12,11 @@ public:
     int knapSack(int n, int W, int val[], int wt[])
     {
         // code here
-        vector<vector<int>> dp(n + 1, vector<int> (W + 1, 0));
+        vector<vector<int>> dp(2, vector<int> (W + 1, 0));
         for (int idx = n - 1; idx >= 0; idx--)
         {
             for (int w = 1; w <= W; w++)
-            dp[idx][w] = max(dp[idx + 1][w], ((w - wt[idx] >= 0) ? val[idx] + dp[idx][w - wt[idx]] : 0));
+            dp[idx&1][w] = max(dp[!(idx&1)][w], ((w - wt[idx] >= 0) ? val[idx] + dp[idx&1][w - wt[idx]] : 0));
         }
         return dp[0][W];
     }
