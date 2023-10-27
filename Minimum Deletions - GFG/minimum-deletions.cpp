@@ -8,23 +8,22 @@ using namespace std;
 
 class Solution{
   public:
-    int maxlen(string &s, vector<vector<int>> &dp, int st, int end)
-    {
-        if (st > end)
-        return 0;
-        if (st == end)
-        return 1;
-        if (dp[st][end] != -1)
-        return dp[st][end];
-        if (s[st] == s[end])
-        return 2 + maxlen(s, dp, st + 1, end - 1);
-        return dp[st][end] =  max(maxlen(s, dp, st + 1, end), maxlen(s, dp, st, end - 1));
-    }
     int minimumNumberOfDeletions(string S) { 
         // code here
         int n = S.size();
-        vector<vector<int>> dp(n, vector<int> (n, -1));
-        return n - maxlen(S, dp, 0, n - 1);
+        vector<vector<int>> dp(n + 1, vector<int> (n + 1, 0));
+        for (int st = n - 1; st >= 0; st--)
+        {
+            dp[st][st] = 1;
+            for (int end = st + 1; end < n; end++)
+            {
+                if (S[st] == S[end])
+                dp[st][end] = 2 + dp[st + 1][end - 1];
+                else
+                dp[st][end] = max(dp[st + 1][end], dp[st][end - 1]);
+            }
+        }
+        return n - dp[0][n - 1];
     } 
 };
 
