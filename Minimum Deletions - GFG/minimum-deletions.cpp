@@ -11,16 +11,16 @@ class Solution{
     int minimumNumberOfDeletions(string S) { 
         // code here
         int n = S.size();
-        vector<vector<int>> dp(n + 1, vector<int> (n + 1, 0));
+        vector<vector<int>> dp(2, vector<int> (n + 1, 0));
         for (int st = n - 1; st >= 0; st--)
         {
-            dp[st][st] = 1;
+            dp[st&1][st] = 1;
             for (int end = st + 1; end < n; end++)
             {
                 if (S[st] == S[end])
-                dp[st][end] = 2 + dp[st + 1][end - 1];
+                dp[st&1][end] = 2 + dp[!(st&1)][end - 1];
                 else
-                dp[st][end] = max(dp[st + 1][end], dp[st][end - 1]);
+                dp[st&1][end] = max(dp[!(st&1)][end], dp[st&1][end - 1]);
             }
         }
         return n - dp[0][n - 1];
