@@ -16,17 +16,16 @@ class Solution{
     {
     	//Complete the function
     	long long ans = 0;
-    	vector<long long> freq(17, 0);
-    	for (int i = 0; i < n; i++)
-    	{
-    	    for (int j = 0; j < 17; j++)
-    	    {
-    	        if (arr[i] & (1<<j))
-    	        freq[j]++;
-    	    }
-    	}
     	for (int i = 0; i < 17; i++)
-    	ans += ((long long)1<<i) * freq[i] * (n - freq[i]);
+    	{
+    	    long long ones = 0;
+    	    for (int j = 0; j < n; j++)
+    	    {
+    	        if (arr[j] & (1<<i))
+    	        ones++;
+    	    }
+    	    ans += ((long long)1<<i)*ones*(n - ones);
+    	}
     	return ans;
     }
 };
