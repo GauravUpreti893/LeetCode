@@ -10,13 +10,15 @@ public:
     int  find_and(int l, int r ) 
     {
         // Code here.
-      
-        while(r > l)
-    r = r & (r-1);
-
-        
-
-        return r&l;
+        int ans = 0;
+        for (int i = 31; i >= 0; i--)
+        {
+            if ((l & (1<<i))  && (r & (1<<i)))
+            ans |= (1<<i);
+            else if (((l & (1<<i))  || (r & (1<<i))))
+            return ans;
+        }
+        return ans;
     }
 };
 
