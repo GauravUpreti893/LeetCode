@@ -7,20 +7,16 @@ using namespace std;
 
 class Solution {
 public:
-    int  find_and(int left, int right ) 
+    int  find_and(int l, int r ) 
     {
         // Code here.
-        int ans = 0;
-        for (int i = 30; i >= 0; i--)
-        {
-            if ((left & (1<<i)) != (right & (1 << i)))
-            {
-                break;
-            }
-            if (left & (1<<i))
-            ans += 1<<i;
-        }
-        return ans;
+      
+        while(r > l)
+    r = r & (r-1);
+
+        
+
+        return r&l;
     }
 };
 
