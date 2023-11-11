@@ -5,18 +5,18 @@
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
-<pre style="position: relative;"><span style="font-size:18px"><strong>Input: </strong>L = 8, R = 13
+<pre><span style="font-size:18px"><strong>Input: </strong>L = 8, R = 13
 <strong>Output: </strong>8
 <strong>Explanation: 
 </strong></span><span style="font-size:18px">8 AND 9 AND 10 AND 11 AND 12 AND 13 = 8.</span>
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p><span style="font-size:18px"><strong>Example 2:</strong></span></p>
 
-<pre style="position: relative;"><span style="font-size:18px"><strong>Input: </strong>L = 2, R = 3
+<pre><span style="font-size:18px"><strong>Input: </strong>L = 2, R = 3
 <strong>Output: </strong>2
 <strong>Explanation: </strong>2 AND 3 = 2.</span>
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p>&nbsp;</p>
 
