@@ -7,76 +7,60 @@ using namespace std;
 // } Driver Code Ends
 //User function Template for C++
 class Node{
-public:
+    public:
     Node* links[2];
-    bool flag = false;
 };
 class Trie{
-public:
     Node* root;
+    public:
     Trie()
     {
         root = new Node();
     }
-    void insert(int n)
-    {
+    void insert(int n){
         Node* curr = root;
-        for (int i = 30; i >= 0; i--)
+        for (int i = 19; i >= 0; i--)
         {
-            int val = ((n & (1<<i)) != 0);
-            if (curr->links[val] != NULL)
-            {
-                curr = curr->links[val];
-            }
-            else
-            {
-                Node* n = new Node();
-                curr->links[val] = n;
-                curr = n;
-            }
+            int idx = ((n & (1<<i)) != 0);
+            if (!curr->links[idx])
+            curr->links[idx] = new Node();
+            curr = curr->links[idx];
         }
-        curr->flag = true;
-        return;
     }
     int find(int n)
     {
-        Node* curr = root;
         int no = 0;
-        for (int i = 30; i >= 0; i--)
+        Node* curr = root;
+        for (int i = 19; i >= 0; i--)
         {
-            int val = ((n & (1<<i)) != 0);
-            if (curr->links[val] == NULL)
+            int idx = ((n & (1<<i)) != 0);
+            if (!curr->links[idx])
+            curr = curr->links[!idx];
+            else
             {
-               val = !val;
+                curr = curr->links[idx];
+                no |= (1<<i);
             }
-            if (val)
-            {
-                no += 1<<i;
-            }
-            curr = curr->links[val];
         }
+        insert(~n);
         return no;
     }
 };
 class Solution
 {
     public:
-    int max_xor(int nums[] , int n)
+    int max_xor(int arr[] , int n)
     {
         //code here
-       Trie tri;
-       tri.insert(nums[0]);
-       int ans = 0;
-       for (int i = 1; i < n; i++)
-       {
-           ans = max(ans, nums[i] ^ tri.find(~nums[i]));
-           tri.insert(nums[i]);
-       }
-       return ans; 
+        Trie tri;
+        tri.insert(arr[0]);
+        int ans = 0;
+        for (int i = 1; i < n; i++)
+        ans = max(ans, tri.find(~arr[i]));
+        return ans;
     }
     
 };
-
 
 
 //{ Driver Code Starts.
